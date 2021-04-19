@@ -1,10 +1,12 @@
 .message {
-  height: 186px;
-  padding: 24px 46px 30px;
-  border-top: 1px solid #eeeeee;
+  // min-height: 186px;
+  padding: 20px 46px 26px;
+  border-bottom: 1px solid #eeeeee;
   background-color: #f9f9fa;
 
   &__title {
+    position: relative;
+
     &__icon {
       position: absolute;
       display: inline-block;
@@ -14,7 +16,7 @@
       border-radius: 50%;
       text-align: center;
       line-height: 17px;
-      font-size: 14px;
+      font-size: 11px;
       margin-left: -23px;
       margin-top: 3px;
     }
@@ -34,14 +36,15 @@
     color: #777777;
     font-size: 12px;
     li {
+      position: relative;
       list-style: none;
       line-height: 17px;
       margin-top: 8px;
     }
     li:before {
       position: absolute;
-      content: '•';
-      left: 35px;
+      content: '\2022';
+      left: -10px;
     }
   }
 }
