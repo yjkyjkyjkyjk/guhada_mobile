@@ -49,7 +49,10 @@ class index extends Component {
     });
 
     // 카카오 모먼트 트래커
-    momentTracker.purchaseComplete();
+    momentTracker.purchaseComplete({
+      total_quantity: successInfo.orderList?.length,
+      total_price: successInfo.totalOrderPrice,
+    });
 
     // gtag 트래커
     gtagTracker.purchaseComplete(successInfo);

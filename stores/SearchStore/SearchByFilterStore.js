@@ -1,16 +1,16 @@
 import { observable, action, computed, toJS } from 'mobx';
-import API from 'lib/API';
-import _ from 'lodash';
-import { getEscapedBody } from 'lib/common/getEscapedBody';
+import API from 'childs/lib/API';
+import { isEqual as _isEqual } from 'lodash';
+import { getEscapedBody } from 'childs/lib/common/getEscapedBody';
 import SearchStore, { ENDPOINT, STATE } from './SearchStore';
 
 /** body props to compare with `defaultBody` to check if initializing is needed */
-const defaultComparedBodyProps = [
-  'categoryIds',
-  'brandIds',
-  'searchQueries',
-  'searchCondition',
-];
+// const defaultComparedBodyProps = [
+//   'categoryIds',
+//   'brandIds',
+//   'searchQueries',
+//   'searchCondition',
+// ];
 
 /** 종류 */
 export const searchConditionMap = new Map([
@@ -87,7 +87,7 @@ export class SearchByFilterStore extends SearchStore {
     searchQueries: [],
     minPrice: 0,
     maxPrice: 0,
-    searchResultOrder: 'DATE',
+    searchResultOrder: 'SCORE',
     shippingCondition: 'ANY',
     productCondition: 'ANY',
   };
@@ -124,6 +124,16 @@ export class SearchByFilterStore extends SearchStore {
     const { searchResultOrder: s, ...copiedBody } = toJS(this.body);
     const { searchResultOrder, ...copiedDefaultBody } = toJS(this.defaultBody);
     return !_.isEqual(copiedBody, copiedDefaultBody);
+  }
+  /** Check if search result is filtered (without category) */
+  @computed get isFilteredExceptCategory() {
+    const { searchResultOrder: s, categoryIds: c, ...copiedBody } = toJS(
+      this.body
+    );
+    const { searchResultOrder, categoryIds, ...copiedDefaultBody } = toJS(
+      this.defaultBody
+    );
+    return !_isEqual(copiedBody, copiedDefaultBody);
   }
 
   /**
