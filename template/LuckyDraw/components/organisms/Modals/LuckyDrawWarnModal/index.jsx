@@ -1,14 +1,6 @@
 import PropTypes from 'prop-types';
 import ModalWrapper from 'components/molecules/Modal/ModalWrapper/index';
-
-import {
-  Wrapper,
-  CloseButton,
-  SectionInfo,
-  SectionInfoTitle,
-  SectionInfoContents,
-  SectionButton,
-} from './Styled';
+import css from './LuckyDrawWarnModal.module.scss';
 
 /**
  * 럭키드로우 유의사항 모달
@@ -19,14 +11,15 @@ import {
 function LuckyDrawWarnModal({ isOpen, onClose }) {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
-      <Wrapper>
-        <CloseButton
-          imageUrl={'/public/icon/modal_close.png'}
+      <div className={css.wrapper}>
+        <button
+          className={css['close-button']}
+          style={{ backgroundImage: '/public/icon/modal_close.png' }}
           onClick={onClose}
         />
-        <SectionInfo>
-          <SectionInfoTitle>유의사항</SectionInfoTitle>
-          <SectionInfoContents>
+        <div className={css['section-info']}>
+          <div className={css['section-info-title']}>유의사항</div>
+          <div className={css['section-info-contents']}>
             <div>· 이벤트 상품은 100% 정품입니다.</div>
             <div>· 본인인증 및 마케팅 수신 동의한 고객만 응모 가능합니다.</div>
             <div>
@@ -43,12 +36,18 @@ function LuckyDrawWarnModal({ isOpen, onClose }) {
             <div>
               · 해당 이벤트는 별도 고지 없이 변경 또는 종료될 수 있습니다.
             </div>
-          </SectionInfoContents>
-        </SectionInfo>
-      </Wrapper>
-      <SectionButton isActive={true} onClick={onClose}>
+          </div>
+        </div>
+      </div>
+      <div
+        className={css['sectino-button']}
+        style={{
+          backgroundColor: '#232323',
+        }}
+        onClick={onClose}
+      >
         확인
-      </SectionButton>
+      </div>
     </ModalWrapper>
   );
 }

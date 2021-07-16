@@ -1,7 +1,7 @@
 import { observable, action, computed, toJS } from 'mobx';
-import API from 'childs/lib/API';
+import API from 'lib/API';
 import { isEqual as _isEqual } from 'lodash';
-import { getEscapedBody } from 'childs/lib/common/getEscapedBody';
+import { getEscapedBody } from 'lib/common/getEscapedBody';
 import SearchStore, { ENDPOINT, STATE } from './SearchStore';
 
 /** body props to compare with `defaultBody` to check if initializing is needed */

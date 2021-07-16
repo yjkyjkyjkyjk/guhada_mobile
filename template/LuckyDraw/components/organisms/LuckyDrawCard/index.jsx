@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, memo } from 'react';
+import css from './LuckyDrawCard.module.scss';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import addCommaToNum from 'lib/common/addCommaToNum';
@@ -9,19 +10,6 @@ import {
   LuckyDrawTimer,
 } from 'template/LuckyDraw/components/atoms';
 import { LuckyDrawCardFrame } from 'template/LuckyDraw/components/molecules';
-
-import {
-  Wrapper,
-  SectionForm,
-  SectionFormHeader,
-  SectionFormPrice,
-  SectionFormPriceRate,
-  SectionFromSellPrice,
-  SectionFromSellDiscountPrice,
-  SectionNotify,
-  SectionNotifyItem,
-  WrapperDivder,
-} from './Styled';
 
 /**
  * 럭키드로우 Card
@@ -61,7 +49,6 @@ function LuckyDrawCard({
   /**
    * states
    */
-  const MemoSectionForm = memo(SectionForm);
   const timer = useRef(null); // 럭키드로우 타이머 Interval
   const [deadLine, setDeadLine] = useState(null); // 럭키드로우 타이머 String
 
@@ -102,80 +89,78 @@ function LuckyDrawCard({
    * render
    */
   return (
-    <>
-      <Wrapper>
-        {/* 타이머 헤더 */}
-        {deadLine && (statusCode === 'START' || statusCode === 'REQUESTED') && (
-          <LuckyDrawTimer day={deadLine.day} date={deadLine.date} />
-        )}
+    <div className={css.wrapper}>
+      {/* 타이머 헤더 */}
+      {deadLine && (statusCode === 'START' || statusCode === 'REQUESTED') && (
+        <LuckyDrawTimer day={deadLine.day} date={deadLine.date} />
+      )}
 
-        {(statusCode === 'NORMAL' || statusCode === 'READY') && (
-          <LuckyDrawTimer text={statusText.replace('오픈', 'OPEN')} />
-        )}
+      {(statusCode === 'NORMAL' || statusCode === 'READY') && (
+        <LuckyDrawTimer text={statusText.replace('오픈', 'OPEN')} />
+      )}
 
-        {/* 이미지 영역 */}
-        <LuckyDrawCardFrame imageUrl={imageUrl} statusCode={statusCode} />
+      {/* 이미지 영역 */}
+      <LuckyDrawCardFrame imageUrl={imageUrl} statusCode={statusCode} />
 
-        {/* 응모하기 폼 */}
-        {/* TODO : 컴포넌트 분리 */}
-        <MemoSectionForm>
-          <SectionFormHeader>
-            <div>{brandName}</div>
-            <div>{title}</div>
-          </SectionFormHeader>
-          <SectionFormPrice>
-            <div>
-              <SectionFormPriceRate>
-                <span>{discountRate}%</span>
-              </SectionFormPriceRate>
-              <SectionFromSellDiscountPrice>
-                <span>{addCommaToNum(sellPrice)}</span>
-              </SectionFromSellDiscountPrice>
+      {/* 응모하기 폼 */}
+      {/* TODO : 컴포넌트 분리 */}
+      <div className={css.sectionForm}>
+        <div className={css.sectionFormHeader}>
+          <div>{brandName}</div>
+          <div>{title}</div>
+        </div>
+        <div className={css.sectionFormPrice}>
+          <div>
+            <div className={css.sectionFormPriceRate}>
+              <span>{discountRate}%</span>
             </div>
-            <SectionFromSellPrice>
-              <span>{addCommaToNum(discountPrice)}</span>
-              <span>원</span>
-            </SectionFromSellPrice>
-          </SectionFormPrice>
-          <LuckyDrawButton
-            isActive={statusCode === 'START' ? true : false}
-            contents={
-              statusCode === 'NORMAL' || statusCode === 'READY'
-                ? '오픈예정'
-                : statusText
-            }
-            onClick={() => onClickRequestLuckyDraw(dealId)}
-          />
-          {/* TODO : Atoms > Paragraph > LuckyDaraw Notifiy */}
-          <SectionNotify>
-            <SectionNotifyItem>
-              <span>응모기간</span>
-              <span />
-              <span>
-                {moment(requestFromAt).format('M월 DD일 (ddd) HH:mm')} ~{' '}
-                {moment(requestToAt).format('M월 DD일 (ddd) HH:mm')}
-              </span>
-            </SectionNotifyItem>
-            <SectionNotifyItem>
-              <span>발표일자</span>
-              <span />
-              <span>
-                {moment(winnerAnnouncementAt).format('M월 DD일 (ddd) HH:mm')}
-              </span>
-            </SectionNotifyItem>
-            <SectionNotifyItem>
-              <span>구매기간</span>
-              <span />
-              <span>
-                {moment(winnerBuyFromAt).format('M월 DD일 (ddd) HH:mm')} ~{' '}
-                {moment(winnerBuyToAt).format('M월 DD일 (ddd) HH:mm')}
-              </span>
-            </SectionNotifyItem>
-          </SectionNotify>
-        </MemoSectionForm>
-        <WrapperDivder />
-      </Wrapper>
-    </>
+            <div className={css.sectionFromSellDiscountPrice}>
+              <span>{addCommaToNum(sellPrice)}</span>
+            </div>
+          </div>
+          <div className={css.sectionFormSellPrice}>
+            <span>{addCommaToNum(discountPrice)}</span>
+            <span>원</span>
+          </div>
+        </div>
+        <LuckyDrawButton
+          isActive={statusCode === 'START' ? true : false}
+          contents={
+            statusCode === 'NORMAL' || statusCode === 'READY'
+              ? '오픈예정'
+              : statusText
+          }
+          onClick={() => onClickRequestLuckyDraw(dealId)}
+        />
+        {/* TODO : Atoms > Paragraph > LuckyDaraw Notifiy */}
+        <div className={css.sectionNotify}>
+          <div className={css.sectionNotifyItem}>
+            <span>응모기간</span>
+            <span />
+            <span>
+              {moment(requestFromAt).format('M월 DD일 (ddd) HH:mm')} ~{' '}
+              {moment(requestToAt).format('M월 DD일 (ddd) HH:mm')}
+            </span>
+          </div>
+          <div className={css.sectionNotifyItem}>
+            <span>발표일자</span>
+            <span />
+            <span>
+              {moment(winnerAnnouncementAt).format('M월 DD일 (ddd) HH:mm')}
+            </span>
+          </div>
+          <div className={css.sectionNotifyItem}>
+            <span>구매기간</span>
+            <span />
+            <span>
+              {moment(winnerBuyFromAt).format('M월 DD일 (ddd) HH:mm')} ~{' '}
+              {moment(winnerBuyToAt).format('M월 DD일 (ddd) HH:mm')}
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr className={css.wrapperDivider} />
+    </div>
   );
 }
 

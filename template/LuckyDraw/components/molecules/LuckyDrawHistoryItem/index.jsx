@@ -1,14 +1,6 @@
 import PropTypes from 'prop-types';
-
-import {
-  Wrapper,
-  ImageSection,
-  ImageSectionCover,
-  Image,
-  WinnerDate,
-  WinnerSubmit,
-} from './Styled';
 import moment from 'moment';
+import css from './LuckyDrawHistoryItem.module.scss';
 
 /**
  * 럭키드로우 Draw history
@@ -17,25 +9,35 @@ import moment from 'moment';
  * @param {Function} onClickHistory Winner history event
  * @returns
  */
-function LuckyDrawHistoryItem({ isActive, item, onClickHistory }) {
+function LuckyDrawHistoryItem({ isActive = true, item, onClickHistory }) {
   return (
-    <Wrapper>
+    <div className={css['wrapper']}>
       {isActive && (
         <>
-          <ImageSection bgColor={item.bgColor}>
-            <Image src={item.imageUrl} alt="Draw Item Image" />
-            <ImageSectionCover />
-            <WinnerDate>
+          <div
+            className={css['image-section']}
+            style={{ backgroundColor: item.bgColor }}
+          >
+            <img
+              className={css['image']}
+              src={item.imageUrl}
+              alt="Draw Item Image"
+            />
+            <div className={css['image-section-cover']} />
+            <div className={css['winner-date']}>
               <p>발표일</p>
               <p>{moment(item.winnerAnnouncementAt).format('YYYY. MM. DD')}</p>
-            </WinnerDate>
-          </ImageSection>
-          <WinnerSubmit onClick={() => onClickHistory(item.dealId)}>
+            </div>
+          </div>
+          <div
+            className={css['winner-submit']}
+            onClick={() => onClickHistory(item.dealId)}
+          >
             당첨자 확인
-          </WinnerSubmit>
+          </div>
         </>
       )}
-    </Wrapper>
+    </div>
   );
 }
 
@@ -43,10 +45,6 @@ LuckyDrawHistoryItem.propTypes = {
   isActive: PropTypes.bool,
   winners: PropTypes.arrayOf(PropTypes.object),
   onClickHistory: PropTypes.func,
-};
-
-LuckyDrawHistoryItem.defaultProps = {
-  isActive: true,
 };
 
 export default LuckyDrawHistoryItem;

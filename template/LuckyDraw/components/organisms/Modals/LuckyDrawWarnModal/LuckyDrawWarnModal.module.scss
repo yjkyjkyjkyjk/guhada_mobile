@@ -1,0 +1,42 @@
+.wrapper {
+  width: 340px;
+  position: relative;
+  top: 50px;
+  left: 30px;
+}
+
+.close-button {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.section-info {
+  width: 340px;
+  position: relative;
+  top: 50px;
+  left: 30px;
+}
+
+.section-info-title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+  margin-bottom: 20px;
+}
+
+.section-info-contents {
+  font-size: 12px;
+  line-height: 2.08;
+}
+
+.section-button {
+  height: 63px;
+  padding: 19px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}

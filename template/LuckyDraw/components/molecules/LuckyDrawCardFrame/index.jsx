@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-
-import { Wrapper, SectionImage, SectionBg } from './Styled';
+import css from './LuckyDrawCardFrame.module.scss';
 
 /**
  * 럭키드로우 상품 Photo frame
@@ -11,16 +10,22 @@ import { Wrapper, SectionImage, SectionBg } from './Styled';
  */
 function LuckyDrawCardFrame({ imageUrl, statusCode }) {
   return (
-    <Wrapper>
-      <SectionImage imageUrl={imageUrl} zIndex={1} />
+    <div className={css.wrapper}>
+      <div
+        style={{ backgroundImage: imageUrl, zIndex: '1' }}
+        className={css['section-image']}
+      />
       {(statusCode === 'NORMAL' || statusCode === 'READY') && (
-        <SectionImage
-          imageUrl={'/public/icon/luckydraw/comming_soon.png'}
-          zIndex={2}
+        <div
+          style={{
+            backgroundImage: '/public/icon/luckydraw/comming_soon.png',
+            zIndex: '2',
+          }}
+          className={css['section-image']}
         />
       )}
-      <SectionBg />
-    </Wrapper>
+      <div className={css['section-bg']} />
+    </div>
   );
 }
 

@@ -1,18 +1,6 @@
 import PropTypes from 'prop-types';
+import css from './LuckyDrawModal.module.scss';
 import ModalWrapper from 'components/molecules/Modal/ModalWrapper/index';
-import {
-  Wrapper,
-  SectionContents,
-  SectionInfo,
-  CloseButton,
-  CloseButtonSection,
-  SectionStatus,
-  SectionStatusIconSection,
-  SectionStatusIcon,
-  SectionTitle,
-  SectionDescriptions,
-  SectionButton,
-} from './Styled';
 
 const STATUS_RESPONSES = {
   START: {
@@ -38,30 +26,46 @@ function LuckyDrawModal({ isOpen, status, contents, onClose }) {
     status === 'START' || status === 'WINNER_ANNOUNCEMENT' ? true : false;
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
-      <Wrapper isBigModal={isBigModal}>
-        <SectionContents isBigModal={isBigModal}>
-          <CloseButtonSection>
-            <CloseButton
-              imageUrl={'/public/icon/modal_close.png'}
+      <div
+        className={css.wrapper}
+        style={{ height: isBigModal ? '305px' : '205px' }}
+      >
+        <div
+          className={css['section-contents']}
+          style={{ height: isBigModal ? '249px' : '149px' }}
+        >
+          <div className={css['close-button-section']}>
+            <button
+              className={css['close-button']}
+              style={{ backgroundImage: '/public/icon/modal_close.png' }}
               onClick={onClose}
             />
-          </CloseButtonSection>
-          <SectionInfo>
+          </div>
+          <div className={css['section-info']}>
             {isBigModal && (
-              <SectionStatus>
-                <SectionStatusIconSection>
-                  <SectionStatusIcon imageUrl={STATUS_RESPONSES[status].icon} />
-                </SectionStatusIconSection>
-                <SectionTitle>{STATUS_RESPONSES[status].text}</SectionTitle>
-              </SectionStatus>
+              <div className={css['section-status']}>
+                <div className={css['section-status-icon-section']}>
+                  <div
+                    className={css['section-status-icon']}
+                    style={{ backgroundImage: STATUS_RESPONSES[status].icon }}
+                  />
+                </div>
+                <div className={css['section-title']}>
+                  {STATUS_RESPONSES[status].text}
+                </div>
+              </div>
             )}
-            <SectionDescriptions>{contents}</SectionDescriptions>
-          </SectionInfo>
-        </SectionContents>
-        <SectionButton isActive={true} onClick={onClose}>
+            <div className={css['section-descriptions']}>{contents}</div>
+          </div>
+        </div>
+        <div
+          className={css['section-button']}
+          style={{ backgroundColor: '#232323' }}
+          onClick={onClose}
+        >
           확인
-        </SectionButton>
-      </Wrapper>
+        </div>
+      </div>
     </ModalWrapper>
   );
 }

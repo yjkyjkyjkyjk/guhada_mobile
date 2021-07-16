@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { LuckyDrawHistoryItem } from 'template/LuckyDraw/components/molecules';
-
-import { Wrapper, Title, SliderSection } from './Styled';
+import css from './LuckyDrawHistory.module.scss';
 
 /**
  * 럭키 드로우 히스토리
@@ -54,16 +53,16 @@ function LuckyDrawHistory({ winnerList, onClickHistory }) {
    * render
    */
   return (
-    <Wrapper>
-      <Title>DRAW HISTORY</Title>
+    <div className={css.wrapper}>
+      <div className={css.title}>DRAW HISTORY</div>
       {/* 럭키드로우 아이템 슬라이더 */}
-      <SliderSection>
+      <div className={css.sliderSection}>
         {scrollMenuData && scrollMenuData.length && (
           <ScrollMenu data={scrollMenuData} wheel={false} />
         )}
-      </SliderSection>
+      </div>
       {/* TODO : 럭키드로우 아이템 스크롤 */}
-    </Wrapper>
+    </div>
   );
 }
 
