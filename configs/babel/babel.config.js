@@ -15,11 +15,10 @@ module.exports = {
     [
       'inline-dotenv',
       {
-        path: './.env',
+        path: 'configs/env/.env',
         systemVar: 'disable',
       },
     ],
-    '@babel/plugin-proposal-optional-chaining',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     [
       'babel-plugin-styled-components',

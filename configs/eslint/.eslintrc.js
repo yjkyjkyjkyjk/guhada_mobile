@@ -1,0 +1,20 @@
+module.exports = {
+  extends: ['next', 'prettier'],
+  globals: {
+    define: true,
+    $: true,
+    jQuery: true,
+    daum: true,
+    DaumConversionDctSv: true,
+    DaumConversionAccountID: true,
+    wptg_tagscript: true,
+    wcs_add: true,
+    wcs_do: true,
+    wcs: true,
+    _nasa: true,
+    kochava: true,
+    kakaoPixel: true,
+    gtag: true,
+  },
+  rules: {},
+};

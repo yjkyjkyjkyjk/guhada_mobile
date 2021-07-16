@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import ReactSelect from 'react-select'; // https://react-select.com/
+import ReactSelect from 'react-select';
 import { devLog } from 'lib/common/devLog';
 
 const customStyles = {

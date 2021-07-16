@@ -1,6 +1,6 @@
 import { observable, action, computed, toJS } from 'mobx';
 import API from 'lib/API';
-import { isEqual as _isEqual } from 'lodash';
+import _ from 'lodash';
 import { getEscapedBody } from 'lib/common/getEscapedBody';
 import SearchStore, { ENDPOINT, STATE } from './SearchStore';
 
@@ -133,7 +133,7 @@ export class SearchByFilterStore extends SearchStore {
     const { searchResultOrder, categoryIds, ...copiedDefaultBody } = toJS(
       this.defaultBody
     );
-    return !_isEqual(copiedBody, copiedDefaultBody);
+    return !_.isEqual(copiedBody, copiedDefaultBody);
   }
 
   /**

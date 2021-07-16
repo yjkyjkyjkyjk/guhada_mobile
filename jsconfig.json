@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
+      "configs/*": ["./configs/*"],
       "components/*": ["./components/*"],
       "lib/*": ["./lib/*"],
       "pages/*": ["./pages/*"],

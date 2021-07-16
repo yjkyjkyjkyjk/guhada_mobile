@@ -2,13 +2,13 @@ const express = require('express');
 const next = require('next');
 const mobxReact = require('mobx-react');
 const compression = require('compression');
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const useragent = require('express-useragent');
+const nextConfig = require('../configs/next');
+const app = next({ conf: nextConfig });
 const handle = app.getRequestHandler();
 const routes = require('../routes');
-const PORT = dev ? 8081 : process.env.PORT || 3000;
 const returnUrls = require('../routes/returnUrls');
-const useragent = require('express-useragent');
+const PORT = 3000;
 
 mobxReact.useStaticRendering(true);
 
@@ -35,7 +35,7 @@ app
 
     let isAppGoingToBeClosed = false; // PM@의 SIGINT 시그널을 받았는지 여부. 앱이 곧 종료될 것임을 의미한다.
 
-    server.use(function(req, res, next) {
+    server.use(function (req, res, next) {
       // 프로세스 종료 예정이라면 리퀘스트를 처리하지 않는다
       if (isAppGoingToBeClosed) {
         res.set('Connection', 'close');
@@ -67,7 +67,7 @@ app
     /**
      * 데스크탑에서 접속하면 데스크탑 웹으로 보낸다
      */
-    server.use(function(req, res, next) {
+    server.use(function (req, res, next) {
       const ua = useragent.parse(req.headers['user-agent']);
 
       // 리다이렉트 하지 않을 경로
@@ -108,7 +108,9 @@ app
     });
 
     const listeningServer = server.listen(PORT, '127.0.0.1', (err) => {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       console.log(`> Ready on mobile https://localhost:${PORT}`);
 
       // PM2에게 앱 구동이 완료되었음을 전달한다
@@ -118,13 +120,13 @@ app
       }
     });
 
-    process.on('SIGINT', function() {
+    process.on('SIGINT', function () {
       console.log('received SIGNIT signal');
 
       isAppGoingToBeClosed = true; // 앱이 종료될 것
 
       // pm2 재시작 신호가 들어오면 서버를 종료시킨다.
-      listeningServer.close(function(err) {
+      listeningServer.close(function (err) {
         console.log('server closed');
         process.exit(err ? 1 : 0);
       });
