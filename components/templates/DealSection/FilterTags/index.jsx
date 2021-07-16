@@ -9,7 +9,7 @@ import {
 } from 'stores/SearchStore/SearchByFilterStore';
 import TagFactory, { CategorySearchTag } from './TagFactory';
 
-const FilterTags = () => {
+const FilterTags = ({ specialFilterTags }) => {
   /**
    * states
    */
@@ -26,7 +26,9 @@ const FilterTags = () => {
    * render
    */
   return (
-    searchByFilterStore.isFiltered && (
+    (specialFilterTags
+      ? searchByFilterStore.isFilteredExceptCategory
+      : searchByFilterStore.isFiltered) && (
       <div className={css['filter-tags']}>
         <div className={css['tags']}>
           {body.categoryIds.length > 0 &&
@@ -75,6 +77,10 @@ const FilterTags = () => {
       </div>
     )
   );
+};
+
+FilterTags.propTypes = {
+  specialFilterTags: PropTypes.bool,
 };
 
 export default observer(FilterTags);

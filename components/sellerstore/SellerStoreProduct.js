@@ -7,7 +7,6 @@ import { useObserver } from 'mobx-react';
 import SellerStoreOrder from './SellerStroeOrder';
 import SearchFilterResult from 'components/search/SearchFilterResult';
 import { observer } from 'mobx-react';
-import { devLog } from 'lib/common/devLog';
 import Router from 'next/router';
 import SearchEnum from 'lib/constant/filter/SearchEnum.js';
 
@@ -19,7 +18,6 @@ function SellerStoreProduct({
   setIsFilterVisible,
 }) {
   const [orderHover, setOrderHover] = useState(false);
-  const [sellerStoreFilter, setSellerStoreFilter] = useState('DATE');
 
   const orderList = [
     { label: '신상품순', value: 'DATE' },
@@ -34,17 +32,14 @@ function SellerStoreProduct({
 
   function getOrderDeal(order, e) {
     let query = Router.router.query;
-    devLog('[SellerStoreProduct] : getOrderDeal called.');
     e.stopPropagation();
     setOrderHover(false);
-    setSellerStoreFilter(order);
     seller.order = order;
     searchitem.toSearch(
       Object.assign(
         {},
         query,
-        { order: 'DATE' },
-        { order: order },
+        { order: order || 'SCORE' },
         { searchSourceFrom: SearchEnum.SELLER_STORE }
       )
     );
