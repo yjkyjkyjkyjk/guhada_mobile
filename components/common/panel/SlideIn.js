@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import ReactDom from 'react-dom';
+import { createPortal } from 'react-dom';
 import css from './SlideIn.module.scss';
 import { Transition } from 'react-transition-group';
 import anime from 'animejs';
@@ -172,7 +172,7 @@ export default function SlideIn({
       Object.assign(style, { zIndex });
     }
 
-    return ReactDom.createPortal(
+    return createPortal(
       <>
         <Transition
           in={isVisible}

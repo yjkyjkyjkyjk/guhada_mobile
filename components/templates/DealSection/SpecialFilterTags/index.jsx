@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'stores/useStores';
-import { useHorizontalArrows } from 'hooks';
+import { useHorizontalArrows } from 'lib/hooks';
 import _ from 'lodash';
 
 const SpecialFilterTags = () => {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import sessionStorage from 'childs/lib/common/sessionStorage';
+import sessionStorage from 'lib/common/sessionStorage';
 import MenuTab from './MenuTab';
 import SubmenuTab from './SubmenuTab';
 import CategoryTab from './CategoryTab';

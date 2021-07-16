@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { ReactDOMServer } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import ModalWrapper from './ModalWrapper';
 import css from './Alert.module.scss';

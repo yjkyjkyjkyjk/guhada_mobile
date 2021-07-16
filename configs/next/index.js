@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
-module.exports = withBundleAnalyzer({
+const nextConfig = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     /**
      * rules
@@ -91,4 +91,6 @@ module.exports = withBundleAnalyzer({
       );
     },
   },
-});
+};
+
+module.exports = withBundleAnalyzer(nextConfig);
