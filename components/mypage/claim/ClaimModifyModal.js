@@ -30,7 +30,7 @@ class ClaimModifyModal extends Component {
   }
 
   setInquiryContents = (value) => {
-    if (_size(value) <= 1000) {
+    if (_.size(value) <= 1000) {
       this.setState((prevState) => ({
         inquiry: {
           ...prevState.inquiry,
@@ -74,7 +74,7 @@ class ClaimModifyModal extends Component {
               value={this.state.inquiry.inquiry}
             />
             <div className={css.textCount}>
-              {_size(this.state.inquiry.inquiry)}/1000
+              {_.size(this.state.inquiry.inquiry)}/1000
             </div>
           </div>
 

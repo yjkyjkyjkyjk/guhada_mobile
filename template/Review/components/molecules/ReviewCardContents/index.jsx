@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Wrapper, Title, Contents } from './Styled';
+import css from './ReviewCardContents.module.scss';
 
 /**
  * 리뷰 > 본문 > 타이틀, 내용
@@ -9,10 +9,10 @@ import { Wrapper, Title, Contents } from './Styled';
  */
 function CardContents({ title, contents }) {
   return (
-    <Wrapper>
-      <Title>{title}</Title>
-      <Contents>{contents}</Contents>
-    </Wrapper>
+    <div className={css.Wrapper}>
+      <span className={css.Title}>{title}</span>
+      <span className={css.Contents}>{contents}</span>
+    </div>
   );
 }
 

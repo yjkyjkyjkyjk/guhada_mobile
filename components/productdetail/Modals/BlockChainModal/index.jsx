@@ -96,9 +96,9 @@ function BlockChainModal({ isModalOpen, onCloseModal, deals }) {
 }
 
 BlockChainModal.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired,
-  onCloseModal: PropTypes.func.isRequired,
-  deals: PropTypes.object.isRequired,
+  isModalOpen: PropTypes.bool,
+  onCloseModal: PropTypes.func,
+  deals: PropTypes.object,
 };
 
 export default BlockChainModal;

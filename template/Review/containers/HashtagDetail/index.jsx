@@ -4,18 +4,11 @@ import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
 import { useScrollPosition } from 'lib/hooks';
 import useStores from 'stores/useStores';
-
+import css from './Hashtag.module.scss';
 import Image from 'components/atoms/Image';
 import DefaultLayout from 'components/layout/DefaultLayout';
-import {
-  ReviewHashtagDetailWrapper,
-  Menus,
-  MenuItem,
-  Contents,
-  ContentItem,
-} from './Styled';
 
-const DynamicReviewDeatailModal = dynamic(
+const DynamicReviewDetailModal = dynamic(
   () => import('template/Review/components/organisms/Modals/ReviewDetailModal'),
   {
     ssr: false,
@@ -107,7 +100,7 @@ function ReviewHashtagDetail() {
   return (
     <>
       {isModalOpen && (
-        <DynamicReviewDeatailModal
+        <DynamicReviewDetailModal
           reviewId={reviewId}
           isModalOpen={isModalOpen}
           onCloseModal={() => {
@@ -124,28 +117,42 @@ function ReviewHashtagDetail() {
         headerShape={'reviewHashtagDetail'}
         topLayout={'main'}
       >
-        <ReviewHashtagDetailWrapper>
-          <Menus>
-            <MenuItem active={isMenuToggle} onClick={onClickPopularity}>
+        <div>
+          <div className={css.Menus}>
+            <div
+              className={css.MenuItem}
+              onClick={onClickPopularity}
+              style={{
+                color: isMenuToggle ? '#111111' : '#aaaaaa',
+              }}
+            >
               인기순
-            </MenuItem>
-            <MenuItem active={!isMenuToggle} onClick={onClickCreatedAt}>
+            </div>
+            <div
+              style={{
+                color: !isMenuToggle ? '#111111' : '#aaaaaa',
+              }}
+              onClick={onClickCreatedAt}
+            >
               최신순
-            </MenuItem>
-          </Menus>
-          <Contents>
+            </div>
+          </div>
+          <div className={css.Contents}>
             {reviewStore?.reviewHashtagDetailList &&
               reviewStore.reviewHashtagDetailList.map((o, i) => (
-                <ContentItem
+                <div
+                  style={{
+                    borderRight: index % 3 !== 0 && '1.5px solid white',
+                  }}
+                  className={css.ContentItem}
                   key={`${o.id}-${i}`}
-                  index={i + 1}
                   onClick={() => onClickHashtagItem(o.id)}
                 >
                   <Image src={o.reviewImageUrl} />
-                </ContentItem>
+                </div>
               ))}
-          </Contents>
-        </ReviewHashtagDetailWrapper>
+          </div>
+        </div>
       </DefaultLayout>
     </>
   );

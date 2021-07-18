@@ -53,7 +53,7 @@ function MyPageMembership({
 }
 
 MyPageMembership.propTypes = {
-  mypageDashboard: PropTypes.object.isRequired,
+  mypageDashboard: PropTypes.object,
 };
 
 export default memo(observer(MyPageMembership));

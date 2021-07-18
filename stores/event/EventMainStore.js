@@ -95,15 +95,10 @@ export default class EventMainStore {
   @action
   sendNative = (arg1, arg2) => {
     if (this.eventDetail.detailPageLink.indexOf('signup')) {
-      devLog('sign up to native ', arg1, arg2);
       if (isAndroid()) {
         if (window.Android) {
           window.Android.processData(arg1, arg2);
         }
-      } else if (isIOS()) {
-        devLog('ios');
-      } else {
-        devLog('data', arg1);
       }
     }
   };

@@ -37,7 +37,7 @@ function MyPageUserInfo({ user }) {
 }
 
 MyPageUserInfo.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
 };
 
 export default memo(MyPageUserInfo);

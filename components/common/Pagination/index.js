@@ -9,10 +9,10 @@ import { devLog } from 'lib/common/devLog';
  */
 export default class Pagination extends Component {
   static propTypes = {
-    onChangePage: func.isRequired,
+    onChangePage: func,
     initialPage: number,
     itemsCountPerPage: number,
-    totalItemsCount: number.isRequired,
+    totalItemsCount: number,
     wrapperStyle: object,
   };
 

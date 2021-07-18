@@ -51,6 +51,6 @@ const RankingHeader = ({ handleFilterModalOpen }) => {
 };
 
 RankingHeader.propTypes = {
-  handleFilterModalOpen: PropTypes.func.isRequired,
+  handleFilterModalOpen: PropTypes.func,
 };
 export default observer(RankingHeader);

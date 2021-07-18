@@ -75,7 +75,7 @@ import TimeDealStore from './event/TimeDealStore';
 import SpecialStore from './event/SpecialStore';
 import SearchPlaceholderStore from './home/SearchPlaceholderStore';
 // 커뮤니티
-import BBSStore from './bbs';
+// import BBSStore from './bbs';
 
 // 신고하기
 import ReportStore from './claim/ReportStore';
@@ -196,7 +196,7 @@ class RootStore {
     /**
      * 커뮤니티
      */
-    this.bbs = new BBSStore(this, initialState);
+    // this.bbs = new BBSStore(this, initialState);
   }
 }
 

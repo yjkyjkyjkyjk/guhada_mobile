@@ -23,7 +23,7 @@ FilterButton.propTypes = {
     PropTypes.bool,
     PropTypes.number,
     PropTypes.string,
-  ]).isRequired,
+  ]),
 };
 
 export default FilterButton;

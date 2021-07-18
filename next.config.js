@@ -10,32 +10,46 @@ const nextConfig = {
     /**
      * rules
      */
-    config.module.rules.push({
-      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 100000,
-          name: '[name].[ext]',
+    config.module.rules = [
+      ...config.module.rules,
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            extends: '../babel/babel.config.js',
+          },
         },
       },
-    });
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|svg)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'public/icons',
-          publicPath: './public/icons/',
+      {
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000,
+            name: '[name].[ext]',
+          },
         },
       },
-    });
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'public/icons',
+            publicPath: './public/icons/',
+          },
+        },
+      },
+    ];
 
     /**
      * plugins
      */
-    const customPlugins = [
+    config.plugins = [
+      ...config.plugins,
       new LodashModuleReplacementPlugin({
         currying: true,
         flattening: true,
@@ -48,10 +62,6 @@ const nextConfig = {
       ),
     ];
 
-    /**
-     * set webpack config
-     */
-    config.plugins = [...config.plugins, ...customPlugins];
     return config;
   },
   // sass, css loader options

@@ -1,8 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-
+import css from './HashtagLabel.module.scss';
 import Image from 'components/atoms/Image';
-import { Wrapper } from './Styled';
 
 const IMAGE_PATH = {
   delIcon: '/public/icon/shipping/pc-popup-icon-del.png',
@@ -17,7 +16,7 @@ const IMAGE_PATH = {
  */
 function HashtagLabel({ isClose, hashtag, onClickHashtag }) {
   return (
-    <Wrapper onClick={onClickHashtag}>
+    <div className={css.Wrapper} onClick={onClickHashtag}>
       # {hashtag}{' '}
       {isClose && (
         <Image
@@ -27,13 +26,13 @@ function HashtagLabel({ isClose, hashtag, onClickHashtag }) {
           height={'16px'}
         />
       )}
-    </Wrapper>
+    </div>
   );
 }
 
 HashtagLabel.propTypes = {
   isClose: PropTypes.bool,
-  hashtag: PropTypes.string.isRequired,
+  hashtag: PropTypes.string,
   onClickHashtag: PropTypes.func,
 };
 

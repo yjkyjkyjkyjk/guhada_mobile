@@ -27,7 +27,7 @@ function Emoji({ symbol, className, style, onClickEmoji }) {
 }
 
 Emoji.propTypes = {
-  symbol: PropTypes.string.isRequired,
+  symbol: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
   onClickEmoji: PropTypes.func,

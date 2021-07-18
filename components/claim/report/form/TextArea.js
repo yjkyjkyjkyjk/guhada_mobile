@@ -10,7 +10,6 @@ export default function TextArea({
   isResizable = true,
   textAreaStyle = {},
   isInputSizeVisible = true,
-  inputSizePosition = 'OUTSIDE_BOTTOM_RIGHT',
 }) {
   const { value, handleChange } = useChangeInput({
     initialValue,

@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-export const Wrapper = styled.div`
+.Wrapper {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -10,4 +8,4 @@ export const Wrapper = styled.div`
   > div:first-child {
     margin-right: 7px;
   }
-`;
+}

@@ -47,7 +47,7 @@ function MyPageOrder({
 }
 
 MyPageOrder.propTypes = {
-  myOrderStatus: PropTypes.object.isRequired,
+  myOrderStatus: PropTypes.object,
 };
 
 export default memo(observer(MyPageOrder));

@@ -52,7 +52,7 @@ export const dealShape = PropTypes.shape({
 });
 
 ReviewDealItem.propTypes = {
-  deal: dealShape.isRequired,
+  deal: dealShape,
   small: PropTypes.bool,
 };
 

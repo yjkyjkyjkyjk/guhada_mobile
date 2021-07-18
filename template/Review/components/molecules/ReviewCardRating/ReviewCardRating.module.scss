@@ -1,9 +1,4 @@
-import styled from 'styled-components';
-
-/**
- * Layout
- */
-export const Wrapper = styled.div`
+.Wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,34 +8,31 @@ export const Wrapper = styled.div`
   > div {
     width: 50%;
   }
-`;
+}
 
-export const LikeAndCommentSection = styled.div`
+.LikeAndCommentSection {
   display: flex;
   font-size: 12px;
   font-weight: 600;
-`;
+}
 
-export const LikeSection = styled.div`
+.LikeSection {
   display: flex;
   align-items: center;
   margin-right: 7px;
-`;
+}
 
-export const CommentSection = styled.div`
+.CommentSection {
   display: flex;
   align-items: center;
   margin: 0 7px;
-`;
+}
 
-export const StarSection = styled.div`
+.StarSection {
   display: flex;
   justify-content: flex-end;
-`;
+}
 
-/**
- * Components
- */
-export const Counter = styled.div`
-    margin-left: 7px;
-`;
+.Counter {
+  margin-left: 7px;
+}

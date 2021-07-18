@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-export const Wrapper = styled.div`
+.Wrapper {
   font-family: Roboto;
   font-size: 13px;
   line-height: 1.38;
@@ -18,12 +16,12 @@ export const Wrapper = styled.div`
   &.more {
     color: #999999;
   }
-`;
+}
 
-export const Title = styled.span`
+.Title {
   font-weight: bold;
-`;
+}
 
-export const Contents = styled.span`
+.Contents {
   font-weight: 400;
-`;
+}

@@ -3,7 +3,6 @@ import { withRouter } from 'next/router';
 import css from 'components/mypage/order/OrderClaimForm.module.scss';
 import cn from 'classnames';
 import DetailPageLayout from 'components/layout/DetailPageLayout';
-import SectionHeading from 'components/common/SectionHeading';
 import { observer, inject } from 'mobx-react';
 import Input from 'components/mypage/form/Input';
 import Select from 'components/mypage/form/Select';
@@ -22,7 +21,6 @@ import withScrollToTopOnMount from 'components/common/hoc/withScrollToTopOnMount
 import { Form, Field } from 'react-final-form';
 import {
   composeValidators,
-  notEmptyString,
   required,
   requiredWithMessage,
   maxValue,
@@ -39,9 +37,6 @@ import {
   alreadySentOptions,
 } from 'lib/constant/order/alreadySent';
 import RefundInfo from 'components/mypage/orderCancel/RefundInfo';
-import paymentMethod from 'lib/constant/order/paymentMethod';
-import FormButton from 'components/mypage/form/FormButton';
-import accountService from 'lib/API/order/accountService';
 import { isFalsey } from 'lib/common/isTruthy';
 import RefundAccountInfoForm from 'components/mypage/orderCancel/RefundAccountInfoForm';
 import TextArea from 'components/mypage/form/TextArea';
@@ -526,10 +521,10 @@ class OrderReturnForm extends Component {
 
           // * 신청시에는 환불계좌정보 넣는다
           refundBankCode: this.props.orderClaimForm.claimData?.refundBankCode,
-          refundBankAccountNumber: this.props.orderClaimForm?.claimData
-            .refundBankAccountNumber,
-          refundBankAccountOwner: this.props.orderClaimForm?.claimData
-            .refundBankAccountOwner,
+          refundBankAccountNumber:
+            this.props.orderClaimForm?.claimData.refundBankAccountNumber,
+          refundBankAccountOwner:
+            this.props.orderClaimForm?.claimData.refundBankAccountOwner,
           // refundBankCode: values[this.fields.refundBankCode],
           // refundBankAccountNumber: values[this.fields.refundBankAccountNumber],
           // refundBankAccountOwner: values[this.fields.refundBankAccountOwner],

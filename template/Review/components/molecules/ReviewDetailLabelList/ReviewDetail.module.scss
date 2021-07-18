@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-
-export const Wrapper = styled.div`
+.Wrapper {
   display: flex;
   flex-flow: row wrap;
-`;
+}
 
-export const Item = styled.div`
+.Item {
   display: flex;
   border: solid 1px #eeeeee;
   border-radius: 11px;
@@ -27,4 +25,4 @@ export const Item = styled.div`
     margin-left: 6px;
     color: #5d2ed1;
   }
-`;
+}

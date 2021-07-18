@@ -46,11 +46,11 @@ export default function RadioGroup({
 }
 
 RadioGroup.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any.isRequired,
+      label: PropTypes.string,
+      value: PropTypes.any,
     })
   ),
   onChange: PropTypes.func,

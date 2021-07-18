@@ -52,9 +52,9 @@ const ScrollableImageModal = ({
 };
 
 ScrollableImageModal.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  isModalOpen: PropTypes.bool.isRequired,
-  handleCloseModal: PropTypes.func.isRequired,
+  imgSrc: PropTypes.string,
+  isModalOpen: PropTypes.bool,
+  handleCloseModal: PropTypes.func,
   closeButtonStyle: PropTypes.object,
 };
 

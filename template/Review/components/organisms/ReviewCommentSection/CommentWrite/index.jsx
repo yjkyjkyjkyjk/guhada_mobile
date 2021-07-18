@@ -1,25 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { toJS } from 'mobx';
 import { MentionsInput, Mention } from 'react-mentions';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import useStores from 'stores/useStores';
+import css from './CommentWrite.module.scss';
 
 // TODO : 리팩토링
 import Image from 'components/atoms/Image';
 import Emoji from 'components/atoms/Emoji';
-
-import {
-  Wrapper,
-  EmojiSection,
-  InputSection,
-  Avatar,
-  Form,
-  InputWrapper,
-  TextDiv,
-  SubmitDiv,
-  Submit,
-} from './Styled';
 
 import { REVIEW_EMOJI_LIST } from 'template/Review/_constants';
 
@@ -74,19 +62,19 @@ function CommentWrite({
   const changeTextarea = (e) => setValue(e.target.value);
 
   return (
-    <Wrapper>
+    <div className={css.Wrapper}>
       {/* 이모티콘 선택 리스트 */}
-      <EmojiSection>
+      <div className={css.EmojiSection}>
         {REVIEW_EMOJI_LIST.length
           ? REVIEW_EMOJI_LIST.map((v, i) => (
               <Emoji key={`${v}-${i}`} symbol={v} onClickEmoji={onClickEmoji} />
             ))
           : ''}
-      </EmojiSection>
+      </div>
       {/* 입력 폼 */}
-      <InputSection>
+      <div className={css.InputSection}>
         {/* 사용자 정보 (사진) */}
-        <Avatar>
+        <div className={css.Avatar}>
           <Image
             customStyle={{ borderRadius: '50%' }}
             width={'30px'}
@@ -97,12 +85,12 @@ function CommentWrite({
                 : '/public/icon/profile_non_square.png'
             }
           />
-        </Avatar>
+        </div>
         {/* 입력 */}
-        <Form>
-          <InputWrapper>
+        <div className={css.Form}>
+          <div className={css.InputWrapper}>
             {/* 입력 Textarea */}
-            <TextDiv>
+            <div className={css.TextDiv}>
               <MentionsInput
                 inputRef={textarea}
                 placeholder={'댓글을 입력해주세요'}
@@ -118,27 +106,28 @@ function CommentWrite({
                   style={MENTION_STYLES}
                 />
               </MentionsInput>
-            </TextDiv>
+            </div>
             {/* 리뷰 쓰기 Submit */}
-            <SubmitDiv>
-              <Submit
+            <div className={css.SubmitDiv}>
+              <button
+                className={css.Submit}
                 onClick={() => {
                   setValue('');
                   onClickCommentSubmit(mentionUserId, value);
                 }}
               >
                 등록
-              </Submit>
-            </SubmitDiv>
-          </InputWrapper>
-        </Form>
-      </InputSection>
-    </Wrapper>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 CommentWrite.propTypes = {
-  onClickCommentSubmit: PropTypes.func.isRequired,
+  onClickCommentSubmit: PropTypes.func,
 };
 
 export default observer(CommentWrite);

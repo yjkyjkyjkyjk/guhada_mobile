@@ -102,7 +102,7 @@ export const dealShape = PropTypes.shape({
 });
 
 DealItem.propTypes = {
-  deal: dealShape.isRequired,
+  deal: dealShape,
   thumbnail: PropTypes.number,
   displaySeller: PropTypes.bool,
   displayTags: PropTypes.bool,

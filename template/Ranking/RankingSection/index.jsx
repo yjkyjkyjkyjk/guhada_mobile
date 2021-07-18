@@ -26,7 +26,7 @@ const RankingSection = ({ rank, handleSearch, count = 50 }) => {
 };
 
 RankingSection.propTypes = {
-  rank: PropTypes.arrayOf(rankShape).isRequired,
+  rank: PropTypes.arrayOf(rankShape),
   handleSearch: PropTypes.func,
   count: PropTypes.number,
 };

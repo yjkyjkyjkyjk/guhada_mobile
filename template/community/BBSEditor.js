@@ -116,11 +116,11 @@ function BBSEditor({ router }) {
         return composeValidators((c) => notEmptyString(striptags(c, ['img'])));
       },
 
-      brandName: ({ isRequired }) => {
-        return isRequired ? required : undefined;
+      brandName: ({ }) => {
+        return ? required : undefined;
       },
-      dealName: ({ isRequired }) => {
-        return isRequired ? required : undefined;
+      dealName: ({ }) => {
+        return ? required : undefined;
       },
 
       // ! brandId, dealId는 실제 상품 검색이 들어갔을 때 추가
@@ -566,7 +566,7 @@ function BBSEditor({ router }) {
                           <Field
                             name={fields.brandName}
                             validate={validators.brandName({
-                              isRequired:
+                             :
                                 categorySelected.requiredProductSearch,
                             })}>
                             {({ input, meta }) => (
@@ -585,7 +585,7 @@ function BBSEditor({ router }) {
                           <Field
                             name={fields.dealName}
                             validate={validators.dealName({
-                              isRequired:
+                             :
                                 categorySelected.requiredProductSearch,
                             })}>
                             {({ input, meta }) => (

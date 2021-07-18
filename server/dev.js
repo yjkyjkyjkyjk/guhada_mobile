@@ -1,16 +1,15 @@
 const express = require('express');
 const next = require('next');
 const mobxReact = require('mobx-react');
-const nextConfig = require('../configs/next/dev');
-const app = next({ dev: true, conf: nextConfig });
+const app = next({ dev: true, conf: { baseUrl: '../' } });
 const handle = app.getRequestHandler();
-// const returnUrls = require('../routes/returnUrls');
+const returnUrls = require('../routes/returnUrls');
 const routes = require('../routes');
 const PORT = 80;
 
 mobxReact.useStaticRendering(true);
 
-app.prepare().then((res) => {
+app.prepare().then(() => {
   const server = express();
 
   server.use(express.urlencoded({ extended: false }));
@@ -20,9 +19,9 @@ app.prepare().then((res) => {
   /**
    * custom route setting
    */
-  // for (const route of returnUrls) {
-  //   server[route.method](route.url, route.handler);
-  // }
+  for (const route of returnUrls) {
+    server[route.method](route.url, route.handler);
+  }
   for (const route of routes) {
     server.get(route.asPath, (req, res) => {
       app.render(req, res, route.pagePath, {

@@ -1,4 +1,5 @@
 import css from './FilterTags.module.scss';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,13 +15,8 @@ const FilterTags = ({ specialFilterTags }) => {
    * states
    */
   const { searchByFilter: searchByFilterStore } = useStores();
-  const {
-    body,
-    defaultBody,
-    submitFilter,
-    resetFilter,
-    resetBodyProp,
-  } = searchByFilterStore;
+  const { body, defaultBody, submitFilter, resetFilter, resetBodyProp } =
+    searchByFilterStore;
 
   /**
    * render

@@ -30,9 +30,7 @@ const nowMoment = moment();
 
 // 기본 기간은 오늘부터 7일 전까지. 데이터는 momentInstance
 export const DEFAULT_PERIOD = {
-  startDate: moment()
-    .subtract(7, 'days')
-    .startOf('day'),
+  startDate: moment().subtract(7, 'days').startOf('day'),
   endDate: moment().endOf('day'),
 };
 
@@ -79,7 +77,7 @@ export default function PeriodSelector({
   );
 
   const onChangePeriodThrottled = useCallback(
-    _throttle(onChangePeriod, 400),
+    _.throttle(onChangePeriod, 400),
     []
   );
 
@@ -184,63 +182,63 @@ export default function PeriodSelector({
   /**
    * 달력 선택으로 기간 조정
    */
-  const handleSelectCalendar = (field = calendarField.START_DATE) => (
-    selected = moment()
-  ) => {
-    // 선택된 값이
-    if (isFalsey(selected)) {
-      return;
-    } else {
-      let isInvalidCalendarPeriod = false;
-      let periodToUpdate = {};
+  const handleSelectCalendar =
+    (field = calendarField.START_DATE) =>
+    (selected = moment()) => {
+      // 선택된 값이
+      if (isFalsey(selected)) {
+        return;
+      } else {
+        let isInvalidCalendarPeriod = false;
+        let periodToUpdate = {};
 
-      /**
-       * 선택한 기간이 유효한 기간인지 먼저 검사한다
-       */
-      if (field === calendarField.START_DATE) {
-        const isValidStart = selected.isSameOrBefore(period.endDate);
+        /**
+         * 선택한 기간이 유효한 기간인지 먼저 검사한다
+         */
+        if (field === calendarField.START_DATE) {
+          const isValidStart = selected.isSameOrBefore(period.endDate);
 
-        if (isValidStart) {
-          periodToUpdate = _.merge({}, period, {
-            startDate: selected.startOf('day'), // 그 날의 00:00:00부터 검색하도록
-          });
-        } else {
-          isInvalidCalendarPeriod = true;
+          if (isValidStart) {
+            periodToUpdate = _.merge({}, period, {
+              startDate: selected.startOf('day'), // 그 날의 00:00:00부터 검색하도록
+            });
+          } else {
+            isInvalidCalendarPeriod = true;
+          }
         }
-      }
-      // 종료일 선택
-      else if (field === calendarField.END_DATE) {
-        const isValidEnd = selected.isSameOrAfter(period.startDate);
+        // 종료일 선택
+        else if (field === calendarField.END_DATE) {
+          const isValidEnd = selected.isSameOrAfter(period.startDate);
 
-        if (isValidEnd) {
-          periodToUpdate = _.merge({}, period, {
-            endDate: selected.endOf('day'), // 그 날의 23:59:59 까지 검색하도록
-          });
-        } else {
-          isInvalidCalendarPeriod = true;
+          if (isValidEnd) {
+            periodToUpdate = _.merge({}, period, {
+              endDate: selected.endOf('day'), // 그 날의 23:59:59 까지 검색하도록
+            });
+          } else {
+            isInvalidCalendarPeriod = true;
+          }
         }
+
+        // 유효하지 않은 날짜
+        if (isInvalidCalendarPeriod) {
+          console.error('[handleSelectCalendar], invalid date selected');
+          periodToUpdate = {
+            startDate: moment(DEFAULT_PERIOD.startDate),
+            endDate: moment(DEFAULT_PERIOD.endDate),
+          };
+        }
+
+        setPeriod(periodToUpdate);
+        setTabInUse(periodTab.TAB_DATEPICKER); // ! 상수로 선언해두지않으면 새로운 객체라서 자식 컴포넌트가 업데이트 계속함
+
+        onChangePeriodThrottled({
+          startDate: periodToUpdate.startDate.format(dateFormat.YYYYMMDD),
+          endDate: periodToUpdate.endDate.format(dateFormat.YYYYMMDD),
+          tabInUse: periodTab.TAB_DATEPICKER,
+          defaultTabIndex,
+        });
       }
-
-      // 유효하지 않은 날짜
-      if (isInvalidCalendarPeriod) {
-        console.error('[handleSelectCalendar], invalid date selected');
-        periodToUpdate = {
-          startDate: moment(DEFAULT_PERIOD.startDate),
-          endDate: moment(DEFAULT_PERIOD.endDate),
-        };
-      }
-
-      setPeriod(periodToUpdate);
-      setTabInUse(periodTab.TAB_DATEPICKER); // ! 상수로 선언해두지않으면 새로운 객체라서 자식 컴포넌트가 업데이트 계속함
-
-      onChangePeriodThrottled({
-        startDate: periodToUpdate.startDate.format(dateFormat.YYYYMMDD),
-        endDate: periodToUpdate.endDate.format(dateFormat.YYYYMMDD),
-        tabInUse: periodTab.TAB_DATEPICKER,
-        defaultTabIndex,
-      });
-    }
-  };
+    };
 
   // 일 탭 버튼 컴포넌트
   const renderDefaultTabs = useCallback(() => {

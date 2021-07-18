@@ -38,15 +38,14 @@ const RankItem = ({ rank, idx, handleClick }) => (
 );
 
 export const rankShape = PropTypes.shape({
-  word: PropTypes.string.isRequired,
-  rankChange: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  word: PropTypes.string,
+  rankChange: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 });
 
 RankItem.propTypes = {
-  rank: rankShape.isRequired,
-  idx: PropTypes.number.isRequired,
+  rank: rankShape,
+  idx: PropTypes.number,
   handleClick: PropTypes.func,
 };
 

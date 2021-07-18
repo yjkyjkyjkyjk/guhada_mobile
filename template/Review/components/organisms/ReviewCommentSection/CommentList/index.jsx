@@ -4,19 +4,8 @@ import PropTypes from 'prop-types';
 import moment, { duration } from 'moment';
 import { getTimeDiff } from 'lib/common/getTimeDiff';
 import { default as reportTargetEnum } from 'lib/constant/reportTarget';
-
+import css from './CommentList.module.scss';
 import Image from 'components/atoms/Image';
-import {
-  Wrapper,
-  Title,
-  Contents,
-  ContentItem,
-  Avatar,
-  Comment,
-  CommentName,
-  CommentContents,
-  CommentInfo,
-} from './Styled';
 
 const ReportModal = dynamic(
   () => import('components/claim/report/ReportModal'),
@@ -44,9 +33,8 @@ function CommentList({
   onClickCommentDelete,
 }) {
   // 댓글 신고 모달 오픈 여부
-  const [isCommentReportModalOpen, setIsCommentReportModalOpen] = useState(
-    false
-  );
+  const [isCommentReportModalOpen, setIsCommentReportModalOpen] =
+    useState(false);
 
   // 코멘트 신고 관련 데이터
   const [commentReportRelatedData, setCommentReportRelatedData] = useState([]);
@@ -132,13 +120,13 @@ function CommentList({
   };
 
   return (
-    <Wrapper>
-      {total ? <Title>{total}</Title> : ''}
-      {comments && comments.length ? (
-        <Contents>
+    <div className={css.Wrapper}>
+      {total && <div className={css.Title}>{total}</div>}
+      {comments && comments.length > 0 && (
+        <div className={css.Contents}>
           {comments.map((o) => (
-            <ContentItem>
-              <Avatar>
+            <div key={o.id} className={css.ContentItem}>
+              <div className={css.Avatar}>
                 <Image
                   customStyle={{ borderRadius: '50%' }}
                   width={'30px'}
@@ -149,11 +137,11 @@ function CommentList({
                       : '/public/icon/profile_non_square.png'
                   }
                 />
-              </Avatar>
-              <Comment>
-                <CommentName>{o.nickname}</CommentName>
-                <CommentContents>{convertToComment(o)}</CommentContents>
-                <CommentInfo>
+              </div>
+              <div className={css.Comment}>
+                <div className={css.CommentName}>{o.nickname}</div>
+                <div className={css.CommentContents}>{convertToComment(o)}</div>
+                <div className={css.CommentInfo}>
                   <span>{convertToBoardDate(o)}</span>
                   <span onClick={() => onClickComment(o)}>댓글달기</span>
                   <span
@@ -168,15 +156,12 @@ function CommentList({
                   >
                     {userId === o.createdBy ? '삭제' : '신고'}
                   </span>
-                </CommentInfo>
-              </Comment>
-            </ContentItem>
+                </div>
+              </div>
+            </div>
           ))}
-        </Contents>
-      ) : (
-        ''
+        </div>
       )}
-
       {isCommentReportModalOpen && (
         <ReportModal
           isOpen={isCommentReportModalOpen}
@@ -185,7 +170,7 @@ function CommentList({
           relatedData={commentReportRelatedData}
         />
       )}
-    </Wrapper>
+    </div>
   );
 }
 
@@ -195,8 +180,8 @@ CommentList.propTypes = {
     totalElements: PropTypes.number,
     content: PropTypes.object,
   }),
-  onClickComment: PropTypes.func.isRequired,
-  onClickCommentDelete: PropTypes.func.isRequired,
+  onClickComment: PropTypes.func,
+  onClickCommentDelete: PropTypes.func,
 };
 
 export default memo(CommentList);

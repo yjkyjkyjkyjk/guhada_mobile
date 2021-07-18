@@ -68,7 +68,7 @@ function LuckyDrawHistory({ winnerList, onClickHistory }) {
 
 LuckyDrawHistory.propTypes = {
   winnerList: PropTypes.arrayOf(PropTypes.object),
-  onClickHistory: PropTypes.func.isRequired,
+  onClickHistory: PropTypes.func,
 };
 
 export default LuckyDrawHistory;

@@ -2,11 +2,9 @@ import { useState, memo } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'stores/useStores';
 import PropTypes from 'prop-types';
-
+import css from './ReviewCommentSection.module.scss';
 import CommentList from './CommentList';
 import CommentWrite from './CommentWrite';
-
-import { CommentListSection, CommentWriteSection, Divider } from './Styled';
 
 /**
  * 댓글 작성 폼
@@ -39,34 +37,32 @@ function ReviewCommentSection({
   };
 
   return (
-    <>
-      <div>
-        {/* 댓글 리스트 */}
-        <CommentListSection>
-          <CommentList
-            userId={userId}
-            comment={comment}
-            onClickComment={onClickComment}
-            onClickCommentDelete={onClickCommentDelete}
-          />
-        </CommentListSection>
-        {/* 댓글 작성 */}
-        <Divider />
-        <CommentWriteSection>
-          <CommentWrite
-            mention={mention}
-            mentionUserId={mentionUserId}
-            onClearMention={onClearMention}
-            onClickCommentSubmit={onClickCommentSubmit}
-          />
-        </CommentWriteSection>
+    <div>
+      {/* 댓글 리스트 */}
+      <div className={css.CommentListSection}>
+        <CommentList
+          userId={userId}
+          comment={comment}
+          onClickComment={onClickComment}
+          onClickCommentDelete={onClickCommentDelete}
+        />
       </div>
-    </>
+      {/* 댓글 작성 */}
+      <div className={css.Divider} />
+      <div className={css.CommentWriteSection}>
+        <CommentWrite
+          mention={mention}
+          mentionUserId={mentionUserId}
+          onClearMention={onClearMention}
+          onClickCommentSubmit={onClickCommentSubmit}
+        />
+      </div>
+    </div>
   );
 }
 
 ReviewCommentSection.propTypes = {
-  comment: PropTypes.object.isRequired,
+  comment: PropTypes.object,
 };
 
 export default memo(observer(ReviewCommentSection));

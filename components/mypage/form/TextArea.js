@@ -10,7 +10,6 @@ export default function TextArea({
   placeholder = '내용을 입력해주세요',
   maxSize = 1000,
   isResizable = true,
-  type = '', // review
   textAreaStyle = {},
   isInputSizeVisible = true,
   inputSizePosition = 'OUTSIDE_BOTTOM_RIGHT',
@@ -25,7 +24,7 @@ export default function TextArea({
       <textarea
         className={cn({ [css.isNoResize]: isResizable })}
         style={textAreaStyle}
-        value={value}
+        value={value || ''}
         onChange={(e) => handleChange(e.target.value)}
         placeholder={placeholder}
       />

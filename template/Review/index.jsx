@@ -4,6 +4,7 @@ import { stringify } from 'qs';
 import useStores from 'stores/useStores';
 import { pushRoute, sendBackToLogin } from 'lib/router';
 import { useScrollPosition } from 'lib/hooks';
+import css from './Review.module.scss';
 
 import {
   ReviewCategories,
@@ -12,7 +13,6 @@ import {
 import { ReviewCardSection } from 'template/Review/components/organisms';
 
 import { REVIEW_CATEGORY_LIST } from './_constants';
-import { ReviewWrapper, ReviewContents } from './Styled';
 
 /**
  * ReviewTemplate
@@ -92,7 +92,7 @@ function ReviewTemplate() {
     pushRoute(`/review/hashtag?${stringify({ hashtag })}`);
 
   return (
-    <ReviewWrapper>
+    <div className={css.ReviewWrapper}>
       {/* 리뷰 > 배너 */}
       {/* TODO : 배너 추가되는 경우, 인기 해시태그 padding 정리 */}
       {/* <ReviewBanner /> */}
@@ -111,7 +111,7 @@ function ReviewTemplate() {
 
       {/* 리뷰 > 카드 */}
       {reviews && reviews.length ? (
-        <ReviewContents>
+        <div>
           {reviews.map((review, i) => (
             <ReviewCardSection
               isLazy={true}
@@ -121,11 +121,11 @@ function ReviewTemplate() {
               onClickProduct={onClickProduct}
             />
           ))}
-        </ReviewContents>
+        </div>
       ) : (
         ''
       )}
-    </ReviewWrapper>
+    </div>
   );
 }
 export default observer(ReviewTemplate);

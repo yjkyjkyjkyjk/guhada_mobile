@@ -10,18 +10,6 @@ import { HashtagLabel } from 'template/Review/components/atoms';
 import { ReviewFavoriteHashtagList } from 'template/Review/components/molecules';
 import Image from 'components/atoms/Image';
 
-import {
-  ReviewWriteHashtagModalWrapper,
-  Container,
-  Header,
-  HeaderFlagSection,
-  HeaderInputSection,
-  HeaderInput,
-  Contents,
-  ContentAutoCompleteSection,
-  ContentsInputTagSection,
-} from './Styled';
-
 const IMAGE_PATH = {
   back: '/public/icons/btn_top_back/btn_top_back@3x.png',
   delete: '/public/icon/icon_keyword_delete.png',
@@ -116,21 +104,22 @@ function ReviewWriteHashtagModal({ isOpen, onClose, delHashtag }) {
 
   return (
     <SlideIn isVisible={isOpen} zIndex={9999} direction={slideDirection.BOTTOM}>
-      <ReviewWriteHashtagModalWrapper>
-        <Container>
+      <div className={css.ReviewWriteHashtagModalWrapper}>
+        <div className={css.Container}>
           {/* Header */}
-          <Header>
+          <div className={css.Header}>
             {/* Header Flag Section */}
-            <HeaderFlagSection>
+            <div className={css.HeaderFlagSection}>
               <span onClick={onCloseModal}>
                 <Image src={IMAGE_PATH.back} width={'30px'} height={'30px'} />
               </span>
               <span>#</span>
-            </HeaderFlagSection>
+            </div>
             {/* Header Input Section */}
-            <HeaderInputSection>
+            <div className={css.HeaderInputSection}>
               <div>
-                <HeaderInput
+                <input
+                  className={css.HeaderInput}
                   type={'text'}
                   value={value}
                   onChange={onDebounceChange}
@@ -147,25 +136,26 @@ function ReviewWriteHashtagModal({ isOpen, onClose, delHashtag }) {
                   />
                 </div>
               )}
-            </HeaderInputSection>
-          </Header>
+            </div>
+          </div>
 
           {/* Contents */}
-          <Contents>
+          <div className={css.Contents}>
             {/* 해시태그 자동완성 */}
             {reviewAutoCompleteList && reviewAutoCompleteList.length ? (
               reviewAutoCompleteList.map((hashtag) => (
-                <ContentAutoCompleteSection
+                <div
+                  className={css.ContentAutoCompleteSection}
                   onClick={() => onClickHashtagItem(hashtag)}
                 >
                   # {hashtag}
-                </ContentAutoCompleteSection>
+                </div>
               ))
             ) : (
               <div>
                 {/* 해시태그 입력 리스트 */}
-                {hashtags && hashtags.length ? (
-                  <ContentsInputTagSection>
+                {hashtags && hashtags.length > 0 && (
+                  <div className={css.ContentsInputTagSection}>
                     {hashtags.map((hashtag, i) => (
                       <HashtagLabel
                         key={`${hashtag}-${i}`}
@@ -174,33 +164,29 @@ function ReviewWriteHashtagModal({ isOpen, onClose, delHashtag }) {
                         onClickHashtag={() => onCloseHashtagItem(hashtag)}
                       />
                     ))}
-                  </ContentsInputTagSection>
-                ) : (
-                  ''
+                  </div>
                 )}
                 {/* 해시태그 인기 리스트 */}
                 {reviewStore.reviewHashtagList &&
-                reviewStore.reviewHashtagList.length ? (
-                  <ReviewFavoriteHashtagList
-                    wrapperStyles={{ margin: 0 }}
-                    headingStyles={{ marginBottom: '7px' }}
-                    hashtags={toJS(reviewStore?.reviewHashtagList)}
-                    onClickHashtag={(hashtag) => onClickHashtagItem(hashtag)}
-                  />
-                ) : (
-                  ''
-                )}
+                  reviewStore.reviewHashtagList.length > 0 && (
+                    <ReviewFavoriteHashtagList
+                      wrapperStyles={{ margin: 0 }}
+                      headingStyles={{ marginBottom: '7px' }}
+                      hashtags={toJS(reviewStore?.reviewHashtagList)}
+                      onClickHashtag={(hashtag) => onClickHashtagItem(hashtag)}
+                    />
+                  )}
               </div>
             )}
-          </Contents>
-        </Container>
-      </ReviewWriteHashtagModalWrapper>
+          </div>
+        </div>
+      </div>
     </SlideIn>
   );
 }
 
 ReviewWriteHashtagModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   delHashtag: PropTypes.string,
   onClose: PropTypes.func,
 };

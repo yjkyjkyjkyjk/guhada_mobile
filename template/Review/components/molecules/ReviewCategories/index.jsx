@@ -1,15 +1,7 @@
 import { memo, useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-import {
-  ReviewCategoryWrapper,
-  Title,
-  Contents,
-  ContentItem,
-  CategoryImage,
-  CategoryText,
-} from './Styled';
-
+import css from './ReviewCategories.module.scss';
 import { Image } from 'components/atoms';
 
 // TODO : Styled-components Sprite
@@ -50,41 +42,43 @@ function ReviewCategories({ categories, onClickCategory }) {
    * Render
    */
   return (
-    <ReviewCategoryWrapper>
-      <Title>
+    <div className={css.ReviewCategoryWrapper}>
+      <div className={css.Title}>
         <Image src={IMAGE_PATH.title} width={'55px'} />
-      </Title>
-      {list && list.length ? (
-        <Contents>
+      </div>
+      {list && list.length > 0 && (
+        <div className={css.Contents}>
           {list?.map((o, i) => (
-            <ContentItem
+            <div
+              className={css.ContentItem}
               key={`ReviewCategories-${i}`}
               onClick={() => _onClickCategory(o.categoryName)}
             >
-              <CategoryImage>
+              <div className={css.CategoryImage}>
                 <Image
                   src={o.isSelect ? o.categoryImageOn : o.categoryImageOff}
                   size={'contain'}
                   width={'55px'}
                   height={'55px'}
                 />
-              </CategoryImage>
-              <CategoryText className={o.isSelect ? 'active' : 'inActive'}>
+              </div>
+              <div
+                className={css.CategoryText}
+                className={o.isSelect ? 'active' : 'inActive'}
+              >
                 {o.categoryName}
-              </CategoryText>
-            </ContentItem>
+              </div>
+            </div>
           ))}
-        </Contents>
-      ) : (
-        ''
+        </div>
       )}
-    </ReviewCategoryWrapper>
+    </div>
   );
 }
 
 ReviewCategories.propTypes = {
-  categories: PropTypes.array.isRequired,
-  onClickCategory: PropTypes.func.isRequired,
+  categories: PropTypes.array,
+  onClickCategory: PropTypes.func,
 };
 
 export default memo(observer(ReviewCategories));

@@ -1,10 +1,8 @@
 import { memo, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-
+import css from './ReviewCardImage.module.scss';
 import Image from 'components/atoms/Image';
 import Slider from 'components/molecules/Slider';
-
-import { Wrapper, ImageSection } from './Styled';
 
 const settings = {
   arrows: false,
@@ -97,16 +95,16 @@ function CardImage({ isLazy = false, type = 'list', images }) {
   );
 
   return (
-    <Wrapper>
+    <div className={css.Wrapper}>
       {images?.length < 2 ? (
-        <ImageSection type={type}>
+        <div style={{ margin: type === 'list' ? '0 20px' : '0' }}>
           <Image
             isLazy={isLazy}
             src={images[0]}
             width={'auto'}
             height={'320px'}
           />
-        </ImageSection>
+        </div>
       ) : (
         <div ref={sliderRef}>
           <Slider
@@ -120,13 +118,13 @@ function CardImage({ isLazy = false, type = 'list', images }) {
           </Slider>
         </div>
       )}
-    </Wrapper>
+    </div>
   );
 }
 
 CardImage.propTypes = {
   type: PropTypes.string,
-  images: PropTypes.object.isRequired,
+  images: PropTypes.object,
 };
 
 export default memo(CardImage);

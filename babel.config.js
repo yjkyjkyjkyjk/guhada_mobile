@@ -5,7 +5,7 @@ module.exports = {
       {
         'preset-env': {
           useBuiltIns: 'usage',
-          targets: '> 0.5%',
+          targets: '> 1.5%',
           corejs: { version: 3, proposals: true },
         },
       },
@@ -15,24 +15,15 @@ module.exports = {
     [
       'inline-dotenv',
       {
-        path: 'configs/env/.env',
+        path: '.env',
         systemVar: 'disable',
       },
     ],
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     [
-      'babel-plugin-styled-components',
-      {
-        ssr: true,
-        minify: true,
-        transpileTemplateLiterals: true,
-      },
-    ],
-    'lodash',
-    [
       'module-resolver',
       {
-        root: ['./'],
+        root: './',
         alias: {
           components: './components',
           lib: './lib',

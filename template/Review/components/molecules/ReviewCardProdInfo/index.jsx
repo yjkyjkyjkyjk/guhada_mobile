@@ -1,14 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import css from './ReviewCardProdInfo.module.scss';
 import Image from 'components/atoms/Image';
-
-import {
-  Wrapper,
-  ImageSection,
-  ContentSection,
-  Title,
-  Contents,
-} from './Styled';
 
 /**
  * 리뷰 > 카드 > 상품 바로가기
@@ -20,26 +13,27 @@ import {
  */
 function CardProdInfo({ dealId, imageUrl, title, contents, onClickProduct }) {
   return (
-    <Wrapper
+    <div
+      className={css.Wrapper}
       onClick={(e) => {
         e.stopPropagation();
         onClickProduct(dealId);
       }}
     >
-      <ImageSection>
+      <div className={css.ImageSection}>
         <Image src={imageUrl} width={'50px'} height={'50px'} />
-      </ImageSection>
-      <ContentSection>
-        <Title>{title}</Title>
-        <Contents>{contents}</Contents>
-      </ContentSection>
-    </Wrapper>
+      </div>
+      <div className={css.ContentSection}>
+        <div className={css.Title}>{title}</div>
+        <div className={css.Contents}>{contents}</div>
+      </div>
+    </div>
   );
 }
 
 CardProdInfo.propTypes = {
-  dealId: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  dealId: PropTypes.number,
+  imageUrl: PropTypes.string,
   title: PropTypes.string,
   contents: PropTypes.string,
   onClickProduct: PropTypes.func,

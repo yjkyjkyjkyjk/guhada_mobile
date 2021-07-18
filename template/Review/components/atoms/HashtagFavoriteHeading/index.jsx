@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'components/atoms';
-import { Wrapper } from './Styled';
+import css from './HashtagFavoriteHeading.module.scss';
 
 // TODO : Styled-components Sprite
 const IMAGE_PATH = {
@@ -12,10 +12,10 @@ const IMAGE_PATH = {
 
 function HashtagFavoriteHeading({ headingStyles }) {
   return (
-    <Wrapper style={headingStyles}>
+    <div className={css.Wrapper} style={headingStyles}>
       <Image src={IMAGE_PATH.title} width={'87px'} />
       <Image src={IMAGE_PATH.emoji} width={'37px'} />
-    </Wrapper>
+    </div>
   );
 }
 

@@ -30,14 +30,14 @@ function EventMainPage() {
   return (
     <>
       <HeadForSEO pageName="이벤트" />
-      {eventMainStore.eventList.length === 0 && <MountLoading />}
+      {eventMainStore.status.page === 0 && <MountLoading />}
       <EventMain />
       <Footer />
     </>
   );
 }
 
-EventMainPage.getInitialProps = function({ pathname, query }) {
+EventMainPage.getInitialProps = function ({ pathname, query }) {
   const initialProps = { layout: {} };
 
   if (isServer) {

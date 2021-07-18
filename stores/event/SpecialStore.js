@@ -4,7 +4,6 @@ import { isBrowser } from 'lib/common/isServer';
 import { devLog } from 'lib/common/devLog';
 import Router from 'next/router';
 import { pushRoute } from 'lib/router';
-import qs from 'qs';
 
 export default class SpecialStore {
   constructor(root, initialState) {
@@ -74,21 +73,6 @@ export default class SpecialStore {
       })
       .then((res) => {
         this.specialDetail = res.data.data;
-
-        devLog(toJS(this.specialDetail), 'special detail');
-
-        // else {
-        //   this.root.alert.showConfirm({
-        //     content: '존재하지 않는 기획전 입니다.',
-        //     confirmText: '확인',
-        //     onConfirm: () => {
-        //       Router.push('/');
-        //     },
-        //     onCancel: () => {
-        //       Router.push('/');
-        //     },
-        //   });
-        // }
       })
       .catch((err) => {
         console.error(err, 'special detail get error');

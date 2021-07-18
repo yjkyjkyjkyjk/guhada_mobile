@@ -79,7 +79,7 @@ class ClaimListProduct extends Component {
           </div>
         </div>
 
-        {_size(inquiries.content) > 0 ? (
+        {_.size(inquiries.content) > 0 ? (
           inquiries.content.map((contentItem, index) => {
             return (
               <ClaimItem

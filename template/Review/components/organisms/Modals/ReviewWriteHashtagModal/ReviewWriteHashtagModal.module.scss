@@ -1,16 +1,10 @@
-import styled from 'styled-components';
-
-/**
- * Wrapper
- */
-
-export const ReviewWriteHashtagModalWrapper = styled.div`
+.ReviewWriteHashtagModalWrapper {
   width: 100vw;
   height: 100vh;
   background-color: rgba(17, 17, 17, 0.7);
-`;
+}
 
-export const Container = styled.div`
+.Container {
   font-family: Roboto;
   color: #111;
   padding-top: 10px;
@@ -19,21 +13,17 @@ export const Container = styled.div`
   width: 100vw;
   height: 85.9375%;
   background-color: white;
-`;
+}
 
-/**
- * Header
- */
-
-export const Header = styled.div`
+.Header {
   border-bottom: 1px solid #eeeeee;
   display: flex;
   align-items: center;
   width: 100%;
   height: 60px;
-`;
+}
 
-export const HeaderFlagSection = styled.div`
+.HeaderFlagSection {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,9 +34,9 @@ export const HeaderFlagSection = styled.div`
     font-weight: bold;
     margin-left: 15px;
   }
-`;
+}
 
-export const HeaderInputSection = styled.div`
+.HeaderInputSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,9 +50,9 @@ export const HeaderInputSection = styled.div`
   & .text-delete {
     padding: 0 20px;
   }
-`;
+}
 
-export const HeaderInput = styled.input.attrs({ type: 'text' })`
+.HeaderInput {
   font-size: 15px;
   font-weight: 500;
   width: 100%;
@@ -70,24 +60,20 @@ export const HeaderInput = styled.input.attrs({ type: 'text' })`
   ::placeholder {
     color: #dddddd;
   }
-`;
+}
 
-/**
- * Contents
- */
-
-export const Contents = styled.div`
+.Contents {
   padding: 30px 20px;
-`;
+}
 
-export const ContentAutoCompleteSection = styled.div`
+.ContentAutoCompleteSection {
   padding: 15px 20px;
   font-size: 14px;
   color: #111111;
   line-height: 1.11;
-`;
+}
 
-export const ContentsInputTagSection = styled.div`
+.ContentsInputTagSection {
   display: flex;
   flex-flow: row wrap;
-`;
+}

@@ -1,10 +1,8 @@
-import styled from 'styled-components';
-
-export const Wrapper = styled.div`
+.Wrapper {
   font-family: Roboto;
-`;
+}
 
-export const Title = styled.div`
+.Title {
   font-size: 15px;
   font-weight: bold;
   line-height: 2;
@@ -12,9 +10,9 @@ export const Title = styled.div`
   &::before {
     content: '댓글 ';
   }
-`;
+}
 
-export const Contents = styled.div`
+.Contents {
   > div {
     margin-bottom: 16px;
   }
@@ -22,36 +20,36 @@ export const Contents = styled.div`
   > div:last-child {
     margin-bottom: 0;
   }
-`;
+}
 
-export const ContentItem = styled.div`
+.ContentItem {
   display: flex;
   flex-flow: row wrap;
-`;
+}
 
-export const Avatar = styled.div`
+.Avatar {
   width: 30px;
   margin-right: 10px;
-`;
+}
 
-export const Comment = styled.div`
+.Comment {
   font-family: Roboto;
   width: calc(100% - 40px);
-`;
+}
 
-export const CommentName = styled.div`
+.CommentName {
   font-size: 13px;
   font-weight: bolder;
   line-height: 1.29;
   margin-bottom: 5px;
-`;
+}
 
-export const CommentContents = styled.div`
+.CommentContents {
   font-size: 13px;
   margin-bottom: 6px;
-`;
+}
 
-export const CommentInfo = styled.div`
+.CommentInfo {
   color: #999999;
   font-size: 12px;
   > span::before {
@@ -60,4 +58,4 @@ export const CommentInfo = styled.div`
   > span:first-child::before {
     content: '';
   }
-`;
+}

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-
-import { Wrapper, Item } from './Styled';
+import css from './ReviewDetail.module.scss';
 
 /**
  * 리뷰 > 상세 > Label
@@ -10,22 +9,22 @@ import { Wrapper, Item } from './Styled';
  */
 function ReviewDetailLabelList({ answers, questions }) {
   return (
-    <Wrapper>
-      {questions && questions.length
-        ? questions.map((o, i) => (
-            <Item key={`${o.type}-${i}`}>
-              <div>{o.type}</div>
-              <div>{answers[i].answer}</div>
-            </Item>
-          ))
-        : ''}
-    </Wrapper>
+    <div className={css.Wrapper}>
+      {questions &&
+        questions.length > 0 &&
+        questions.map((o, i) => (
+          <div className={css.Item} key={`${o.type}-${i}`}>
+            <div>{o.type}</div>
+            <div>{answers[i].answer}</div>
+          </div>
+        ))}
+    </div>
   );
 }
 
 ReviewDetailLabelList.propTypes = {
-  answers: PropTypes.object.isRequired,
-  questions: PropTypes.array.isRequired,
+  answers: PropTypes.object,
+  questions: PropTypes.object,
 };
 
 export default ReviewDetailLabelList;

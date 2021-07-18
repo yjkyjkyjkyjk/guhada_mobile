@@ -41,14 +41,14 @@ BwSelectionButton.propTypes = {
     PropTypes.bool,
     PropTypes.number,
     PropTypes.string,
-  ]).isRequired,
+  ]),
   rightSelected: PropTypes.bool,
   rightOnClick: PropTypes.func,
   rightChildren: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
     PropTypes.string,
-  ]).isRequired,
+  ]),
 };
 
 export default BwSelectionButton;

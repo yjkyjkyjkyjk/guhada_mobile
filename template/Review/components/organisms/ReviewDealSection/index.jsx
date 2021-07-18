@@ -5,10 +5,7 @@ import cn from 'classnames';
 
 import { LinkRoute } from 'lib/router';
 
-import {
-  ReviewDealItem,
-  dealShape,
-} from 'template/Review/components/molecules';
+import { ReviewDealItem } from 'template/Review/components/molecules';
 
 const ReviewDealSection = ({ isLazy, header, deals, horizontal = false }) => (
   <div className={css['deal-section']}>
@@ -39,8 +36,8 @@ const ReviewDealSection = ({ isLazy, header, deals, horizontal = false }) => (
 
 ReviewDealSection.propTypes = {
   isLazy: PropTypes.bool,
-  header: PropTypes.string.isRequired,
-  deals: PropTypes.arrayOf(dealShape),
+  header: PropTypes.string,
+  deals: PropTypes.object,
   horoizontal: PropTypes.bool,
 };
 

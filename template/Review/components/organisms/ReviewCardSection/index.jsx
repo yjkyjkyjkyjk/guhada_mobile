@@ -2,16 +2,15 @@ import { memo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-
+import css from './ReviewCardSection.module.scss';
 import {
   ReviewCardContents,
   ReviewCardImage,
   ReviewCardRating,
   ReviewCardProdInfo,
 } from 'template/Review/components/molecules';
-import { Wrapper, CardInfoSection, Divider } from './Styled';
 
-const DynamicReviewDeatailModal = dynamic(
+const DynamicReviewDetailModal = dynamic(
   () => import('template/Review/components/organisms/Modals/ReviewDetailModal'),
   {
     ssr: false,
@@ -36,18 +35,18 @@ function ReviewCardSection({ isLazy, review, onClickLike, onClickProduct }) {
   return (
     <>
       {isModalOpen && (
-        <DynamicReviewDeatailModal
+        <DynamicReviewDetailModal
           reviewId={review?.id}
           isModalOpen={isModalOpen}
           onCloseModal={onCloseModal}
         />
       )}
-      <Wrapper onClick={() => setIsModalOpen(true)}>
+      <div onClick={() => setIsModalOpen(true)}>
         {/* 이미지 */}
         <ReviewCardImage isLazy={isLazy} images={review.reviewImageList} />
 
         {/* 컨텐츠 */}
-        <CardInfoSection>
+        <div>
           {/* 좋아요, 댓글, 별점 */}
           <ReviewCardRating
             review={review}
@@ -68,17 +67,17 @@ function ReviewCardSection({ isLazy, review, onClickLike, onClickProduct }) {
             contents={review?.dealName}
             onClickProduct={onClickProduct}
           />
-        </CardInfoSection>
-      </Wrapper>
-      <Divider />
+        </div>
+      </div>
+      <div className={css.Divider} />
     </>
   );
 }
 
 ReviewCardSection.propTypes = {
-  review: PropTypes.object.isRequired,
-  onClickLike: PropTypes.func.isRequired,
-  onClickProduct: PropTypes.func.isRequired,
+  review: PropTypes.object,
+  onClickLike: PropTypes.func,
+  onClickProduct: PropTypes.func,
 };
 
 export default memo(observer(ReviewCardSection));

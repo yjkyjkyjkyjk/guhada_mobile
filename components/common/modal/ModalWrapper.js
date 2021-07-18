@@ -16,7 +16,7 @@ export const ModalContentWrap = ({ children }) => (
  */
 class ModalWrapper extends Component {
   static propTypes = {
-    isOpen: bool.isRequired, // 표시 여부
+    isOpen: bool, // 표시 여부
     onClose: func, // 모달이 닫힐 때 콜백
     overlayStyle: object, // 모달 오버레이(모달의 상위 element) 스타일.
     contentStyle: object, // 모달 래퍼 스타일. 사이즈, 위치 등을 설정

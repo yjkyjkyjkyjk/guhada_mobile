@@ -11,19 +11,6 @@ import { pushRoute } from 'lib/router';
 import { useWindowSize } from 'lib/hooks';
 import ModalPortal from 'components/templates/ModalPortal';
 
-import {
-  RecentlyWrapper,
-  MenuSection,
-  MenuCounts,
-  MenuDeleteButton,
-  ContentSection,
-  ContentItem,
-  ContentDeleteButton,
-  ContentEmpty,
-  ContentEmptyCenter,
-  ContentEmptyItem,
-} from './Styled';
-
 const IMAGE_PATH = {
   DELETE_IMAGE: '/public/icon/like_item_delete.png',
   NO_DATA: '/public/icon/icon_no_data.png',
@@ -55,13 +42,14 @@ function RecentlyTemplate({ handleClose }) {
    */
 
   // 아이템 길이
-  const ContentItemLength = useMemo(() => (windowWidth - 43) / 3, [
-    windowWidth,
-  ]);
+  const ContentItemLength = useMemo(
+    () => (windowWidth - 43) / 3,
+    [windowWidth]
+  );
 
   return (
     <ModalPortal handleClose={handleClose}>
-      <RecentlyWrapper>
+      <div className={css.RecentlyWrapper}>
         <div className={css['header']}>
           <div className={css['header__title']}>최근 본 상품</div>
           <div
@@ -70,55 +58,75 @@ function RecentlyTemplate({ handleClose }) {
           />
         </div>
         {/* 상단 메뉴 */}
-        <MenuSection>
-          <MenuCounts>총 {histoyItems?.length}개</MenuCounts>
-          <MenuDeleteButton onClick={() => onClickAllDeleteItem()}>
+        <div className={css.MenuSection}>
+          <div className={css.MenuCounts}>총 {histoyItems?.length}개</div>
+          <button
+            className={css.MenuDeleteButton}
+            onClick={() => onClickAllDeleteItem()}
+          >
             전체 삭제
-          </MenuDeleteButton>
-        </MenuSection>
+          </button>
+        </div>
         {/* 최근 본 상품 */}
         {histoyItems && histoyItems.length ? (
-          <ContentSection>
+          <div className={css.ContentSection}>
             {histoyItems.map((o) => (
               // 전체 - 40 / 3
-              <ContentItem
+              <div
+                className={css.ContentItem}
                 key={o.dealId}
-                length={ContentItemLength}
                 onClick={() => {
                   onClickSelectItem(o.dealId);
                   handleClose();
                 }}
+                style={{
+                  width: ContentItemLength ? `${ContentItemLength}px` : '110px',
+                  height: ContentItemLength
+                    ? `${ContentItemLength}px`
+                    : '110px',
+                }}
               >
                 <Image src={o.imageUrls[0]} size={'contain'} />
-                <ContentDeleteButton
+                <div
+                  className={css.ContentDeleteButton}
                   onClick={(e) => onClickDeleteItem(e, o.dealsId)}
                   length={ContentItemLength}
+                  style={{
+                    bottom: ContentItemLength
+                      ? `${ContentItemLength}px`
+                      : '110px',
+                    left: ContentItemLength
+                      ? `${ContentItemLength - 26}px`
+                      : '110px',
+                  }}
                 >
                   <Image
                     src={IMAGE_PATH.DELETE_IMAGE}
                     width={'26px'}
                     height={'26px'}
                   />
-                </ContentDeleteButton>
-              </ContentItem>
+                </div>
+              </div>
             ))}
-          </ContentSection>
+          </div>
         ) : (
-          <ContentEmpty>
-            <ContentEmptyCenter>
-              <ContentEmptyItem>
+          <div className={css.ContentEmpty}>
+            <div className={css.ContentEmptyCenter}>
+              <div className={css.ContentEmptyItem}>
                 <Image
                   isLazy={true}
                   src={IMAGE_PATH.NO_DATA}
                   width={'60px'}
                   height={'60px'}
                 />
-              </ContentEmptyItem>
-              <ContentEmptyItem>최근 본 상품이 없습니다.</ContentEmptyItem>
-            </ContentEmptyCenter>
-          </ContentEmpty>
+              </div>
+              <div className={css.ContentEmptyItem}>
+                최근 본 상품이 없습니다.
+              </div>
+            </div>
+          </div>
         )}
-      </RecentlyWrapper>
+      </div>
     </ModalPortal>
   );
 }

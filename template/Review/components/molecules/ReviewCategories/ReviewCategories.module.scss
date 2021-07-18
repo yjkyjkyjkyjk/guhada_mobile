@@ -1,21 +1,19 @@
-import styled from 'styled-components';
-
-export const ReviewCategoryWrapper = styled.div`
+.ReviewCategoryWrapper {
   font-family: Roboto;
   font-weight: 500;
   margin: 30px 20px;
   height: 100%;
-`;
+}
 
-export const Title = styled.div`
+.Title {
   display: flex;
   justify-content: flex-start;
   width: 100%;
   height: 20px;
   margin-bottom: 15px;
-`;
+}
 
-export const Contents = styled.div`
+.Contents {
   display: flex;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -25,9 +23,9 @@ export const Contents = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+}
 
-export const ContentItem = styled.div`
+.ContentItem {
   width: 55px;
   margin-right: 15px;
   height: 100%;
@@ -35,13 +33,13 @@ export const ContentItem = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-`;
+}
 
-export const CategoryImage = styled.div`
+.CategoryImage {
   margin-bottom: 15px;
-`;
+}
 
-export const CategoryText = styled.div`
+.CategoryText {
   font-size: 12px;
   line-height: 1.6;
   &.active {
@@ -50,4 +48,4 @@ export const CategoryText = styled.div`
   &.inActive {
     color: #777;
   }
-`;
+}

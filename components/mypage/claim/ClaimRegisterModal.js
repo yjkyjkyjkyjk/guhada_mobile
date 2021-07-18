@@ -71,7 +71,7 @@ function ClaimRegisterModal({
             </label>
           </div>
           <div className="productInquiry__modal-textCount">
-            <span>{_size(content)}</span>/1000
+            <span>{_.size(content)}</span>/1000
           </div>
         </div>
         <div className="productInquiry__modal-contents">

@@ -15,6 +15,7 @@ function ModalPortal({
   background = true,
   center = false,
   minHeight = false,
+  zIndex,
 }) {
   /**
    * states
@@ -48,7 +49,12 @@ function ModalPortal({
   return (
     typeof document === 'object' &&
     createPortal(
-      <div className={cn(css['modal-portal'], minHeight && css['min-height'])}>
+      <div
+        className={cn(css['modal-portal'], minHeight && css['min-height'])}
+        style={{
+          zIndex,
+        }}
+      >
         {shade && (
           <div className={css['shade']} onClick={handleClose}>
             {closeButton && <div className="icon close--light" />}

@@ -1,18 +1,9 @@
 import { memo } from 'react';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-
+import css from './ReviewCardRating.module.scss';
 import Image from 'components/atoms/Image';
 import StarItem from 'components/mypage/review/StarItem';
-
-import {
-  Wrapper,
-  LikeAndCommentSection,
-  LikeSection,
-  CommentSection,
-  StarSection,
-  Counter,
-} from './Styled';
 
 const IMAGE_PATH = {
   comment: '/public/icons/button/comment/comment@3x.png',
@@ -28,9 +19,10 @@ const IMAGE_PATH = {
  */
 function CardRating({ review, onClickLike }) {
   return (
-    <Wrapper>
-      <LikeAndCommentSection>
-        <LikeSection
+    <div className={css.Wrapper}>
+      <div className={css.LikeAndCommentSection}>
+        <div
+          className={css.LikeSection}
           onClick={(e) => {
             e.stopPropagation();
             onClickLike(review);
@@ -43,15 +35,15 @@ function CardRating({ review, onClickLike }) {
             width={'17px'}
             height={'15px'}
           />
-          <Counter>{review?.bookmarkCount}</Counter>
-        </LikeSection>
-        <CommentSection>
+          <div className={css.Counter}>{review?.bookmarkCount}</div>
+        </div>
+        <div className={css.CommentSection}>
           <Image src={IMAGE_PATH.comment} width={'16px'} height={'16px'} />
-          <Counter>{review?.commentCount}</Counter>
-        </CommentSection>
-      </LikeAndCommentSection>
-      <StarSection>{StarItem(review?.rating)}</StarSection>
-    </Wrapper>
+          <div className={css.Counter}>{review?.commentCount}</div>
+        </div>
+      </div>
+      <div className={css.StarSection}>{StarItem(review?.rating)}</div>
+    </div>
   );
 }
 

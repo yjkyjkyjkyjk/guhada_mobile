@@ -14,7 +14,12 @@ function EventDetail() {
   return (
     <div className={css.wrap}>
       {newEventStore.eventDetail.detailPage ? (
-        <Link href={newEventStore.eventDetail.detailPageLink}>
+        <Link
+          href={
+            newEventStore.eventDetail.detailPageLink ||
+            newEventStore.eventDetail.detailPageUrl
+          }
+        >
           <div className={css.detailContent}>
             <img
               src={newEventStore.eventDetail.imgDetailUrlM}
