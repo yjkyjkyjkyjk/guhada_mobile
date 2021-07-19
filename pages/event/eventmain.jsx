@@ -6,7 +6,7 @@ import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'childs/lib/components/HeadForSEO';
 import MountLoading from 'components/atoms/Misc/MountLoading';
 import Footer from 'components/footer/Footer';
-import EventMain from 'template/event/EventMain';
+import EventList from 'template/event/EventList';
 
 function EventMainPage() {
   /**
@@ -31,7 +31,11 @@ function EventMainPage() {
     <>
       <HeadForSEO pageName="이벤트" />
       {eventMainStore.eventList.length === 0 && <MountLoading />}
-      <EventMain />
+      <EventList
+        eventList={eventMainStore.eventList}
+        name="이벤트"
+        handleFilterChange={(value) => eventMainStore.getEventList(value)}
+      />
       <Footer />
     </>
   );

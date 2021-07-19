@@ -1,0 +1,21 @@
+.event-list {
+  margin-bottom: 60px;
+
+  .list__dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 56px;
+
+    .dashboard__count {
+      color: #333;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  .list__items {
+    margin-bottom: 60px;
+  }
+}
