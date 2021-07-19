@@ -74,8 +74,6 @@ import TimeDealStore from './event/TimeDealStore';
 //기획전
 import SpecialStore from './event/SpecialStore';
 import SearchPlaceholderStore from './home/SearchPlaceholderStore';
-// 커뮤니티
-import BBSStore from './bbs';
 
 // 신고하기
 import ReportStore from './claim/ReportStore';
@@ -192,11 +190,6 @@ class RootStore {
     //기획전
     this.special = new SpecialStore(this, initialState);
     this.searchHolder = new SearchPlaceholderStore(this, initialState);
-
-    /**
-     * 커뮤니티
-     */
-    this.bbs = new BBSStore(this, initialState);
   }
 }
 
