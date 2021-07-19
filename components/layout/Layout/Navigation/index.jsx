@@ -57,21 +57,6 @@ const Navigation = ({ type, noNav }) => {
         <div className={cn('icon', type === 'index' ? 'home--on' : 'home')} />홈
       </div>
       <div
-        className={cn(
-          css['nav-button'],
-          type === 'community' && css['selected']
-        )}
-        onClick={() => handleClick('community', '/community')}
-      >
-        <div
-          className={cn(
-            'icon',
-            type === 'community' ? 'community--on' : 'community'
-          )}
-        />
-        커뮤니티
-      </div>
-      <div
         className={cn(css['nav-button'], type === 'mypage' && css['selected'])}
         onClick={() => handleClick('mypage', '/mypage')}
       >
