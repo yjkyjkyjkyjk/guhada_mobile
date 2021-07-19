@@ -23,14 +23,8 @@ const SpecialDetailHeader = ({ specialDetail, handleCopyUrlToClipboard }) => (
         <div className={'misc share'} />
       </div>
     </div>
-    <div
-      className={css['header__image']}
-      style={{ height: `${specialDetail._imageHeight}px` }}
-    >
-      <img
-        src={specialDetail.mobileImageUrl}
-        onLoad={(e) => (specialDetail._imageHeight = e.target.height)}
-      />
+    <div className={css['header__image']}>
+      <img src={specialDetail.mobileImageUrl} />
     </div>
   </div>
 );
