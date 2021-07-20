@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import css from './FollowListItem.module.scss';
 import { inject, observer } from 'mobx-react';
 
@@ -9,7 +9,6 @@ class FollowListItem extends React.Component {
     let { mypageFollow, data, seller } = this.props;
     return (
       <div className={css.wrap}>
-        {/* <Link href={`/store/${data.nickname}`}> */}
         {/* 프로필 이미지 */}
         {data.profileImageUrl ? (
           <div
@@ -68,48 +67,6 @@ class FollowListItem extends React.Component {
             </div>
           )}
         </div>
-        {/* </Link> */}
-        {/* <Link href={`/store/${data.nickname}`}> */}
-        {/* <div
-          className={css.sellerName}
-          onClick={() => seller.toSearch({ nickname: data.nickname })}
-        >
-          {data.nickname ? data.nickname : ''}
-        </div> */}
-        {/* </Link> */}
-        {/* <div className={css.sellerGreeting}>
-          {`${data.storeIntroduction ? data.storeIntroduction : data.nickname}`}
-        </div>
-        <div className={css.sellerInfo}>
-          <div>
-            <span className={css.sellerFollower}>{`팔로워 ${
-              data.followerCount ? data.followerCount.toLocaleString() : '0'
-            }`}</span>
-            <span className={css.sellerProduct}>{`상품수 ${
-              data.productCount ? data.productCount.toLocaleString() : '0'
-            }`}</span>
-          </div>
-        </div>
-
-        {data.status ? (
-          <div
-            className={css.unfollowButton}
-            onClick={() => {
-              mypageFollow.deleteSellerFollow(data.sellerId);
-            }}
-          >
-            팔로잉
-          </div>
-        ) : (
-          <div
-            className={css.followButton}
-            onClick={() => {
-              mypageFollow.setSellerFollow(data.sellerId);
-            }}
-          >
-            팔로우
-          </div>
-        )} */}
       </div>
     );
   }
