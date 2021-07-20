@@ -6,7 +6,7 @@ const SaveIdCheckBox = ({ id, onChange, checked, children }) => {
     <div className={css.wrap}>
       <input type="checkbox" id={id} checked={checked} onChange={onChange} />
       <label htmlFor={id}>
-        <span className={checked ? 'misc check' : ''} />
+        <span className={checked && 'misc check--on'} />
         <div>{children}</div>
       </label>
     </div>

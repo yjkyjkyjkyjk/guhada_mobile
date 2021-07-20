@@ -29,5 +29,18 @@
         display: none;
       }
     }
+
+    .data-empty {
+      width: 100%;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        margin-top: 15px;
+      }
+    }
   }
 }

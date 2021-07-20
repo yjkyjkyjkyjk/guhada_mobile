@@ -1,0 +1,18 @@
+.review__section {
+  min-height: 400px;
+
+  .section__empty {
+    border-top: 8px solid #f9f9fa;
+    margin-bottom: 30px;
+
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .empty__text {
+      margin-top: 15px;
+    }
+  }
+}

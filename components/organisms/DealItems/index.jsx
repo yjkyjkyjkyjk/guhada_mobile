@@ -39,7 +39,12 @@ const DealItems = ({
               </a>
             </LinkRoute>
           ))
-        : thumbnail > -1 && <DataEmpty PADDING="50px">결과 없음</DataEmpty>}
+        : thumbnail > -1 && (
+            <div className={css['data-empty']}>
+              <div className="special no-data" />
+              <p>결과 없음</p>
+            </div>
+          )}
     </div>
   </div>
 );
