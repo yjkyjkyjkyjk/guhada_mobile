@@ -1,21 +1,20 @@
-import API from 'childs/lib/API';
 import _ from 'lodash';
-import { devLog, devGroup, devGroupEnd } from 'childs/lib/common/devLog';
+import API from 'childs/lib/API';
 import { root } from 'store';
 
 export default {
   onInit(form) {},
 
+  onSubmit(form) {},
+
   onSuccess(form) {
-    devLog('Form Values', form.values());
-    devLog('Form Errors', form.errors());
-    let value = form.values();
+    let loginData = form.values();
     API.user
       .post(
         `/loginUser`,
         {
-          email: value.email,
-          password: value.password,
+          email: loginData.email,
+          password: loginData.password,
         },
         {
           headers: {
@@ -23,58 +22,39 @@ export default {
           },
         }
       )
-      .then(function(res) {
+      .then((res) => {
         const { data: resData } = res;
         const { data } = resData;
 
-        devGroup(`loginUser success`);
-        devGroupEnd(`loginUser success`);
+        if (resData.resultCode === 200) {
+          root.login.handleLoginSuccess({
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
+            expiresIn: data.expiresIn,
+          });
 
-        root.login.handleLoginSuccess({
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
-          expiresIn: data.expiresIn,
-        });
-
-        root.luckyDraw.setLuckydrawLoginModal(false);
-        root.luckyDraw.getEventUser();
+          root.luckyDraw.setLuckydrawLoginModal(false);
+          root.luckyDraw.getEventUser();
+        }
       })
       .catch((e) => {
-        const data = _.get(e, 'data') || {};
-
-        switch (data?.resultCode) {
-          case 6003:
-            form.$('password').invalidate(data.message);
-            break;
-
-          case 5004:
-            form.$('email').invalidate(data.message);
-            break;
-
-          case 6016:
-            root.alert.showAlert(data.message);
-            break;
-
-          case 6500:
-            root.alert.showAlert(data.message);
-            break;
-
-          default:
+        if (_.get(e, 'status') === 200) {
+          root.toast.getToast(_.get(e, 'data.message'));
+        } else {
+          root.toast.getToast('다시 시도해주세요.');
         }
       });
   },
 
-  onError(form) {
-    devLog('Form Values', form.values());
-    devLog('Form Errors', form.errors());
+  onChange(field) {
+    if (field.name === 'password') {
+      field.invalidate();
+    }
   },
 
-  onSubmit(instance) {
-    devLog(
-      '-> onSubmit HOOK -',
-      instance.path || 'form',
-      '- isValid?',
-      instance.isValid
-    );
-  },
+  onError(form) {},
+
+  onClear(instance) {},
+
+  onReset(instance) {},
 };

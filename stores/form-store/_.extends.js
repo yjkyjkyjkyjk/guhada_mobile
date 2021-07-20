@@ -10,7 +10,7 @@ export default class Form extends MobxReactForm {
     return {
       dvr: dvr({
         package: validatorjs,
-        extend: ({ validator, form }) => {
+        extend: ({ validator }) => {
           /**
            * custom rules 및 error text 정의 방법
            * rules 변수 내부에 validation 관련 rule을 정의하시면 됩니다.
@@ -31,10 +31,11 @@ export default class Form extends MobxReactForm {
                   // /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/
                 );
               },
+              message: '비밀번호를 잘못 입력하셨습니다.',
             },
           };
 
-          Object.keys(rules).forEach(key =>
+          Object.keys(rules).forEach((key) =>
             validator.register(key, rules[key].function, rules[key].message)
           );
         },
