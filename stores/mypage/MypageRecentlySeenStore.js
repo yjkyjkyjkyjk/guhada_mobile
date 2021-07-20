@@ -1,4 +1,3 @@
-import React from 'react';
 import { observable, action, toJS } from 'mobx';
 import { isBrowser } from 'childs/lib/common/isServer';
 import localStorage from 'childs/lib/common/localStorage';
@@ -9,6 +8,7 @@ import API from 'childs/lib/API';
 import Router from 'next/router';
 import { devLog } from 'childs/lib/common/devLog';
 import orderService from 'childs/lib/API/order/orderService';
+
 export default class MypageRecentlySeenStore {
   constructor(root) {
     if (isBrowser) {
@@ -81,18 +81,13 @@ export default class MypageRecentlySeenStore {
    * 목록에서 전달된 아이디에 매칭되는 아이템 삭제
    */
   @action
-  removeItem = (e, dealsId = '') => {
-    e.stopPropagation();
-    const targetIndex = this.list.findIndex((item) => item.dealsId === dealsId);
+  removeItem = (dealId) => {
+    const targetIndex = this.list.findIndex((item) => item.dealId === dealId);
 
     if (targetIndex > -1) {
       this.list.splice(targetIndex, 1);
       localStorage.set(key.PRODUCT_RECENTLY_SEEN, toJS(this.list));
       this.totalItemsCount = this.list.length;
-
-      // this.root.alert.showAlert({
-      //   content: '최근 본 상품이 삭제 되었습니다.',
-      // });
     }
   };
 
@@ -101,25 +96,18 @@ export default class MypageRecentlySeenStore {
    */
   @action
   removeItemAll = () => {
-    this.removeItemAllConfirm();
-    // this.root.alert.showConfirm({
-    //   content: '최근 본 상품을 모두 삭제하시겠습니까 ?',
-    //   confirmText: '확인',
-    //   cancelText: '취소',
-    //   onConfirm: () => {
-    //     this.removeItemAllConfirm();
-    //   },
-    // });
+    this.root.alert.showConfirm({
+      content: '최근 본 상품을 모두 삭제하시겠습니까 ?',
+      confirmText: '확인',
+      cancelText: '취소',
+      onConfirm: this.removeItemAllConfirm,
+    });
   };
 
   removeItemAllConfirm = () => {
     this.list = [];
     localStorage.remove(key.PRODUCT_RECENTLY_SEEN);
     this.totalItemsCount = 0;
-
-    // this.root.alert.showAlert({
-    //   content: '최근 본 상품이 모두 삭제 되었습니다.',
-    // });
   };
 
   @action
