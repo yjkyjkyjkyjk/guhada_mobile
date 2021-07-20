@@ -119,8 +119,8 @@ class MainStore {
     try {
       const { data } = await new Promise((res) => {
         const timer = setTimeout(() => res({ data: {} }), 500);
-        API.settle
-          .get('/selectMainData?agent=MWEB')
+        API.gateway
+          .get('/event/main/selectMainData?agent=MWEB')
           .then((data) => {
             clearTimeout(timer);
             res(data);
