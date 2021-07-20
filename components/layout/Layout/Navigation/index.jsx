@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import CategoryModal from './CategoryModal';
 import ToolbarBrand from 'components/toolbar/ToolbarBrand';
-import { pushRoute } from 'childs/lib/router';
+import { useRouter } from 'next/router';
 
 const Navigation = ({ type, noNav }) => {
   /**
    * states
    */
   const [isModalOpen, setIsModalOpen] = useState(0);
+  const router = useRouter();
 
   /**
    * handlers
@@ -19,7 +20,7 @@ const Navigation = ({ type, noNav }) => {
     if (type === id) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      pushRoute(route);
+      router.push(route);
     }
   };
 
@@ -28,6 +29,12 @@ const Navigation = ({ type, noNav }) => {
    */
   return (
     <nav className={cn(css['nav'], noNav && css['no-nav'])}>
+      <div
+        className={cn(css['nav-button'], type === 'index' && css['selected'])}
+        onClick={() => handleClick('index', '/')}
+      >
+        <div className={cn('icon', type === 'index' ? 'home--on' : 'home')} />홈
+      </div>
       <div
         className={cn(
           css['nav-button'],
@@ -49,12 +56,6 @@ const Navigation = ({ type, noNav }) => {
       >
         <div className={cn('icon', type === 'brand' ? 'brand--on' : 'brand')} />
         브랜드
-      </div>
-      <div
-        className={cn(css['nav-button'], type === 'index' && css['selected'])}
-        onClick={() => handleClick('index', '/')}
-      >
-        <div className={cn('icon', type === 'index' ? 'home--on' : 'home')} />홈
       </div>
       <div
         className={cn(css['nav-button'], type === 'mypage' && css['selected'])}

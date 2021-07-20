@@ -84,7 +84,7 @@ module.exports = [
   },
   // 이벤트 - 메인
   {
-    pagePath: `/event/eventmain`,
+    pagePath: `/event`,
     asPath: `/event`,
     name: `이벤트`,
   },
