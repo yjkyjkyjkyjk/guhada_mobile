@@ -6,22 +6,21 @@ import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'childs/lib/components/HeadForSEO';
 import MountLoading from 'components/atoms/Misc/MountLoading';
 import Footer from 'components/footer/Footer';
-// import SpecialList from 'template/event/SpecialList';
 import EventList from 'template/event/EventList';
 
-function SpecialPage() {
+function EventMainPage() {
   /**
    * states
    */
-  const { special: specialStore, newSpecial: newSpecialStore } = useStores();
+  const { eventmain: eventMainStore, newEvent: newEventStore } = useStores();
 
   /**
    * side effects
    */
   useEffect(() => {
-    newSpecialStore.resetSpecialData();
-    if (specialStore.specialList.length === 0) {
-      specialStore.getSpecialList();
+    newEventStore.resetEventData();
+    if (eventMainStore.eventList.length === 0) {
+      eventMainStore.getEventList();
     }
   }, []);
 
@@ -30,19 +29,19 @@ function SpecialPage() {
    */
   return (
     <>
-      <HeadForSEO pageName="기획전" />
-      {specialStore.specialList.length === 0 && <MountLoading />}
+      <HeadForSEO pageName="이벤트" />
+      {eventMainStore.eventList.length === 0 && <MountLoading />}
       <EventList
-        eventList={specialStore.specialList}
-        name="기획전"
-        handleFilterChange={(value) => specialStore.getSpecialList(value)}
+        eventList={eventMainStore.eventList}
+        name="이벤트"
+        handleFilterChange={(value) => eventMainStore.getEventList(value)}
       />
       <Footer />
     </>
   );
 }
 
-SpecialPage.getInitialProps = function({ pathname, query }) {
+EventMainPage.getInitialProps = function({ pathname, query }) {
   const initialProps = { layout: {} };
 
   if (isServer) {
@@ -56,4 +55,4 @@ SpecialPage.getInitialProps = function({ pathname, query }) {
   return initialProps;
 };
 
-export default observer(SpecialPage);
+export default observer(EventMainPage);

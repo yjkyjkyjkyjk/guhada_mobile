@@ -1,26 +1,16 @@
-import { root } from 'store';
-import API from 'childs/lib/API';
 import qs from 'qs';
-import { pushRoute } from 'childs/lib/router';
-import { devLog } from 'childs/lib/common/devLog';
 import _ from 'lodash';
-import widerplanetTracker from 'childs/lib/tracking/widerplanet/widerplanetTracker';
+import API from 'childs/lib/API';
+import { root } from 'store';
+import { pushRoute } from 'childs/lib/router';
+
 export default {
   onInit(form) {},
 
-  onSubmit(instance) {
-    devLog(instance);
-    devLog(
-      '-> onSubmit HOOK -',
-      instance.path || 'form',
-      '- isValid?',
-      instance.isValid
-    );
-  },
+  onSubmit(form) {},
 
   onSuccess(form) {
     let loginData = form.values();
-    devLog('Success Values', form.values());
 
     API.user
       .post(
@@ -35,13 +25,9 @@ export default {
           },
         }
       )
-      .then(function(res) {
+      .then((res) => {
         const { data: resData } = res;
         const { data } = resData;
-
-        console.group(`loginUser success`);
-        devLog('data', data);
-        console.groupEnd(`loginUser success`);
 
         if (resData.resultCode === 200) {
           root.login.handleLoginSuccess({
@@ -59,33 +45,24 @@ export default {
           pushRoute(targetUrl);
         }
       })
-      .catch(function(e) {
-        devLog(e);
+      .catch((e) => {
         if (_.get(e, 'status') === 200) {
           root.toast.getToast(_.get(e, 'data.message'));
+        } else {
+          root.toast.getToast('다시 시도해주세요.');
         }
       });
   },
 
-  onError(form) {
-    devLog('Form Values', form.values());
-    devLog('Form Errors', form.errors());
-    let error = form.errors();
-
-    // let dir = [error.email, error.password];
-    // for (let i = 0; i < dir.length; i++) {
-    //   if (dir[i]) {
-    //     root.toast.getToast(dir[i]);
-    //     return;
-    //   }
-    // }
+  onChange(field) {
+    if (field.name === 'password') {
+      field.invalidate();
+    }
   },
 
-  onClear(instance) {
-    devLog('-> onClear HOOK -', instance.path || 'form');
-  },
+  onError(form) {},
 
-  onReset(instance) {
-    devLog('-> onReset HOOK -', instance.path || 'form');
-  },
+  onClear(instance) {},
+
+  onReset(instance) {},
 };

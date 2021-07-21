@@ -7,7 +7,7 @@ export default class CardInterestStore {
 
   @action
   getCardInterest = () => {
-    API.settle.get(`/payment/cardInterest`).then(res => {
+    API.gateway.get('/payment/creditCardInterest').then((res) => {
       devLog(res, 'card interest res');
       this.cardInterest = res.data.data;
       this.cardInterestIsOpen = true;

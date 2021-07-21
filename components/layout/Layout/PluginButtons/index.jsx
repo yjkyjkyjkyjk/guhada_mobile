@@ -3,7 +3,7 @@ import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import openPopupCenter from 'childs/lib/common/openPopupCenter';
-import Recently from 'template/Recently';
+import RecentlyModal from 'template/RecentlyModal';
 
 const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
   /**
@@ -47,7 +47,9 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
           }
         />
       )}
-      {isModalOpen === 1 && <Recently handleClose={() => setIsModalOpen(0)} />}
+      {isModalOpen === 1 && (
+        <RecentlyModal handleClose={() => setIsModalOpen(0)} />
+      )}
     </div>
   );
 };

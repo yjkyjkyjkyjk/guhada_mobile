@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { useHorizontalArrows } from 'hooks';
-import { pushRoute } from 'childs/lib/router';
 
 const defaultMenuList = [
   ['홈', '/'],
@@ -33,7 +32,7 @@ function MenuTab({ menuList = defaultMenuList }) {
    */
   const handleClick = (path, target) => {
     if (selected !== path) {
-      pushRoute(path);
+      router.push(path);
       setSelected(path);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });

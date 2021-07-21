@@ -1,9 +1,8 @@
-import { observable, action, toJS, extendObservable } from 'mobx';
+import { observable, action } from 'mobx';
 import API from 'childs/lib/API';
 import { isBrowser } from 'childs/lib/common/isServer';
-import { loginStatus } from 'childs/lib/constant';
-import _ from 'lodash';
 import { devLog } from 'childs/lib/common/devLog';
+
 export default class MypageFollowStore {
   constructor(root) {
     if (isBrowser) {
@@ -22,7 +21,7 @@ export default class MypageFollowStore {
     let action = () => {
       this.userId = this.root.user.userId;
       API.user
-        .get(`users/${this.userId}/followings`)
+        .get(`users/${this.userId}/followingSellers`)
         .then((res) => {
           devLog(res, 'following list');
           this.followList = [];

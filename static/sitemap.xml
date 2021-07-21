@@ -28,11 +28,4 @@
       <changefreq>always</changefreq>
       <priority>1.0</priority>
    </url>
-   <!-- 커뮤니티 -->
-   <url>
-      <loc>https://www.guhada.com/community/board/all</loc>
-      <lastmod>2020-01-07</lastmod>
-      <changefreq>always</changefreq>
-      <priority>1.0</priority>
-   </url>
 </urlset>

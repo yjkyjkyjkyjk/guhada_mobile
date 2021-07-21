@@ -85,18 +85,12 @@ class GuhadaMobileWeb extends App {
    */
   static makeCommonMobxState({ req }) {
     // 사용자 ip 주소 가져오기
-    let userIp = null;
-    if (isServer) {
-      userIp = getIpAddrress(req);
-    }
+    // let userIp = null;
+    // if (isServer) {
+    //   userIp = getIpAddrress(req);
+    // }
 
-    return {
-      bbs: {
-        article: {
-          userIp,
-        },
-      },
-    };
+    return {};
   }
 
   constructor(props) {

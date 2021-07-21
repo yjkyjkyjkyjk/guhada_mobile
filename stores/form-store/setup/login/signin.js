@@ -1,4 +1,4 @@
-import hooks from '../../hooks/login/SigninHooks';
+import hooks from 'stores/form-store/hooks/login/SigninHooks';
 
 export default {
   fields: {
@@ -8,7 +8,7 @@ export default {
       autoComplete: 'email',
       placeholder: '아이디 (이메일)',
       rules: 'required|email|string',
-      // hooks,
+      hooks,
     },
     password: {
       type: 'password',
@@ -16,7 +16,8 @@ export default {
       label: '비밀번호',
       autoComplete: 'password',
       placeholder: '비밀번호',
-      // rules: 'required|password',
+      rules: 'required|password',
+      hooks,
     },
     saveid: {},
   },
