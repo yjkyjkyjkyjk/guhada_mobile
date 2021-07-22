@@ -12,7 +12,7 @@ const getDeviceType = () => {
 export default {
   visit: () => {
     if (isBrowser) {
-      if (kakaoPixel) {
+      if (window.kakaoPixel) {
         if (getDeviceType() === 'web') {
           kakaoPixel(KAKAO_MOMENT_KEY).pageView('visit_pc');
         } else {
@@ -23,7 +23,7 @@ export default {
   },
   signup: () => {
     if (isBrowser) {
-      if (kakaoPixel) {
+      if (window.kakaoPixel) {
         if (getDeviceType() === 'web') {
           kakaoPixel(KAKAO_MOMENT_KEY).pageView();
           kakaoPixel(KAKAO_MOMENT_KEY).completeRegistration('registration_pc');
@@ -36,7 +36,7 @@ export default {
   },
   shoppingCart: () => {
     if (isBrowser) {
-      if (kakaoPixel) {
+      if (window.kakaoPixel) {
         if (getDeviceType() === 'web') {
           kakaoPixel(KAKAO_MOMENT_KEY).pageView();
           kakaoPixel(KAKAO_MOMENT_KEY).viewCart('cart_pc');
@@ -49,7 +49,7 @@ export default {
   },
   purchaseComplete: ({ total_quantity, total_price }) => {
     if (isBrowser) {
-      if (kakaoPixel) {
+      if (window.kakaoPixel) {
         kakaoPixel(KAKAO_MOMENT_KEY).pageView();
         kakaoPixel(KAKAO_MOMENT_KEY).purchase({
           total_quantity,
