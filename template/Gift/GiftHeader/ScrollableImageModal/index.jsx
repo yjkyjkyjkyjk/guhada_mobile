@@ -1,6 +1,8 @@
+import css from './ScrollableImageModal.module.scss';
+import cn from 'classnames';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ModalPortal from 'components/templates/PopupPortal';
+import ModalPortal from 'components/templates/ModalPortal';
 import { LoadingSpinner } from 'components/common/loading';
 
 const ScrollableImageModal = ({ imgSrc, handleOpen, handleClose }) => {
@@ -30,14 +32,13 @@ const ScrollableImageModal = ({ imgSrc, handleOpen, handleClose }) => {
       handleClose={handleClose}
       shade={false}
     >
-      <div style={{ overflow: 'scroll', height: '100%' }}>
+      <div className={css['modal__section']}>
         <div
           onClick={handleClose}
-          style={{ position: 'absolute', right: '10px', top: '10px' }}
-          className="icon close"
+          className={cn(css['section__close'], 'icon close')}
         />
         {loaded ? (
-          <img style={{ width: '100vw', height: 'auto' }} src={imgSrc} />
+          <img className={css['section__image']} src={imgSrc} />
         ) : (
           <LoadingSpinner />
         )}

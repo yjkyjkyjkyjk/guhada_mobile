@@ -2,7 +2,7 @@ import { memo } from 'react';
 import css from './RankingSection.module.scss';
 import PropTypes from 'prop-types';
 import RankItem, { rankShape } from './RankItem';
-import Loading from 'components/common/loading';
+import { LoadingSpinnerDiv } from 'components/common/loading';
 
 const RankingSection = ({ rank, handleSearch, count = 50 }) => {
   return (
@@ -15,11 +15,13 @@ const RankingSection = ({ rank, handleSearch, count = 50 }) => {
               key={rankItem.word}
               rank={rankItem}
               idx={idx}
-              handleClick={() => handleSearch(rankItem)}
+              handleClick={() => handleSearch(rankItem.word)}
             />
           ))
       ) : (
-        <Loading />
+        <div className={css['section__loading']}>
+          <LoadingSpinnerDiv />
+        </div>
       )}
     </div>
   );

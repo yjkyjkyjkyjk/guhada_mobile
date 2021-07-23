@@ -6,7 +6,7 @@ const ReviewDetail = ({ review }) => {
   return (
     <div className={css['review-detail']}>
       <div className={css['detail__user-info']}>
-        <span>평소 사이즈</span>
+        <span>사이즈</span>
         <span>키</span>
         <span>체중</span>
       </div>

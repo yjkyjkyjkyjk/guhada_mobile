@@ -45,12 +45,12 @@ function ModalPortal({
    */
   useEffect(() => {
     window.onhashchange = hashChangeHandler;
-    window.history.pushState(
-      { ...window.history.state, as: window.history.state + hash },
-      document.title,
-      hash
-    );
-    // window.location.hash = hash;
+    window.location.hash = hash;
+    // window.history.pushState(
+    //   { ...window.history.state, as: window.history.state.as + hash },
+    //   document.title,
+    //   hash
+    // );
     document.body.style.overflow = 'hidden';
     window.addEventListener('popstate', popstateHandler);
     window.addEventListener('resize', resizeHandler, true);
@@ -61,6 +61,11 @@ function ModalPortal({
       if (window.location.hash === hash) {
         LayoutStore._dangerouslyDisableScrollMemo = true;
         window.history.back();
+        // window.history.replaceState(
+        //   { ...window.history.state },
+        //   document.title,
+        //   window.location.pathname + window.location.search
+        // );
       }
       window.removeEventListener('popstate', popstateHandler);
     };

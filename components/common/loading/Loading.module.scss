@@ -7,18 +7,14 @@ $purple_dark: #310d8e;
 $duration: 3s;
 
 .wrap {
-  @include centered;
   position: fixed;
   width: 100vw;
   height: 100vh;
   background: transparent;
-  z-index: 3000;
-
-  &.isAbsolute {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fixedMask {
