@@ -2,8 +2,8 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import LazyLoad from 'react-lazyload';
 import css from './BestReviewItem.module.scss';
-import StarItem from 'components/mypage/review/StarItem';
 import { observer } from 'mobx-react';
+import Rating from 'components/atoms/Misc/Rating';
 
 const DynamicReviewDeatailModal = dynamic(
   () => import('template/Review/components/organisms/Modals/ReviewDetailModal'),
@@ -45,7 +45,7 @@ function BestReviewItem({
         <div className={css.detailWrap}>
           <div className={css.title}>{item.dealName}</div>
           <div className={css.desc}>{item.text}</div>
-          {StarItem(item.rating)}
+          <Rating />
         </div>
       </div>
     </>

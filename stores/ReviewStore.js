@@ -3,7 +3,6 @@ import { stringify } from 'qs';
 import API from 'childs/lib/API';
 import bookmarkTarget from 'childs/lib/constant/user/bookmarkTarget';
 
-import { toJS } from 'mobx';
 const isServer = typeof window === 'undefined';
 export default class ReviewStore {
   constructor(root) {
@@ -33,6 +32,8 @@ export default class ReviewStore {
   };
 
   // Observable
+  @observable selectedCategory = 'all';
+
   // 리뷰
   @observable reviewPage = this.DEFAULT_REVIEW_PAGE; // 리뷰 조회 Object
   @observable searchForm = this.DEFAULT_SEARCH_FORM; // 검색 Object
@@ -73,7 +74,7 @@ export default class ReviewStore {
     this.reviewHashtagDetailList = [];
     this.reviewAutoCompleteList = [];
   };
-  
+
   @action
   setSearchForm = (search) => (this.searchForm = search);
 

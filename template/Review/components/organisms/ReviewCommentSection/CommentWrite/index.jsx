@@ -21,7 +21,7 @@ import {
   Submit,
 } from './Styled';
 
-import { REVIEW_EMOJI_LIST } from 'template/Review/_constants';
+import { REVIEW_EMOJI_LIST } from 'template/Review/constants';
 
 import defaultStyle from './lib/defaultStyle';
 

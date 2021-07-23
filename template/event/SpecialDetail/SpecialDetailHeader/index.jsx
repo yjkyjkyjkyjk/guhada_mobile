@@ -20,7 +20,7 @@ const SpecialDetailHeader = ({ specialDetail, handleCopyUrlToClipboard }) => (
         className={css['header__info__copy']}
         onClick={handleCopyUrlToClipboard}
       >
-        <div className={'misc share'} />
+        <div className="special share" />
       </div>
     </div>
     <div className={css['header__image']}>

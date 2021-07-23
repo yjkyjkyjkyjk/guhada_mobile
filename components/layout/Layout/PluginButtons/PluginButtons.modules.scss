@@ -5,12 +5,11 @@
   bottom: 72px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 10;
 
   .button {
     -webkit-tap-highlight-color: transparent;
-    width: 41px;
-    height: 41px;
     cursor: pointer;
     margin-top: 7px;
     border-radius: 50%;
@@ -19,13 +18,14 @@
       margin-top: 0;
     }
 
-    &.button--recent {
+    &.button--recently {
       opacity: 90%;
       background-color: #111;
       position: relative;
 
-      .recent__count {
+      .recently__count {
         position: absolute;
+        top: 0;
         right: -5px;
         font-size: 7px;
         text-align: center;

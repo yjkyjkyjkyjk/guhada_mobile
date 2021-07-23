@@ -18,7 +18,7 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
     <div className={css['plugin-buttons']}>
       {top && isScrollDown && (
         <div
-          className={cn(css['button'], 'misc plugin-top')}
+          className={cn(css['button'], 'special plugin-top')}
           onClick={() => window.scrollTo(0, 0)}
         />
       )}
@@ -26,17 +26,17 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
         <div
           className={cn(
             css['button'],
-            css['button--recent'],
-            'misc plugin-recent'
+            css['button--recently'],
+            'special plugin-recently'
           )}
           onClick={() => setIsModalOpen(1)}
         >
-          <div className={css['recent__count']}>{recentCount}</div>
+          <div className={css['recently__count']}>{recentCount}</div>
         </div>
       )}
       {kakao && (
         <div
-          className={cn(css['button'], 'social-icon chat')}
+          className={cn(css['button'], 'special plugin-kakao')}
           onClick={() =>
             openPopupCenter(
               'https://pf.kakao.com/_yxolxbT/chat',
