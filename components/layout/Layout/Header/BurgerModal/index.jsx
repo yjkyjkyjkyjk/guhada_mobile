@@ -8,7 +8,7 @@ import MenuSection from './MenuSection';
 import AdBanner from './AdBanner';
 import { loginStatus } from 'childs/lib/constant';
 
-const BurgerModal = ({ handleClose }) => {
+const BurgerModal = ({ handleOpen, handleClose }) => {
   /**
    * states
    */
@@ -38,7 +38,12 @@ const BurgerModal = ({ handleClose }) => {
    * render
    */
   return (
-    <ModalPortal handleClose={handleClose} slide={2} closeButton={false}>
+    <ModalPortal
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      slide={2}
+      closeButton={false}
+    >
       <div className={css['modal__header']}>
         <div className={css['header__login']} onClick={handleLoginClick}>
           {loginStore.loginStatus === loginStatus.LOGIN_DONE &&
@@ -64,6 +69,7 @@ const BurgerModal = ({ handleClose }) => {
 };
 
 BurgerModal.propTypes = {
+  handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };
 

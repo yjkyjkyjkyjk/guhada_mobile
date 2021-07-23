@@ -19,6 +19,7 @@ import {
 
 const AdvancedFilterModal = ({
   filterName = '상세검색',
+  handleOpenModal,
   handleCloseModal,
   specialFilterTags,
 }) => {
@@ -48,7 +49,12 @@ const AdvancedFilterModal = ({
    * render
    */
   return (
-    <ModalPortal handleClose={handleCloseModal} slide={1} gutter>
+    <ModalPortal
+      handleOpen={handleOpenModal}
+      handleClose={handleCloseModal}
+      slide={1}
+      gutter
+    >
       <div className={css['modal__header']}>{filterName}</div>
       <div className={css['modal__filters']}>
         {!specialFilterTags && (
@@ -153,6 +159,7 @@ const AdvancedFilterModal = ({
 
 AdvancedFilterModal.propTypes = {
   filterName: PropTypes.string,
+  handleOpenModal: PropTypes.func,
   handleCloseModal: PropTypes.func,
   specialFilterTags: PropTypes.bool,
 };

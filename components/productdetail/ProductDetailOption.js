@@ -42,9 +42,12 @@ class ProductDetailOption extends Component {
 
         {cartAndPurchase.isProductOptionModal && (
           <ProductOptionModal
-            onClose={() => {
-              this.modalCloseHandler();
-            }}
+            handleOpen={() =>
+              (this.props.cartAndPurchase.isProductOptionModal = true)
+            }
+            handleClose={() =>
+              (this.props.cartAndPurchase.isProductOptionModal = false)
+            }
             productoption={productoption}
           />
         )}

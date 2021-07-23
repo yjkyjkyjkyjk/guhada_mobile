@@ -22,7 +22,8 @@ const ReviewSection = ({
    */
   const { login: loginStore, review: reviewStore } = useStores();
   const router = useRouter();
-  const [modalReviewId, setModalReviewId] = useState(2214);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalReviewId, setModalReviewId] = useState(null);
 
   /**
    * handlers
@@ -30,9 +31,8 @@ const ReviewSection = ({
   const handleInfiniteScroll = useInfinteScroll(handleLoadMore, moreToLoad);
 
   const handleClick = (reviewId) => {
-    if (!modalReviewId) {
-      setModalReviewId(reviewId);
-    }
+    setModalReviewId(reviewId);
+    setIsModalOpen(true);
   };
 
   const handleLikeClick = (e, review) => {
@@ -89,10 +89,11 @@ const ReviewSection = ({
           {reviews.length > 0 && <SpinnerDiv />}
         </div>
       )}
-      {modalReviewId && (
+      {isModalOpen && modalReviewId && (
         <ReviewModal
           reviewId={modalReviewId}
-          handleClose={() => setModalReviewId(null)}
+          handleOpen={() => setIsModalOpen(true)}
+          handleClose={() => setIsModalOpen(false)}
         />
       )}
     </div>

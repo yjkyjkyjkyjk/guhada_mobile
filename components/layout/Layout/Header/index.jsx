@@ -110,10 +110,16 @@ const Header = ({
       {filter && <FilterOption hide={isScrollDown} />}
 
       {!searchbox && isModalOpen === 1 && (
-        <SearchModal handleClose={() => setIsModalOpen(0)} />
+        <SearchModal
+          handleOpen={() => setIsModalOpen(1)}
+          handleClose={() => setIsModalOpen(0)}
+        />
       )}
       {burger && isModalOpen === 2 && (
-        <BurgerModal handleClose={() => setIsModalOpen(0)} />
+        <BurgerModal
+          handleOpen={() => setIsModalOpen(2)}
+          handleClose={() => setIsModalOpen(0)}
+        />
       )}
     </header>
   );

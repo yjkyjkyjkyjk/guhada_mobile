@@ -41,6 +41,7 @@ const FilterOption = ({ hide, specialFilterTags }) => {
           filterName={'상품정렬'}
           filterMap={searchResultOrderMap}
           selectedKey={searchByFilterStore.body.searchResultOrder}
+          handleOpenModal={() => setIsModalOpen(1)}
           handleCloseModal={() => setIsModalOpen(0)}
           handleSetFilter={(key) =>
             searchByFilterStore.submitFilter({ searchResultOrder: key })
@@ -53,6 +54,7 @@ const FilterOption = ({ hide, specialFilterTags }) => {
       {isModalOpen === 2 && (
         <AdvancedFilterModal
           filterName={'상세검색'}
+          handleOpenModal={() => setIsModalOpen(2)}
           handleCloseModal={() => setIsModalOpen(0)}
           specialFilterTags={specialFilterTags}
         />

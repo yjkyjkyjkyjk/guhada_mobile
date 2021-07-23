@@ -5,7 +5,7 @@ import isServer from 'childs/lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'childs/lib/components/HeadForSEO';
 import MountLoading from 'components/atoms/Misc/MountLoading';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import EventList from 'template/event/EventList';
 
 function EventMainPage() {

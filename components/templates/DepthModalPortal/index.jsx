@@ -1,16 +1,13 @@
-import css from './ModalPortal.module.scss';
-import cn from 'classnames';
-import PropTypes from 'prop-types';
+import css from './DepthModalPortal.module.scss';
 import { useState, useEffect, cloneElement, Children } from 'react';
 import { createPortal } from 'react-dom';
-import LayoutStore from 'stores/LayoutStore';
+import cn from 'classnames';
+import PropTypes from 'prop-types';
 
-function ModalPortal({
+function DepthModalPortal({
   children,
   selectorId = '__next',
-  handleOpen = () => {},
   handleClose = () => {},
-  hash = '#modal',
   shade = true,
   gutter,
   closeButton = true,
@@ -31,38 +28,18 @@ function ModalPortal({
   const resizeHandler = () => {
     setHeight(window.innerHeight);
   };
-  const popstateHandler = () => {
-    handleClose();
-  };
-  const hashChangeHandler = () => {
-    if (window.location.hash === hash) {
-      handleOpen();
-    }
-  };
 
   /**
    * side effects
    */
   useEffect(() => {
-    window.onhashchange = hashChangeHandler;
-    window.history.pushState(
-      { ...window.history.state, as: window.history.state + hash },
-      document.title,
-      hash
-    );
-    // window.location.hash = hash;
     document.body.style.overflow = 'hidden';
-    window.addEventListener('popstate', popstateHandler);
     window.addEventListener('resize', resizeHandler, true);
 
     return () => {
+      handleClose();
       document.body.style.removeProperty('overflow');
       window.removeEventListener('resize', resizeHandler, true);
-      if (window.location.hash === hash) {
-        LayoutStore._dangerouslyDisableScrollMemo = true;
-        window.history.back();
-      }
-      window.removeEventListener('popstate', popstateHandler);
     };
   }, []);
 
@@ -108,11 +85,9 @@ function ModalPortal({
   );
 }
 
-ModalPortal.propTypes = {
+DepthModalPortal.propTypes = {
   selectorId: PropTypes.string,
-  handleOpen: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  hash: PropTypes.string,
+  handleClose: PropTypes.func,
   style: PropTypes.object,
   gutter: PropTypes.bool,
   closeButton: PropTypes.bool,
@@ -122,4 +97,4 @@ ModalPortal.propTypes = {
   minHeight: PropTypes.bool,
 };
 
-export default ModalPortal;
+export default DepthModalPortal;

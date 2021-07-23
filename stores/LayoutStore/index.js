@@ -26,6 +26,8 @@ import qs from 'querystring';
  */
 
 class LayoutStore {
+  static _dangerouslyDisableScrollMemo = false;
+
   constructor(root, initialState) {
     if (isBrowser) {
       this.root = root;

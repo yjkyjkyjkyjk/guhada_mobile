@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
-function ModalPortal({
+function PopupPortal({
   children,
   selectorId = '__next',
   handleClose = () => {},
@@ -66,7 +66,7 @@ function ModalPortal({
   );
 }
 
-ModalPortal.propTypes = {
+PopupPortal.propTypes = {
   selectorId: PropTypes.string,
   handleClose: PropTypes.func,
   closeButton: PropTypes.bool,
@@ -74,4 +74,4 @@ ModalPortal.propTypes = {
   center: PropTypes.bool,
 };
 
-export default ModalPortal;
+export default PopupPortal;

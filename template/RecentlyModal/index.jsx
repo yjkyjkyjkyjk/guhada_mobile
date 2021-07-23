@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import ModalPortal from 'components/templates/ModalPortal';
 import RecentlySection from './RecentlySection';
 
-function RecentlyModal({ handleClose }) {
+function RecentlyModal({ handleOpen, handleClose }) {
   /**
    * render
    */
   return (
-    <ModalPortal handleClose={handleClose}>
+    <ModalPortal handleOpen={handleOpen} handleClose={handleClose}>
       <div className={css['modal__header']}>
         <div className={css['header__title']}>최근 본 상품</div>
         <div
@@ -23,6 +23,7 @@ function RecentlyModal({ handleClose }) {
 }
 
 RecentlyModal.propTypes = {
+  handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };
 

@@ -1,10 +1,10 @@
 import css from './DepthModal.module.scss';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import ModalPortal from 'components/templates/ModalPortal';
+import DepthModalPortal from 'components/templates/DepthModalPortal';
 import DepthMenuSection from './DepthMenuSection';
 
-const DepthModal = ({ item, handleClose, handleCategoryItemClick, height }) => {
+const DepthModal = ({ item, handleClose, handleCategoryItemClick }) => {
   /**
    * states
    */
@@ -14,7 +14,7 @@ const DepthModal = ({ item, handleClose, handleCategoryItemClick, height }) => {
    * render
    */
   return (
-    <ModalPortal
+    <DepthModalPortal
       handleClose={handleClose}
       slide={2}
       shade={false}
@@ -32,7 +32,7 @@ const DepthModal = ({ item, handleClose, handleCategoryItemClick, height }) => {
         children={children}
         handleCategoryItemClick={handleCategoryItemClick}
       />
-    </ModalPortal>
+    </DepthModalPortal>
   );
 };
 

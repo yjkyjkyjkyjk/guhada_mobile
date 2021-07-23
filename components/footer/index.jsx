@@ -147,7 +147,10 @@ function Footer() {
 
       {/* Footer - 문의하기 - UserClaimModal */}
       {isModalOpen && (
-        <UserClaimModal handleClose={() => setIsModalOpen(false)} />
+        <UserClaimModal
+          handleOpen={() => setIsModalOpen(true)}
+          handleClose={() => setIsModalOpen(false)}
+        />
       )}
     </div>
   );

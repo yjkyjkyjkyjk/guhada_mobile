@@ -5,7 +5,7 @@ import isServer from 'childs/lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import { isEmpty as _isEmpty } from 'lodash';
 import HeadForSEO from 'childs/lib/components/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import MountLoading from 'components/atoms/Misc/MountLoading';
 import LuckyDraw from 'template/LuckyDraw';
 

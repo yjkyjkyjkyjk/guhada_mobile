@@ -7,7 +7,6 @@ import sessionStorage from 'childs/lib/common/sessionStorage';
 import { LinkRoute } from 'childs/lib/router';
 import cn from 'classnames';
 import SearchMenu from './SearchMenu';
-import BrandContainer from './item/BrandContainer';
 import BurgerModal from 'components/header/HeaderMenu';
 import SearchModal from 'components/layout/Layout/Header/SearchModal';
 import { useObserver } from 'mobx-react-lite';

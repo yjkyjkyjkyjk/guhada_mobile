@@ -48,7 +48,10 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
         />
       )}
       {isModalOpen === 1 && (
-        <RecentlyModal handleClose={() => setIsModalOpen(0)} />
+        <RecentlyModal
+          handleOpen={() => setIsModalOpen(1)}
+          handleClose={() => setIsModalOpen(0)}
+        />
       )}
     </div>
   );

@@ -68,9 +68,17 @@ const Navigation = ({ type, noNav }) => {
       </div>
 
       {isModalOpen === 1 && (
-        <CategoryModal handleClose={() => setIsModalOpen(0)} />
+        <CategoryModal
+          handleOpen={() => setIsModalOpen(1)}
+          handleClose={() => setIsModalOpen(0)}
+        />
       )}
-      {isModalOpen === 2 && <ToolbarBrand onClose={() => setIsModalOpen(0)} />}
+      {isModalOpen === 2 && (
+        <ToolbarBrand
+          handleOpen={() => setIsModalOpen(2)}
+          handleClose={() => setIsModalOpen(0)}
+        />
+      )}
     </nav>
   );
 };

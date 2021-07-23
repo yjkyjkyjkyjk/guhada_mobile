@@ -7,7 +7,7 @@ import useStores from 'stores/useStores';
 import ModalPortal from 'components/templates/ModalPortal';
 import ReviewItem from '../ReviewItem';
 
-const ReviewModal = ({ reviewId, handleClose }) => {
+const ReviewModal = ({ reviewId, handleOpen, handleClose }) => {
   /**
    * states
    */
@@ -29,7 +29,11 @@ const ReviewModal = ({ reviewId, handleClose }) => {
    * render
    */
   return (
-    <ModalPortal shade={false} handleClose={handleClose}>
+    <ModalPortal
+      shade={false}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+    >
       <div className={css['modal__header']}>
         <div
           className={cn('icon back', css['header__close'])}
@@ -54,6 +58,7 @@ const ReviewModal = ({ reviewId, handleClose }) => {
 
 ReviewModal.propTypes = {
   reviewId: PropTypes.oneOfType([null, PropTypes.number]),
+  handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };
 

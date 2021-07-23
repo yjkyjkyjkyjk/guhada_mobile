@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ModalPortal from 'components/templates/PopupPortal';
+import ModalPortal from 'components/templates/ModalPortal';
 import { LoadingSpinner } from 'components/common/loading/Loading';
 
-const ScrollableImageModal = ({ imgSrc, handleClose }) => {
+const ScrollableImageModal = ({ imgSrc, handleOpen, handleClose }) => {
   /**
    * states
    */
@@ -25,7 +25,11 @@ const ScrollableImageModal = ({ imgSrc, handleClose }) => {
    * render
    */
   return (
-    <ModalPortal handleClose={handleClose} shade={false}>
+    <ModalPortal
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      shade={false}
+    >
       <div style={{ overflow: 'scroll', height: '100%' }}>
         <div
           onClick={handleClose}
@@ -44,7 +48,8 @@ const ScrollableImageModal = ({ imgSrc, handleClose }) => {
 
 ScrollableImageModal.propTypes = {
   imgSrc: PropTypes.string,
-  handleCloseModal: PropTypes.func,
+  handleOpen: PropTypes.func,
+  handleClose: PropTypes.func,
 };
 
 export default ScrollableImageModal;

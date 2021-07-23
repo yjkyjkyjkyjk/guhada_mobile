@@ -11,7 +11,7 @@ import DefaultLayout from 'components/layout/DefaultLayout';
 import _ from 'lodash';
 import SearchFilter from 'components/search/SearchFilter';
 import SellerStoreReview from 'components/sellerstore/SellerStoreReview';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 const enhancer = compose(withRouter);
 
 /**

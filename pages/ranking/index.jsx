@@ -4,7 +4,7 @@ import useStores from 'stores/useStores';
 import isServer from 'childs/lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'childs/lib/components/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import Ranking from 'template/Ranking';
 
 function RankingPage() {

@@ -9,7 +9,7 @@ import SearchMenu from '../SearchTab/SearchMenu';
 import AutocompleteSearchMenu from '../SearchTab/AutocompleteSearchMenu';
 import { pushRoute } from 'childs/lib/router';
 
-const SearchModal = ({ handleClose }) => {
+const SearchModal = ({ handleOpen, handleClose }) => {
   /**
    * states
    */
@@ -64,7 +64,12 @@ const SearchModal = ({ handleClose }) => {
    * render
    */
   return (
-    <ModalPortal handleClose={handleClose} slide={3} closeButton={false}>
+    <ModalPortal
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      slide={3}
+      closeButton={false}
+    >
       <div className={css['tab']}>
         <div className={css['tab__buttons']}>
           <div
@@ -104,6 +109,7 @@ const SearchModal = ({ handleClose }) => {
 };
 
 SearchModal.propTypes = {
+  handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };
 
