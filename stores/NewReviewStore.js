@@ -294,11 +294,6 @@ class ReviewStore {
     }
   };
   reviewLikeService = (review) => {
-    console.log(
-      'yoman fin',
-      this.reviewLikeSymbols[review.id].initial,
-      review.myBookmarkReview
-    );
     if (this.reviewLikeSymbols[review.id].initial !== review.myBookmarkReview) {
       try {
         review.myBookmarkReview

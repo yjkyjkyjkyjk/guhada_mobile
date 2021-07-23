@@ -26,7 +26,6 @@ const ReviewModal = ({
    */
   useEffect(() => {
     reviewStore.fetchReview(reviewId).then((review) => {
-      console.log('yoman', review);
       setReview(review);
     });
     return () => setReview({});

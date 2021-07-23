@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './PaymentLoading.module.scss';
-import { LoadingSpinner } from '/components/common/loading/Loading';
+import { LoadingSpinner } from 'components/common/loading';
 import { useObserver } from 'mobx-react-lite';
 function PaymentLoading({ isVisible }) {
   return useObserver(() =>
