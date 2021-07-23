@@ -8,6 +8,7 @@ import { useScrollDown } from 'lib/hooks';
 import Header from './Header';
 import Navigation from './Navigation';
 import PluginButtons from './PluginButtons';
+import LayoutStore from 'stores/LayoutStore';
 
 function Layout({ title, scrollMemo, keepSearchAlive, children }) {
   /**
@@ -48,7 +49,11 @@ function Layout({ title, scrollMemo, keepSearchAlive, children }) {
     if (layoutStore.SCROLL_MEMO) {
       layoutStore.SCROLL_MEMO = false;
     } else {
-      window.scrollTo(0, 0);
+      if (LayoutStore._dangerouslyDisableScrollMemo) {
+        LayoutStore._dangerouslyDisableScrollMemo = false;
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
 
     if (keepSearchAlive) {

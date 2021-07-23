@@ -22,7 +22,7 @@ class Ranking {
       ['clothing', '의류'],
       ['bags', '가방'],
       ['shoes', '신발'],
-      ['accessories', '악세사리'],
+      ['accessories', '액세사리'],
       ['wallets', '지갑'],
     ]),
     interval: new Map([

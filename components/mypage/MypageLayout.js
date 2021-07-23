@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { withRouter } from 'next/router';
 import { inject, observer } from 'mobx-react';
 import { string, bool, object } from 'prop-types';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import DefaultLayout from 'components/layout/DefaultLayout';
 
 @withRouter

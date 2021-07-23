@@ -4,7 +4,7 @@ import useStores from 'stores/useStores';
 import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'components/head/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import MountLoading from 'components/atoms/Misc/MountLoading';
 import TimeDeal from 'template/TimeDeal';
 

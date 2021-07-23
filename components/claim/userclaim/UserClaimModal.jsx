@@ -14,7 +14,7 @@ import ModalPortal from 'components/templates/ModalPortal';
 /**
  * 문의하기 모달
  */
-function UserClaimModal({ handleClose }) {
+function UserClaimModal({ handleOpen, handleClose }) {
   /**
    * initial values
    */
@@ -144,7 +144,7 @@ function UserClaimModal({ handleClose }) {
    * render
    */
   return (
-    <ModalPortal slide={3}>
+    <ModalPortal handleOpen={handleOpen} handleClose={handleClose} slide={3}>
       <Form
         initialValues={initialValues}
         onSubmit={handleSubmit}

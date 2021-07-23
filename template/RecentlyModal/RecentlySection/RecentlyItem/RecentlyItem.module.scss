@@ -1,0 +1,23 @@
+.recently-item {
+  width: calc(33.33% - 10px);
+  height: 0;
+  padding-bottom: calc(33.33% - 10px);
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  background: center no-repeat;
+  background-size: contain;
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(#ccc, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,4 +1,4 @@
-import css from './AdBannerSlick.module.scss';
+import css from './AdBanner.module.scss';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
@@ -6,14 +6,7 @@ import Slider from 'react-slick';
 import useStores from 'stores/useStores';
 import { pushRoute } from 'lib/router';
 
-const AdImage = ({ backgroundColor, src, onClick }) => (
-  <div
-    className={css['image']}
-    style={{ backgroundImage: `url('${src}')`, backgroundColor }}
-    onClick={onClick}
-  />
-);
-function AdBanner({ handleBeforeClick }) {
+const AdBanner = ({ handleBeforeClick }) => {
   /**
    * states
    */
@@ -48,11 +41,9 @@ function AdBanner({ handleBeforeClick }) {
   return (
     <Slider
       dots
-      className={css['ad-banner__slick']}
       dotsClass={css['ad-banner__slick-dots']}
       centerMode
-      arrows={false}
-      centerPadding={'20px'}
+      centerPadding="20px"
       speed={500}
       autoplay
       autoplaySpeed={3000}
@@ -62,17 +53,24 @@ function AdBanner({ handleBeforeClick }) {
         (image) =>
           image.mainUse &&
           image.communityPlusImageUrl && (
-            <AdImage
+            <div
               key={image.id}
-              src={image.communityPlusImageUrl}
-              backgroundColor={image.backgroundColor}
+              className={css['image-wrapper']}
               onClick={() => handleClick(image)}
-            />
+            >
+              <div
+                className={css['image']}
+                style={{
+                  backgroundImage: `url('${image.communityPlusImageUrl}')`,
+                  backgroundColor: image.backgroundColor,
+                }}
+              />
+            </div>
           )
       )}
     </Slider>
   );
-}
+};
 
 AdBanner.propTypes = {
   handleBeforeClick: PropTypes.func,

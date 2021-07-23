@@ -2,11 +2,13 @@ import ProductDetailOptionSelectbox from './ProductDetailOptionSelectbox';
 import OptionQuantity from './OptionQuantity';
 import css from './ProductOptionModal.module.scss';
 import ModalPortal from 'components/templates/ModalPortal';
-function ProductOptionModal({ onClose, productoption }) {
+
+function ProductOptionModal({ handleOpen, handleClose, productoption }) {
   return (
     <ModalPortal
       slide={1}
-      handleClose={onClose}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
       transparent
       closeButton={false}
       background={false}
@@ -16,7 +18,7 @@ function ProductOptionModal({ onClose, productoption }) {
         <div className={css.innerWrap}>
           <div className={css.header}>
             <div className={css.title}>옵션 선택</div>
-            <div className={css.close} onClick={onClose} />
+            <div className={css.close} onClick={handleClose} />
           </div>
           <div className={css.optionBox}>
             <ProductDetailOptionSelectbox />

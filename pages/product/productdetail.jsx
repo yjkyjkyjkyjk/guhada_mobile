@@ -18,7 +18,6 @@ function ProductDetailPage() {
    * states
    */
   const {
-    layout: layoutStore,
     productdetail: productDetailStore,
     productDetailLike: productDetailLikeStore,
     user: userStore,
@@ -115,11 +114,15 @@ ProductDetailPage.getInitialProps = async function({ pathname, query }) {
 
     const dealsId = query.deals;
     if (dealsId) {
-      const { data } = await API.product.get(`/deals/${dealsId}`);
-      const deals = data.data;
-      const headData = getHeadData(deals);
+      try {
+        const { data } = await API.product.get(`/deals/${dealsId}`);
+        const deals = data.data;
+        const headData = getHeadData(deals);
 
-      initialProps.initialState.productdetail = { deals, headData };
+        initialProps.initialState.productdetail = { deals, headData };
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   }
 

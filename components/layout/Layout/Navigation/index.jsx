@@ -30,6 +30,12 @@ const Navigation = ({ type, noNav }) => {
   return (
     <nav className={cn(css['nav'], noNav && css['no-nav'])}>
       <div
+        className={cn(css['nav-button'], type === 'index' && css['selected'])}
+        onClick={() => handleClick('index', '/')}
+      >
+        <div className={cn('icon', type === 'index' ? 'home--on' : 'home')} />홈
+      </div>
+      <div
         className={cn(
           css['nav-button'],
           type === 'category' && css['selected']
@@ -52,27 +58,6 @@ const Navigation = ({ type, noNav }) => {
         브랜드
       </div>
       <div
-        className={cn(css['nav-button'], type === 'index' && css['selected'])}
-        onClick={() => handleClick('index', '/')}
-      >
-        <div className={cn('icon', type === 'index' ? 'home--on' : 'home')} />홈
-      </div>
-      {/* <div
-        className={cn(
-          css['nav-button'],
-          type === 'community' && css['selected']
-        )}
-        onClick={() => handleClick('community', '/community')}
-      >
-        <div
-          className={cn(
-            'icon',
-            type === 'community' ? 'community--on' : 'community'
-          )}
-        />
-        커뮤니티
-      </div> */}
-      <div
         className={cn(css['nav-button'], type === 'mypage' && css['selected'])}
         onClick={() => handleClick('mypage', '/mypage')}
       >
@@ -83,9 +68,17 @@ const Navigation = ({ type, noNav }) => {
       </div>
 
       {isModalOpen === 1 && (
-        <CategoryModal handleClose={() => setIsModalOpen(0)} />
+        <CategoryModal
+          handleOpen={() => setIsModalOpen(1)}
+          handleClose={() => setIsModalOpen(0)}
+        />
       )}
-      {isModalOpen === 2 && <ToolbarBrand onClose={() => setIsModalOpen(0)} />}
+      {isModalOpen === 2 && (
+        <ToolbarBrand
+          handleOpen={() => setIsModalOpen(2)}
+          handleClose={() => setIsModalOpen(0)}
+        />
+      )}
     </nav>
   );
 };

@@ -38,7 +38,7 @@ class FollowStoreList extends Component {
               return <FollowListItem key={index} data={data} index={index} />;
             })
           ) : (
-            <MypageDataEmpty text={`팔로우한 스토어가 없습니다.`} />
+            <MypageDataEmpty text="팔로우한 스토어가 없습니다." />
           )}
         </div>
       </MypageLayout>

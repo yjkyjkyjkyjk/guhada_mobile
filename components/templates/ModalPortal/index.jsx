@@ -1,13 +1,16 @@
 import css from './ModalPortal.module.scss';
-import { useState, useEffect, cloneElement, Children } from 'react';
-import { createPortal } from 'react-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import { useState, useEffect, cloneElement, Children } from 'react';
+import { createPortal } from 'react-dom';
+import LayoutStore from 'stores/LayoutStore';
 
 function ModalPortal({
   children,
   selectorId = '__next',
+  handleOpen = () => {},
   handleClose = () => {},
+  hash = '#modal',
   shade = true,
   gutter,
   closeButton = true,
@@ -28,18 +31,43 @@ function ModalPortal({
   const resizeHandler = () => {
     setHeight(window.innerHeight);
   };
+  const popstateHandler = () => {
+    handleClose();
+  };
+  const hashChangeHandler = () => {
+    if (window.location.hash === hash) {
+      handleOpen();
+    }
+  };
 
   /**
    * side effects
    */
   useEffect(() => {
+    window.onhashchange = hashChangeHandler;
+    window.location.hash = hash;
+    // window.history.pushState(
+    //   { ...window.history.state, as: window.history.state.as + hash },
+    //   document.title,
+    //   hash
+    // );
     document.body.style.overflow = 'hidden';
+    window.addEventListener('popstate', popstateHandler);
     window.addEventListener('resize', resizeHandler, true);
 
     return () => {
-      handleClose();
       document.body.style.removeProperty('overflow');
       window.removeEventListener('resize', resizeHandler, true);
+      if (window.location.hash === hash) {
+        LayoutStore._dangerouslyDisableScrollMemo = true;
+        window.history.back();
+        // window.history.replaceState(
+        //   { ...window.history.state },
+        //   document.title,
+        //   window.location.pathname + window.location.search
+        // );
+      }
+      window.removeEventListener('popstate', popstateHandler);
     };
   }, []);
 
@@ -87,6 +115,9 @@ function ModalPortal({
 
 ModalPortal.propTypes = {
   selectorId: PropTypes.string,
+  handleOpen: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  hash: PropTypes.string,
   style: PropTypes.object,
   gutter: PropTypes.bool,
   closeButton: PropTypes.bool,

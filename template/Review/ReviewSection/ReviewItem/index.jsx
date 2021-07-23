@@ -1,0 +1,88 @@
+import css from './ReviewItem.module.scss';
+import { memo } from 'react';
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazyload';
+import ImageSlider from './ImageSlider';
+import Rating, { getRating } from 'components/atoms/Misc/Rating';
+import ReviewDetail from './ReviewDetail';
+
+const ReviewItem = ({
+  review,
+  likeCount,
+  handleClick = () => {},
+  handleLikeClick,
+  handleDealClick,
+  detailed = false,
+}) => (
+  <div className={cn(css['review-item'], !detailed && css['divider'])}>
+    <div className={css['item__review']} onClick={() => handleClick(review.id)}>
+      <div className={css['review__image']}>
+        <LazyLoad>
+          <ImageSlider imageList={review.reviewImageList} />
+        </LazyLoad>
+      </div>
+      <div className={css['review__info']}>
+        <div className={css['review__info__icons']}>
+          <div
+            className={css['icon']}
+            onClick={(e) => handleLikeClick(e, review)}
+          >
+            <span
+              className={cn(
+                css['icon__image'],
+                'misc',
+                review.myBookmarkReview ? 'like--on' : 'like'
+              )}
+            />
+            <span className={css['icon__count']}>{likeCount}</span>
+          </div>
+          <div className={css['icon']}>
+            <span className={cn(css['icon__image'], 'misc comment')} />
+            <span className={css['icon__count']}>{review.commentCount}</span>
+          </div>
+        </div>
+        <Rating number={getRating(review.rating)} />
+      </div>
+      {detailed ? (
+        <ReviewDetail review={review} />
+      ) : (
+        <p className={css['review__text']}>
+          <span className={css['text__author']}>{review.nickname}</span>
+          {review.contents}
+        </p>
+      )}
+    </div>
+    <div
+      className={css['item__deal']}
+      onClick={() => handleDealClick(review.dealId)}
+    >
+      <LazyLoad>
+        <div
+          className={css['deal__image']}
+          style={{ backgroundImage: `url(${review.productImageUrl})` }}
+        />
+      </LazyLoad>
+      <div className={css['deal__info']}>
+        <div className={css['deal__info__title']}>{review.brandName}</div>
+        <p className={css['deal__info__text']}>{review.dealName}</p>
+      </div>
+    </div>
+  </div>
+);
+
+ReviewItem.propTypes = {
+  review: PropTypes.object,
+  likeCount: PropTypes.number,
+  handleClick: PropTypes.func,
+  handleLikeClick: PropTypes.func,
+  handleDealClick: PropTypes.func,
+  detailed: PropTypes.bool,
+};
+
+export default memo(ReviewItem, (prevProps, nextProps) => {
+  if (prevProps.likeCount !== nextProps.likeCount) {
+    return false;
+  }
+  return true;
+});

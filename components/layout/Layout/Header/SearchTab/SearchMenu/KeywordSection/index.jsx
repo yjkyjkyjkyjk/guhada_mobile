@@ -19,7 +19,10 @@ const KeywordSection = ({ list, handleSearch, handleDelete, count }) => {
             />
           ))
       ) : (
-        <div className={css['no-items']}>최근에 검색한 내역이 없습니다.</div>
+        <div className={css['no-items']}>
+          <div className="special no-data" />
+          <p>최근에 검색한 내역이 없습니다.</p>
+        </div>
       )}
     </div>
   );

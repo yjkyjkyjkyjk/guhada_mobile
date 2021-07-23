@@ -2,13 +2,14 @@ import { Component } from 'react';
 import ModalWrapper from 'components/common/modal/ModalWrapper';
 import { LoginWrapper, LoginInput, LoginButton } from 'components/login';
 import css from './LuckydrawLogin.module.scss';
-import { LinkRoute, pushRoute } from 'lib/router';
+import { LinkRoute } from 'lib/router';
 import SaveIdCheckBox from 'components/login/SaveIdCheckBox';
 import Form from 'stores/form-store/_.forms';
 import { snsAppKey } from 'lib/constant/sns';
 import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import ErrorToast from 'components/common/ErrorToast';
 import Cookies from 'js-cookie';
 import { observer, inject } from 'mobx-react';
 import NaverLogin from 'components/login/NaverLogin';
@@ -63,6 +64,7 @@ class LuckydrawLogin extends Component {
         }}
         zIndex={999}
       >
+        <ErrorToast />
         <div className={css.loginWrap}>
           <div className={css.headerWrap}>
             <div className={css.emptyButton} />

@@ -4,6 +4,7 @@ import LayoutStore from './LayoutStore';
 import { SearchByFilterStore } from './SearchStore';
 import NewSpecialStore from './event/NewSpecialStore';
 import NewEventStore from './event/NewEventStore';
+import NewReviewStore from './NewReviewStore';
 
 import UserStore from './UserStore';
 import UiStatus from './UiStatus';
@@ -74,8 +75,6 @@ import TimeDealStore from './event/TimeDealStore';
 //기획전
 import SpecialStore from './event/SpecialStore';
 import SearchPlaceholderStore from './home/SearchPlaceholderStore';
-// 커뮤니티
-// import BBSStore from './bbs';
 
 // 신고하기
 import ReportStore from './claim/ReportStore';
@@ -88,6 +87,7 @@ class RootStore {
     this.searchByFilter = new SearchByFilterStore(this, initialState);
     this.newSpecial = new NewSpecialStore(this, initialState);
     this.newEvent = new NewEventStore(this, initialState);
+    this.newReview = new NewReviewStore(this, initialState);
 
     this.user = new UserStore(this, initialState);
     this.uistatus = new UiStatus(this, initialState);
@@ -192,11 +192,6 @@ class RootStore {
     //기획전
     this.special = new SpecialStore(this, initialState);
     this.searchHolder = new SearchPlaceholderStore(this, initialState);
-
-    /**
-     * 커뮤니티
-     */
-    // this.bbs = new BBSStore(this, initialState);
   }
 }
 

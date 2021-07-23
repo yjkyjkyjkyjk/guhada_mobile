@@ -1,0 +1,16 @@
+.modal__section {
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+
+  .section__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .section__image {
+    width: 100vw;
+    height: auto;
+  }
+}

@@ -3,7 +3,7 @@ import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import openPopupCenter from 'lib/common/openPopupCenter';
-import Recently from 'template/Recently';
+import RecentlyModal from 'template/RecentlyModal';
 
 const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
   /**
@@ -18,7 +18,7 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
     <div className={css['plugin-buttons']}>
       {top && isScrollDown && (
         <div
-          className={cn(css['button'], 'misc plugin-top')}
+          className={cn(css['button'], 'special plugin-top')}
           onClick={() => window.scrollTo(0, 0)}
         />
       )}
@@ -26,17 +26,17 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
         <div
           className={cn(
             css['button'],
-            css['button--recent'],
-            'misc plugin-recent'
+            css['button--recently'],
+            'special plugin-recently'
           )}
           onClick={() => setIsModalOpen(1)}
         >
-          <div className={css['recent__count']}>{recentCount}</div>
+          <div className={css['recently__count']}>{recentCount}</div>
         </div>
       )}
       {kakao && (
         <div
-          className={cn(css['button'], 'social-icon chat')}
+          className={cn(css['button'], 'special plugin-kakao')}
           onClick={() =>
             openPopupCenter(
               'https://pf.kakao.com/_yxolxbT/chat',
@@ -47,7 +47,12 @@ const PluginButtons = ({ isScrollDown, recentCount, top, kakao, recent }) => {
           }
         />
       )}
-      {isModalOpen === 1 && <Recently handleClose={() => setIsModalOpen(0)} />}
+      {isModalOpen === 1 && (
+        <RecentlyModal
+          handleOpen={() => setIsModalOpen(1)}
+          handleClose={() => setIsModalOpen(0)}
+        />
+      )}
     </div>
   );
 };

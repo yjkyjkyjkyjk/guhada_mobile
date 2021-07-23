@@ -9,7 +9,6 @@ class FollowListItem extends Component {
     let { mypageFollow, data, seller } = this.props;
     return (
       <div className={css.wrap}>
-        {/* <Link href={`/store/${data.nickname}`}> */}
         {/* 프로필 이미지 */}
         {data.profileImageUrl ? (
           <div

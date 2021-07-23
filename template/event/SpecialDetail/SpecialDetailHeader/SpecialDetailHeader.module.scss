@@ -27,17 +27,15 @@
     &__copy {
       width: 41px;
       height: 41px;
+      padding: 5px;
       border-radius: 50%;
-      border: solid 1px #eeeeee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      border: solid 1px #eee;
     }
   }
 
   .header__image {
     width: 100%;
-    min-height: 70vh;
+    min-height: 50vh;
 
     & img {
       width: 100%;

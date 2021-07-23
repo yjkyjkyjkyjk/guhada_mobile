@@ -2,7 +2,7 @@ import validatorjs from 'validatorjs';
 import MobxReactForm from 'mobx-react-form';
 import dvr from 'mobx-react-form/lib/validators/DVR';
 import message from './validatorMessage';
-import rules from './validatorRules';
+// import rules from './validatorRules';
 
 export default class Form extends MobxReactForm {
   plugins() {
@@ -22,6 +22,18 @@ export default class Form extends MobxReactForm {
            *     rules: 'required|password',
            *  }
            */
+
+          let rules = {
+            password: {
+              function: function(val) {
+                return val.match(
+                  /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/
+                  // /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/
+                );
+              },
+              message: '비밀번호를 잘못 입력하셨습니다.',
+            },
+          };
 
           Object.keys(rules).forEach((key) =>
             validator.register(key, rules[key].function, rules[key].message)

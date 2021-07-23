@@ -52,13 +52,7 @@ export const API_ENDPOINT = {
     ['bestItem', `/ps/hits/list?unitPerPage=60`],
     ['newIn', `/ps/main-home/deals/new-arrivals?unitPerPage=60`],
   ],
-  settle: [
-    [
-      'mainData',
-      // `/selectMainData?agent=${detectDevice().isMobile ? 'MWEB' : 'WEB'}`,
-      `/selectMainData?agent=MWEB`,
-    ],
-  ],
+  settle: [['mainData', `/selectMainData?agent=MWEB`]],
   product: [['hotKeyword', '/main-home/hot-keyword']],
   user: [['bestReview', `/main-best-reviews?unitPerPage=10`]],
 };

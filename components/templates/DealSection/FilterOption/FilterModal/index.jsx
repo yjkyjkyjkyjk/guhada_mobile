@@ -11,11 +11,17 @@ const FilterModal = ({
   filterName,
   filterMap,
   selectedKey,
+  handleOpenModal,
   handleCloseModal,
   handleSetFilter,
   handleResetFilter,
 }) => (
-  <ModalPortal handleClose={handleCloseModal} gutter slide={1}>
+  <ModalPortal
+    handleOpen={handleOpenModal}
+    handleClose={handleCloseModal}
+    gutter
+    slide={1}
+  >
     <div className={css['modal__header']}>
       <div className={css['modal__header__name']}>{filterName}</div>
       <div
@@ -52,6 +58,7 @@ FilterModal.propTypes = {
   filterName: PropTypes.string,
   filterMap: PropTypes.instanceOf(Map),
   selectedKey: PropTypes.string,
+  handleOpenModal: PropTypes.func,
   handleCloseModal: PropTypes.func,
   handleSetFilter: PropTypes.func,
   handleResetFilter: PropTypes.func,

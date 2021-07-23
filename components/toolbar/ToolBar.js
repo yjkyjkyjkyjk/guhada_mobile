@@ -70,17 +70,6 @@ function ToolBar() {
       </div>
       <div
         onClick={() => {
-          setSelectedTool('community');
-          pushRoute('/community');
-        }}
-        className={cn(css.itemWrap, css.community, {
-          [css.selected]: selectedTool === 'community',
-        })}
-      >
-        커뮤니티
-      </div>
-      <div
-        onClick={() => {
           setSelectedTool('mypage');
           pushRoute('/mypage');
         }}

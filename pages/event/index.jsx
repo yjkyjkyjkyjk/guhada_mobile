@@ -5,8 +5,8 @@ import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'components/head/HeadForSEO';
 import MountLoading from 'components/atoms/Misc/MountLoading';
-import Footer from 'components/footer/Footer';
-import EventMain from 'template/event/EventMain';
+import Footer from 'components/footer';
+import EventList from 'template/event/EventList';
 
 function EventMainPage() {
   /**
@@ -30,8 +30,12 @@ function EventMainPage() {
   return (
     <>
       <HeadForSEO pageName="이벤트" />
-      {eventMainStore.status.page === 0 && <MountLoading />}
-      <EventMain />
+      {eventMainStore.eventList.length === 0 && <MountLoading />}
+      <EventList
+        eventList={eventMainStore.eventList}
+        name="이벤트"
+        handleFilterChange={(value) => eventMainStore.getEventList(value)}
+      />
       <Footer />
     </>
   );

@@ -1,160 +1,155 @@
 .misc {
-  background: url('/public/sprites/misc.png') no-repeat top left;
-  background-size: 189px 172px;
+  background: url('/static/sprites/misc.png') no-repeat top left;
+  background-size: 158px 135px;
 
-  &.no-data {
-    background-position: 0 0;
-    width: 60px;
-    height: 60px;
-  }
-  &.plugin-recent {
-    background-position: -62px 0;
-    width: 41px;
-    height: 41px;
-  }
-  &.plugin-top {
-    background-position: 0 -62px;
-    width: 41px;
-    height: 41px;
-  }
-  &.slider {
-    background-position: -105px 0;
-    width: 35px;
-    height: 43px;
-  }
-  &.checkbox--large {
-    background-position: -105px -45px;
-    width: 28px;
-    height: 28px;
-  }
   &.check--large {
-    background-position: -105px -75px;
-    width: 28px;
-    height: 28px;
-  }
-  &.reset {
-    background-position: -43px -62px;
-    width: 27px;
-    height: 27px;
+    background-position: 0 0;
+    width: 32px;
+    height: 32px;
   }
   &.thumbnail-double {
-    background-position: -73px -62px;
-    width: 27px;
-    height: 27px;
+    background-position: -32px 0;
+    width: 31px;
+    height: 31px;
   }
   &.thumbnail-double--on {
-    background-position: 0 -105px;
-    width: 27px;
-    height: 27px;
+    background-position: 0 -32px;
+    width: 31px;
+    height: 31px;
   }
   &.thumbnail-hex {
-    background-position: -29px -105px;
-    width: 27px;
-    height: 27px;
+    background-position: -31px -32px;
+    width: 31px;
+    height: 31px;
   }
   &.thumbnail-hex--on {
-    background-position: -59px -105px;
-    width: 27px;
-    height: 27px;
+    background-position: -63px 0;
+    width: 31px;
+    height: 31px;
   }
   &.thumbnail-quad {
-    background-position: -88px -105px;
-    width: 27px;
-    height: 27px;
+    background-position: -63px -31px;
+    width: 31px;
+    height: 31px;
   }
   &.thumbnail-quad--on {
-    background-position: -143px 0;
-    width: 27px;
-    height: 27px;
-  }
-  &.share {
-    background-position: -143px -29px;
-    width: 25px;
-    height: 25px;
+    background-position: 0 -63px;
+    width: 31px;
+    height: 31px;
   }
   &.check {
-    background-position: -143px -57px;
-    width: 20px;
-    height: 20px;
-  }
-  &.checkbox {
-    background-position: -143px -79px;
-    width: 20px;
-    height: 20px;
+    background-position: -31px -63px;
+    width: 24px;
+    height: 24px;
   }
   &.keyword-delete {
-    background-position: -143px -101px;
+    background-position: -55px -63px;
+    width: 24px;
+    height: 24px;
+  }
+  &.reset--black {
+    background-position: -95px 0;
+    width: 26px;
+    height: 22px;
+  }
+  &.down {
+    background-position: -95px -22px;
+    width: 23px;
+    height: 23px;
+  }
+  &.menu-arrow {
+    background-position: -95px -45px;
+    width: 23px;
+    height: 23px;
+  }
+  &.menu-minus {
+    background-position: -95px -69px;
+    width: 23px;
+    height: 23px;
+  }
+  &.menu-plus {
+    background-position: 0 -95px;
+    width: 23px;
+    height: 23px;
+  }
+  &.arrow-diagonal {
+    background-position: -23px -95px;
+    width: 22px;
+    height: 22px;
+  }
+  &.arrow-down {
+    background-position: -45px -95px;
+    width: 22px;
+    height: 22px;
+  }
+  &.arrow-up {
+    background-position: -67px -95px;
+    width: 22px;
+    height: 22px;
+  }
+  &.minus {
+    background-position: -89px -95px;
+    width: 22px;
+    height: 22px;
+  }
+  &.check--black {
+    background-position: -121px 0;
     width: 20px;
     height: 20px;
   }
-  &.reset--black {
-    background-position: -117px -105px;
-    width: 22px;
-    height: 18px;
-  }
-  &.down {
-    background-position: 0 -135px;
-    width: 19px;
-    height: 19px;
-  }
-  &.menu-arrow {
-    background-position: -21px -135px;
-    width: 19px;
-    height: 19px;
-  }
-  &.menu-minus {
-    background-position: -43px -135px;
-    width: 19px;
-    height: 19px;
-  }
-  &.menu-plus {
-    background-position: -64px -135px;
-    width: 19px;
-    height: 19px;
-  }
-  &.arrow-diagonal {
-    background-position: -85px -135px;
-    width: 18px;
-    height: 18px;
-  }
-  &.arrow-down {
-    background-position: -105px -135px;
-    width: 18px;
-    height: 18px;
-  }
-  &.arrow-up {
-    background-position: -125px -135px;
-    width: 18px;
-    height: 18px;
-  }
-  &.minus {
-    background-position: -145px -135px;
-    width: 18px;
-    height: 18px;
-  }
-  &.check--black {
-    background-position: -62px -43px;
-    width: 16px;
-    height: 16px;
-  }
   &.check--on {
-    background-position: -80px -43px;
-    width: 16px;
-    height: 16px;
+    background-position: -121px -20px;
+    width: 20px;
+    height: 20px;
   }
   &.delete {
-    background-position: -172px 0;
-    width: 15px;
-    height: 15px;
+    background-position: -121px -40px;
+    width: 19px;
+    height: 19px;
   }
   &.delete--on {
-    background-position: -172px -17px;
-    width: 15px;
-    height: 15px;
+    background-position: -121px -59px;
+    width: 19px;
+    height: 19px;
   }
   &.filter {
-    background-position: 0 -156px;
-    width: 16px;
-    height: 14px;
+    background-position: -121px -79px;
+    width: 20px;
+    height: 18px;
+  }
+  &.comment {
+    background-position: -121px -97px;
+    width: 19px;
+    height: 19px;
+  }
+  &.like {
+    background-position: 0 -118px;
+    width: 19px;
+    height: 17px;
+  }
+  &.like--on {
+    background-position: -19px -118px;
+    width: 19px;
+    height: 17px;
+  }
+  &.star {
+    background-position: -141px 0;
+    width: 17px;
+    height: 18px;
+  }
+  &.star-grey {
+    background-position: -141px -18px;
+    width: 17px;
+    height: 18px;
+  }
+  &.star-grey--half {
+    background-position: -141px -36px;
+    width: 10px;
+    height: 18px;
+  }
+  &.star--half {
+    background-position: -141px -54px;
+    width: 10px;
+    height: 18px;
   }
 }

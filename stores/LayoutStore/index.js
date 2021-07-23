@@ -26,6 +26,9 @@ import qs from 'querystring';
  */
 
 class LayoutStore {
+  static _dangerouslyDisableScrollMemo = false;
+  static _dangerouslyDisableHandlePopstate = false;
+
   constructor(root, initialState) {
     if (isBrowser) {
       this.root = root;
@@ -183,10 +186,12 @@ class LayoutStore {
 
   @action popState = (e) => {
     const state = e.state;
-    if (this.handlePopState[this.type]) {
-      this.handlePopState[this.type](state);
-    } else {
-      this.handlePopState.default(state);
+    if (state) {
+      if (this.handlePopState[this.type]) {
+        this.handlePopState[this.type](state);
+      } else {
+        this.handlePopState.default(state);
+      }
     }
   };
   handlePopState = {

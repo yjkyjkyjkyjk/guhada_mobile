@@ -4,10 +4,9 @@ import useStores from 'stores/useStores';
 import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'components/head/HeadForSEO';
-import Layout from 'components/layout/Layout';
 import MountLoading from 'components/atoms/Misc/MountLoading';
-import Footer from 'components/footer/Footer';
-import SpecialList from 'template/event/SpecialList';
+import Footer from 'components/footer';
+import EventList from 'template/event/EventList';
 
 function SpecialPage() {
   /**
@@ -32,7 +31,11 @@ function SpecialPage() {
     <>
       <HeadForSEO pageName="기획전" />
       {specialStore.specialList.length === 0 && <MountLoading />}
-      <SpecialList />
+      <EventList
+        eventList={specialStore.specialList}
+        name="기획전"
+        handleFilterChange={(value) => specialStore.getSpecialList(value)}
+      />
       <Footer />
     </>
   );

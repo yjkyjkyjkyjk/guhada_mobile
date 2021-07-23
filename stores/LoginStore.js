@@ -159,8 +159,6 @@ export default class LoginStore {
 
   @action
   logout = () => {
-    devLog(`LoginStore.logout`);
-
     // API 콜에 사용하는 토큰 제거
     API.removeAccessToken();
 
@@ -178,8 +176,9 @@ export default class LoginStore {
     // 비밀번호 중복체크 상태 해제
     this.root.user.setPasswordDoubleChecked(false);
     this.root.shoppingcart.cartAmount = 0;
+
     // 홈 화면으로 이동
-    // Router.push(`/`);
+    Router.push('/');
   };
 
   @observable email;

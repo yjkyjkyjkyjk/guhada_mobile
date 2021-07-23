@@ -5,7 +5,7 @@ import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import withAuth from 'components/common/hoc/withAuth';
 import HeadForSEO from 'components/head/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import MyPageMain from 'template/mypage/main';
 
 function MyPageMainPage() {

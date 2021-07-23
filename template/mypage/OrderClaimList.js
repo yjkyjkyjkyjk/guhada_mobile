@@ -14,7 +14,7 @@ import Pagination from 'components/common/Pagination';
 import { scrollToTarget } from 'lib/common/scroll';
 import OrderCancelDashboard from 'components/mypage/orderCancel/OrderCancelDashboard';
 import EmptyListNoti from 'components/mypage/EmptyListNoti';
-import { LoadingSpinner } from 'components/common/loading/Loading';
+import { LoadingSpinner } from 'components/common/loading';
 import SellerClaimModal, {
   withSellerClaimModal,
 } from 'components/claim/sellerclaim/SellerClaimModal';

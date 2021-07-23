@@ -47,7 +47,7 @@ function SpecialDetailPage({ initialHeadData }) {
 }
 
 SpecialDetailPage.getInitialProps = async function({ req, pathname, query }) {
-  const initialProps = { layout: { title: '이벤트', scrollMemo: true } };
+  const initialProps = { layout: { title: '기획전', scrollMemo: true } };
 
   if (isServer) {
     const { type, headerFlags } = getLayoutInfo({ pathname, query });

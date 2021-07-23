@@ -1,0 +1,33 @@
+.list-item {
+  width: 100%;
+  margin-bottom: 35px;
+
+  .item__image {
+    width: 100%;
+    padding-bottom: 55%;
+    background: center no-repeat;
+    background-size: contain;
+  }
+
+  .item__info {
+    .info__title {
+      margin-top: 15px;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #111;
+      font-weight: normal;
+      line-height: 1.4;
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .info__data {
+      color: #777;
+      font-size: 12px;
+      font-weight: normal;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+  }
+}

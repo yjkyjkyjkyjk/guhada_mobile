@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import HeadForSEO from 'components/head/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import Home from 'template/Home/Home';
 
 function HomePage() {

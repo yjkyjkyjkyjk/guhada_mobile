@@ -5,7 +5,7 @@ import isServer from 'lib/common/isServer';
 import { getLayoutInfo } from 'stores/LayoutStore';
 import criteoTracker from 'lib/tracking/criteo/criteoTracker';
 import HeadForSEO from 'components/head/HeadForSEO';
-import Footer from 'components/footer/Footer';
+import Footer from 'components/footer';
 import Home from 'template/Home';
 import NewMainStore from 'stores/NewMainStore';
 

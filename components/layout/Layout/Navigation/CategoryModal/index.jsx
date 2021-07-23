@@ -5,7 +5,7 @@ import ModalPortal from 'components/templates/ModalPortal';
 import MenuSection from 'components/layout/Layout/Header/BurgerModal/MenuSection';
 import AdBanner from 'components/layout/Layout/Header/BurgerModal/AdBanner';
 
-const CategoryModal = ({ handleClose }) => {
+const CategoryModal = ({ handleOpen, handleClose }) => {
   /**
    * states
    */
@@ -23,7 +23,12 @@ const CategoryModal = ({ handleClose }) => {
    * render
    */
   return (
-    <ModalPortal handleClose={handleClose} slide={1} gutter>
+    <ModalPortal
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      slide={1}
+      gutter
+    >
       <div className={css['modal__header']}>
         <div className={css['modal__header__name']}>카테고리</div>
       </div>
@@ -41,6 +46,7 @@ const CategoryModal = ({ handleClose }) => {
 };
 
 CategoryModal.propTypes = {
+  handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };
 

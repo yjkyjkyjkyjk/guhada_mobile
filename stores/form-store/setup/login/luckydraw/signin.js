@@ -1,3 +1,5 @@
+// import hooks from 'stores/form-store/hooks/login/luckydraw/SigninHooks';
+
 export default {
   fields: {
     email: {
@@ -6,6 +8,7 @@ export default {
       autoComplete: 'email',
       placeholder: '아이디',
       rules: 'required|email|string',
+      // hooks,
     },
     password: {
       name: 'password',
@@ -14,6 +17,7 @@ export default {
       placeholder: '비밀번호',
       // rules: 'required|password',
       type: 'password',
+      // hooks,
     },
     saveid: {},
   },

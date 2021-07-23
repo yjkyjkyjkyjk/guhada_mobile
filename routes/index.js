@@ -37,13 +37,6 @@ module.exports = [
   },
 
   {
-    // 최근 본 상품
-    pagePath: '/recently',
-    asPath: '/recently',
-    name: '홈 최근 본 상품',
-  },
-
-  {
     // 리뷰
     pagePath: '/review',
     asPath: '/review',
@@ -373,35 +366,4 @@ module.exports = [
     asPath: `/event/special/:id`,
     name: `기획전 상세페이지`,
   },
-
-  // ============================================================
-  // 커뮤니티
-  // ============================================================
-  // 커뮤니티 루트
-  // {
-  //   pagePath: `/community`,
-  //   asPath: `/community`,
-  //   name: `커뮤니티`,
-  // },
-
-  // 게시판 글쓰기 에디터
-  // {
-  //   pagePath: `/community/BBSEditor`,
-  //   asPath: `/community/editor`,
-  //   name: `글쓰기`,
-  // },
-
-  // 커뮤니티 - 게시판. 게시판 이름(board) 파라미터로 구분
-  // {
-  //   pagePath: `/community/BBSList`,
-  //   asPath: `/community/board/:categoryId`,
-  //   name: ``,
-  // },
-
-  // 커뮤니티 - 게시판 글 조회
-  // {
-  //   pagePath: `/community/BBSArticleView`,
-  //   asPath: `/community/article/:id`,
-  //   name: ``,
-  // },
 ];

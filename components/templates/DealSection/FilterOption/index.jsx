@@ -1,41 +1,27 @@
 import css from './FilterOption.module.scss';
-import { useState, useRef } from 'react';
+import cn from 'classnames';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import cn from 'classnames';
-import { useScrollDown } from 'lib/hooks';
 import useStores from 'stores/useStores';
 import { searchResultOrderMap } from 'stores/SearchStore/SearchByFilterStore';
 import ThumbnailButton from './ThumbnailButton';
 import FilterModal from './FilterModal';
 import AdvancedFilterModal from './AdvancedFilterModal';
 
-const FilterOption = ({ hide, float, sticky, specialFilterTags }) => {
+const FilterOption = ({ hide, specialFilterTags }) => {
   /**
    * states
    */
   const [isModalOpen, setIsModalOpen] = useState(0);
   const { searchByFilter: searchByFilterStore } = useStores();
-  const isScrollDown = useScrollDown(40);
-  const elementRef = useRef();
 
   /**
    * render
    */
   return (
-    <div
-      className={cn(
-        css['filter-option'],
-        hide && css['hide'],
-        float && css['float'],
-        sticky &&
-          elementRef.current &&
-          elementRef.current.getBoundingClientRect().top < 112 &&
-          css['sticky'],
-        sticky && isScrollDown && css['scroll-down']
-      )}
-      ref={elementRef}
-    >
+    <div className={cn(css['filter-option'], hide && css['hide'])}>
       <div className={css['filter-option__buttons']}>
         <div className={css['filter-button']} onClick={() => setIsModalOpen(1)}>
           {searchResultOrderMap.get(searchByFilterStore.body.searchResultOrder)}
@@ -56,6 +42,7 @@ const FilterOption = ({ hide, float, sticky, specialFilterTags }) => {
           filterName={'상품정렬'}
           filterMap={searchResultOrderMap}
           selectedKey={searchByFilterStore.body.searchResultOrder}
+          handleOpenModal={() => setIsModalOpen(1)}
           handleCloseModal={() => setIsModalOpen(0)}
           handleSetFilter={(key) =>
             searchByFilterStore.submitFilter({ searchResultOrder: key })
@@ -68,6 +55,7 @@ const FilterOption = ({ hide, float, sticky, specialFilterTags }) => {
       {isModalOpen === 2 && (
         <AdvancedFilterModal
           filterName={'상세검색'}
+          handleOpenModal={() => setIsModalOpen(2)}
           handleCloseModal={() => setIsModalOpen(0)}
           specialFilterTags={specialFilterTags}
         />
@@ -78,8 +66,6 @@ const FilterOption = ({ hide, float, sticky, specialFilterTags }) => {
 
 FilterOption.propTypes = {
   hide: PropTypes.bool,
-  float: PropTypes.bool,
-  sticky: PropTypes.bool,
   specialFilterTags: PropTypes.bool,
 };
 

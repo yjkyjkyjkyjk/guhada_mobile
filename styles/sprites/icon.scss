@@ -41,91 +41,94 @@
   &.close {
     background-position: -32px -96px;
   }
-  &.close--light {
+  &.close--box {
     background-position: -64px -96px;
   }
-  &.community {
+  &.close--light {
     background-position: -96px -96px;
   }
-  &.community--on {
+  &.community {
     background-position: -144px 0;
   }
-  &.continue {
+  &.community--on {
     background-position: -144px -32px;
   }
-  &.delete {
+  &.continue {
     background-position: -144px -64px;
   }
-  &.home {
+  &.delete {
     background-position: -144px -96px;
   }
-  &.home--on {
+  &.home {
     background-position: 0 -128px;
   }
-  &.like {
+  &.home--on {
     background-position: -32px -128px;
   }
-  &.like--on {
+  &.like {
     background-position: -64px -128px;
   }
-  &.more {
+  &.like--on {
     background-position: -96px -128px;
   }
-  &.mypage {
+  &.more {
     background-position: -128px -128px;
   }
-  &.mypage--on {
+  &.mypage {
     background-position: -176px 0;
   }
-  &.next {
+  &.mypage--on {
     background-position: -176px -32px;
   }
-  &.nextnext {
+  &.next {
     background-position: -176px -64px;
   }
-  &.nextnext--on {
+  &.nextnext {
     background-position: -176px -96px;
   }
-  &.next--on {
+  &.nextnext--on {
     background-position: -176px -128px;
   }
-  &.photo {
+  &.next--on {
     background-position: 0 -160px;
   }
-  &.prev {
+  &.photo {
     background-position: -32px -160px;
   }
-  &.prev--on {
+  &.prev {
     background-position: -64px -160px;
   }
-  &.prevprev {
+  &.prev--on {
     background-position: -96px -160px;
   }
-  &.prevprev--on {
+  &.prevprev {
     background-position: -128px -160px;
   }
-  &.search {
+  &.prevprev--on {
     background-position: -160px -160px;
   }
-  &.search--small {
+  &.search {
     background-position: -208px 0;
   }
-  &.setting {
+  &.search--small {
     background-position: -208px -32px;
   }
-  &.share {
+  &.setting {
     background-position: -208px -64px;
   }
-  &.star {
+  &.share {
     background-position: -208px -96px;
   }
-  &.star--on {
+  &.star {
     background-position: -208px -128px;
   }
-  &.storage {
+  &.star--on {
     background-position: -208px -160px;
   }
-  &.write {
+  &.storage {
     background-position: 0 -192px;
+  }
+  &.write {
+    background-position: -32px -192px;
   }
 }

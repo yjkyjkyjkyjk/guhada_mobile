@@ -40,13 +40,22 @@ const SpecialFilterTags = () => {
    * handlers
    */
   const handleAllFilterTagClick = (target) => {
-    searchByFilterStore.resetFilter();
+    if (searchByFilterStore.isFiltered) {
+      searchByFilterStore.resetFilter();
+    }
     scrollRef.current.scrollTo(target.offsetLeft - 30, 0);
   };
   const handleFilterTagClick = (target, idList) => {
-    searchByFilterStore.resetAbstractFilter();
-    searchByFilterStore.setAbstractFilter({ categoryIds: idList });
-    searchByFilterStore.submitAbstractFilter();
+    if (
+      !_.isEqual(
+        _.sortBy(searchByFilterStore.body.categoryIds),
+        _.sortBy(idList)
+      )
+    ) {
+      searchByFilterStore.resetAbstractFilter();
+      searchByFilterStore.setAbstractFilter({ categoryIds: idList });
+      searchByFilterStore.submitAbstractFilter();
+    }
     scrollRef.current.scrollTo(target.offsetLeft - 30, 0);
   };
 
@@ -67,11 +76,11 @@ const SpecialFilterTags = () => {
    * render
    */
   return (
-    <div className={css['special-filter']}>
-      <ul className={css['special-filter__tags']} ref={scrollRef}>
-        {filterTags.size > 1 && (
+    filterTags.size > 1 && (
+      <div className={css['special-filter']}>
+        <ul className={css['special-filter__tags']} ref={scrollRef}>
           <li
-            key="전체보기"
+            key="ALL"
             className={cn(
               css['tag'],
               !searchByFilterStore.isFiltered && css['selected']
@@ -80,36 +89,44 @@ const SpecialFilterTags = () => {
           >
             전체보기
           </li>
-        )}
-        {Array.from(filterTags).map(([title, idList]) => (
-          <li
-            key={title}
-            className={cn(
-              css['tag'],
-              _.isEqual(
-                _.sortBy(searchByFilterStore.body.categoryIds),
-                _.sortBy(idList)
-              ) && css['selected']
-            )}
-            onClick={(e) => handleFilterTagClick(e.target, idList)}
-          >
-            {title}
-          </li>
-        ))}
-      </ul>
-      {arrowLeft && (
-        <span
-          className={cn(css['tab-arrow'], css['arrow--left'], 'misc slider')}
-          onClick={handleScrollLeft}
-        />
-      )}
-      {arrowRight && (
-        <span
-          className={cn(css['tab-arrow'], css['arrow--right'], 'misc slider')}
-          onClick={handleScrollRight}
-        />
-      )}
-    </div>
+          {Array.from(filterTags).map(([title, idList]) => (
+            <li
+              key={title}
+              className={cn(
+                css['tag'],
+                _.isEqual(
+                  _.sortBy(searchByFilterStore.body.categoryIds),
+                  _.sortBy(idList)
+                ) && css['selected']
+              )}
+              onClick={(e) => handleFilterTagClick(e.target, idList)}
+            >
+              {title}
+            </li>
+          ))}
+          {arrowLeft && (
+            <span
+              className={cn(
+                css['tab-arrow'],
+                css['arrow--left'],
+                'special slider'
+              )}
+              onClick={handleScrollLeft}
+            />
+          )}
+          {arrowRight && (
+            <span
+              className={cn(
+                css['tab-arrow'],
+                css['arrow--right'],
+                'special slider'
+              )}
+              onClick={handleScrollRight}
+            />
+          )}
+        </ul>
+      </div>
+    )
   );
 };
 

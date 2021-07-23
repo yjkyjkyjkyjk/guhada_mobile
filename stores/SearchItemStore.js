@@ -257,7 +257,7 @@ export default class SearchItemStore {
   saveSearchKeyword = (keyword = '') => {
     devLog('[SearchItemStore] - saveSearchKeyword called.');
 
-    API.settle
+    API.gateway
       .get('/search/word', {
         params: {
           agent: 'MWEB',

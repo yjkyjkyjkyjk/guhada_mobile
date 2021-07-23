@@ -1,0 +1,55 @@
+.special {
+  background: url('/static/sprites/special.png') no-repeat top left;
+  background-size: 193px 159px;
+
+  &.no-data {
+    background-position: 0 0;
+    width: 64px;
+    height: 64px;
+  }
+  &.bigstar {
+    background-position: -64px 0;
+    width: 54px;
+    height: 54px;
+  }
+  &.bigstar-grey {
+    background-position: 0 -64px;
+    width: 54px;
+    height: 54px;
+  }
+  &.plugin-kakao {
+    background-position: -54px -64px;
+    width: 45px;
+    height: 45px;
+  }
+  &.plugin-top {
+    background-position: -118px 0;
+    width: 45px;
+    height: 45px;
+  }
+  &.slider {
+    background-position: -118px -45px;
+    width: 38px;
+    height: 47px;
+  }
+  &.plugin-recently {
+    background-position: 0 -118px;
+    width: 41px;
+    height: 41px;
+  }
+  &.bigstar-grey--half {
+    background-position: -163px 0;
+    width: 29px;
+    height: 54px;
+  }
+  &.bigstar--half {
+    background-position: -163px -54px;
+    width: 29px;
+    height: 54px;
+  }
+  &.share {
+    background-position: -164px -108px;
+    width: 29px;
+    height: 29px;
+  }
+}

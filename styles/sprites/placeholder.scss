@@ -1,0 +1,25 @@
+.placeholder {
+  width: 54px;
+  height: 54px;
+  background: url('/static/sprites/placeholder.png') no-repeat top left;
+  background-size: 168px 112px;
+
+  &.accessory {
+    background-position: 0 0;
+  }
+  &.all {
+    background-position: -56px 0;
+  }
+  &.bag {
+    background-position: 0 -56px;
+  }
+  &.cloth {
+    background-position: -56px -56px;
+  }
+  &.shoe {
+    background-position: -112px 0;
+  }
+  &.wallet {
+    background-position: -112px -56px;
+  }
+}
