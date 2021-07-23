@@ -6,13 +6,20 @@ import { observer } from 'mobx-react';
 import useStores from 'stores/useStores';
 import ModalPortal from 'components/templates/ModalPortal';
 import ReviewItem from '../ReviewItem';
+import { LoadingSpinner } from 'components/common/loading';
 
-const ReviewModal = ({ reviewId, handleOpen, handleClose }) => {
+const ReviewModal = ({
+  reviewId,
+  handleLikeClick,
+  handleDealClick,
+  handleOpen,
+  handleClose,
+}) => {
   /**
    * states
    */
   const { newReview: reviewStore } = useStores();
-  const [review, setReview] = useState();
+  const [review, setReview] = useState({});
 
   /**
    * side effects
@@ -29,35 +36,41 @@ const ReviewModal = ({ reviewId, handleOpen, handleClose }) => {
    * render
    */
   return (
-    <ModalPortal
-      shade={false}
-      handleOpen={handleOpen}
-      handleClose={handleClose}
-    >
-      <div className={css['modal__header']}>
-        <div
-          className={cn('icon back', css['header__close'])}
-          onClick={handleClose}
-        />
-        <div className={css['header__title']}>{'adsf'}</div>
-      </div>
-      <div className={css['modal__section']}>
-        {review && (
-          <ReviewItem
-            review={review}
-            likeCount={review.bookmarkCount}
-            handleLikeClick={() => {}}
-            handleDealClick={() => {}}
-            detailed
+    typeof window === 'object' && (
+      <ModalPortal
+        shade={false}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+      >
+        <div className={css['modal__header']}>
+          <div
+            className={cn('icon back', css['header__close'])}
+            onClick={handleClose}
           />
-        )}
-      </div>
-    </ModalPortal>
+          <div className={css['header__title']}>{review.nickname}</div>
+        </div>
+        <div className={css['modal__section']}>
+          {review.id ? (
+            <ReviewItem
+              review={review}
+              likeCount={review.bookmarkCount}
+              handleLikeClick={handleLikeClick}
+              handleDealClick={handleDealClick}
+              detailed
+            />
+          ) : (
+            <LoadingSpinner />
+          )}
+        </div>
+      </ModalPortal>
+    )
   );
 };
 
 ReviewModal.propTypes = {
-  reviewId: PropTypes.oneOfType([null, PropTypes.number]),
+  reviewId: PropTypes.oneOfType([PropTypes.any, PropTypes.number]),
+  handleLikeClick: PropTypes.func,
+  handleDealClick: PropTypes.func,
   handleOpen: PropTypes.func,
   handleClose: PropTypes.func,
 };

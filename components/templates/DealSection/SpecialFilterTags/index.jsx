@@ -104,27 +104,27 @@ const SpecialFilterTags = () => {
               {title}
             </li>
           ))}
+          {arrowLeft && (
+            <span
+              className={cn(
+                css['tab-arrow'],
+                css['arrow--left'],
+                'special slider'
+              )}
+              onClick={handleScrollLeft}
+            />
+          )}
+          {arrowRight && (
+            <span
+              className={cn(
+                css['tab-arrow'],
+                css['arrow--right'],
+                'special slider'
+              )}
+              onClick={handleScrollRight}
+            />
+          )}
         </ul>
-        {arrowLeft && (
-          <span
-            className={cn(
-              css['tab-arrow'],
-              css['arrow--left'],
-              'special slider'
-            )}
-            onClick={handleScrollLeft}
-          />
-        )}
-        {arrowRight && (
-          <span
-            className={cn(
-              css['tab-arrow'],
-              css['arrow--right'],
-              'special slider'
-            )}
-            onClick={handleScrollRight}
-          />
-        )}
       </div>
     )
   );

@@ -15,7 +15,7 @@ import { scrollToTarget } from 'childs/lib/common/scroll';
 import moment from 'moment';
 import { pushRoute } from 'childs/lib/router';
 import _ from 'lodash';
-import { LoadingSpinner } from 'components/common/loading/Loading';
+import { LoadingSpinner } from 'components/common/loading';
 import EmptyListNoti from 'components/mypage/EmptyListNoti';
 import OrderItem from 'components/mypage/order/OrderItem';
 import Pagination from 'components/common/Pagination';

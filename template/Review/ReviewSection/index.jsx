@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import useStores from 'stores/useStores';
 import { sendBackToLogin } from 'childs/lib/router';
 import { useInfinteScroll } from 'hooks';
+import { LoadingSpinnerDiv } from 'components/common/loading';
 import { SpinnerDiv } from 'components/atoms/Misc/Spinner';
 import ReviewItem from './ReviewItem';
 import ReviewModal from './ReviewModal';
@@ -20,7 +21,7 @@ const ReviewSection = ({
   /**
    * states
    */
-  const { login: loginStore, review: reviewStore } = useStores();
+  const { login: loginStore, newReview: reviewStore } = useStores();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalReviewId, setModalReviewId] = useState(null);
@@ -38,11 +39,7 @@ const ReviewSection = ({
   const handleLikeClick = (e, review) => {
     e.stopPropagation();
     if (loginStore.loginStatus === 'LOGIN_DONE') {
-      if (review.myBookmarkReview) {
-        reviewStore.delProductReviewBookmarks(review);
-      } else {
-        reviewStore.setProductReviewBookmarks(review);
-      }
+      reviewStore.handleReviewLike(review);
     } else {
       sendBackToLogin();
     }
@@ -59,7 +56,7 @@ const ReviewSection = ({
     <div className={css['review__section']}>
       {isInitial ? (
         <div className={css['section__empty']}>
-          <SpinnerDiv />
+          <LoadingSpinnerDiv />
         </div>
       ) : reviews.length > 0 ? (
         reviews.map((review) => (
@@ -75,7 +72,7 @@ const ReviewSection = ({
       ) : (
         <div className={css['section__empty']}>
           {isLoading ? (
-            <SpinnerDiv />
+            <LoadingSpinnerDiv />
           ) : (
             <>
               <div className="special no-data" />
@@ -92,8 +89,10 @@ const ReviewSection = ({
       {isModalOpen && modalReviewId && (
         <ReviewModal
           reviewId={modalReviewId}
+          handleLikeClick={handleLikeClick}
+          handleDealClick={handleDealClick}
           handleOpen={() => setIsModalOpen(true)}
-          handleClose={() => setIsModalOpen(false)}
+          handleClose={() => setModalReviewId(null)}
         />
       )}
     </div>

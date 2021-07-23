@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ModalPortal from 'components/templates/ModalPortal';
-import { LoadingSpinner } from 'components/common/loading/Loading';
+import ModalPortal from 'components/templates/PopupPortal';
+import { LoadingSpinner } from 'components/common/loading';
 
 const ScrollableImageModal = ({ imgSrc, handleOpen, handleClose }) => {
   /**
