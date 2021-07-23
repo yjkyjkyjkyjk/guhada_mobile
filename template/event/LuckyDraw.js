@@ -11,13 +11,12 @@ import { withRouter } from 'next/router';
 import { useObserver } from 'mobx-react-lite';
 import useStores from 'stores/useStores';
 import copy from 'copy-to-clipboard';
-import { devLog } from 'childs/lib/common/devLog';
 import LuckydrawLogin from './LuckydrawLogin';
 import LuckydrawSignup from './LuckydrawSignup';
 import LuckydrawModify from './LuckydrawModify';
 import CategorySlider from 'components/common/CategorySlider';
 import { mainCategory } from 'childs/lib/constant/category';
-import LoadingPortal from 'components/common/loading/Loading';
+import LoadingPortal from 'components/common/loading';
 import LuckyEventPopup from 'components/event/popup/LuckyEventPopup';
 
 const enhancer = compose(withRouter);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const ReviewDetail = ({ review }) => {
-  console.log('yoman', review);
   return (
     <div className={css['review-detail']}>
       <div className={css['detail__user-info']}>

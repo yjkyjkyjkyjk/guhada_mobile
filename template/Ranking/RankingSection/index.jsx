@@ -2,7 +2,7 @@ import { memo } from 'react';
 import css from './RankingSection.module.scss';
 import PropTypes from 'prop-types';
 import RankItem, { rankShape } from './RankItem';
-import Loading from 'components/common/loading/Loading';
+import Loading from 'components/common/loading';
 
 const RankingSection = ({ rank, handleSearch, count = 50 }) => {
   return (

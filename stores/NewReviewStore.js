@@ -153,11 +153,11 @@ class ReviewStore {
    * actions
    */
   /** resets request payload data */
-  @action resetData() {
+  @action resetData = () => {
     this.totalPages = Infinity;
     this.reviews = [];
     // this.hashtags = [];
-  }
+  };
 
   @action fetch = async () => {
     if (this.error) {
@@ -218,7 +218,7 @@ class ReviewStore {
     }
   };
 
-  @action async fetchHashtags() {
+  @action fetchHashtags = async () => {
     if (!this.hashtagInitialized) {
       try {
         const { data } = await API.user.get('/reviews/popularity/hashtag');
@@ -232,7 +232,7 @@ class ReviewStore {
         console.error(error.message);
       }
     }
-  }
+  };
 
   @action initializeFetch = (
     params = { categoryName: '전체', hashtag: '' }
@@ -258,6 +258,62 @@ class ReviewStore {
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  /**
+   * symbol to prevent buges from handling review likes
+   * @example
+   * an object consists of { initial, timeout }
+   */
+  reviewLikeSymbols = {};
+  /**
+   * review like change handler using `reviewLikeSymbols` to prevent abusing
+   * [IMPORTANT!] READ THE CODE CAREFULLY BEFORE USING!
+   * @param {Review} review
+   */
+  @action handleReviewLike = (review) => {
+    if (this.reviewLikeSymbols[review.id]) {
+      clearTimeout(this.reviewLikeSymbols[review.id].timeout);
+      this.reviewLikeSymbols[review.id].timeout = setTimeout(
+        () => this.reviewLikeService(review),
+        2000
+      );
+    } else {
+      this.reviewLikeSymbols[review.id] = {
+        initial: review.myBookmarkReview,
+        timeout: setTimeout(() => this.reviewLikeService(review), 2000),
+      };
+    }
+
+    if (review.myBookmarkReview) {
+      review.myBookmarkReview = false;
+      review.bookmarkCount -= 1;
+    } else {
+      review.myBookmarkReview = true;
+      review.bookmarkCount += 1;
+    }
+  };
+  reviewLikeService = (review) => {
+    console.log(
+      'yoman fin',
+      this.reviewLikeSymbols[review.id].initial,
+      review.myBookmarkReview
+    );
+    if (this.reviewLikeSymbols[review.id].initial !== review.myBookmarkReview) {
+      try {
+        review.myBookmarkReview
+          ? API.user.post('/users/bookmarks', {
+              target: 'REVIEW',
+              targetId: review.id,
+            })
+          : API.user.delete(
+              `/users/bookmarks?target=REVIEW&targetId=${review.id}`
+            );
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    delete this.reviewLikeSymbols[review.id];
   };
 }
 

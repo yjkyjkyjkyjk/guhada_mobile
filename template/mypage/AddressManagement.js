@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'next/router';
 import css from './AddressManagement.module.scss';
-import DefaultLayout from 'components/layout/DefaultLayout';
 import MypageLayout from 'components/mypage/MypageLayout';
 import MypageAddressList from 'components/mypage/address/MypageAddressList';
 import MypageAddressModal from 'components/mypage/address/MypageAddressModal';
 import DataEmpty from 'components/common/DataEmpty';
 import { inject, observer } from 'mobx-react';
-import Loading from 'components/common/loading/Loading';
+import Loading from 'components/common/loading';
 @inject('mypageAddress')
 @observer
 class AddressManagement extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import OrderPaymentSuccess from '../../template/orderpaymentsuccess/OrderPaymentSuccess';
 import { inject, observer } from 'mobx-react';
-import Loading from '../../components/common/loading/Loading';
+import Loading from '../../components/common/loading';
 import { getParameterByName } from '../../utils';
 import criteoTracker from 'childs/lib/tracking/criteo/criteoTracker';
 import Cookies from 'js-cookie';

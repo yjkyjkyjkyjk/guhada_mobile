@@ -25,10 +25,9 @@ import Coupon from 'components/productdetail/Coupon';
 import _ from 'lodash';
 import CommonPopup from 'components/common/modal/CommonPopup';
 import SellerReview from 'components/productdetail/SellerReview/SellerReview';
-import LoadingPortal from 'components/common/loading/Loading';
+import LoadingPortal from 'components/common/loading';
 import { sendBackToLogin } from 'childs/lib/router';
 
-import AppLinkPopup from 'components/event/popup/AppLinkPopup';
 import localStorage from 'childs/lib/common/localStorage';
 
 @withScrollToTopOnMount

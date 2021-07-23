@@ -7,7 +7,7 @@ import Alert from './Alert';
 import Confirm from './Confirm';
 import Mask, { WhiteMask } from './Mask';
 import scrollY from 'childs/lib/dom/scrollY';
-import LoadingPortal from '../loading/Loading';
+import LoadingPortal from '../loading';
 
 const stories = storiesOf('common/modal', module);
 

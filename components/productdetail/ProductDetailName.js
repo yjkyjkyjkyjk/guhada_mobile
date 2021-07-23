@@ -6,7 +6,7 @@ import _ from 'lodash';
 import copy from 'copy-to-clipboard';
 import Router from 'next/router';
 import { sendBackToLogin } from 'childs/lib/router';
-import { LoadingSpinner } from 'components/common/loading/Loading';
+import { LoadingSpinner } from 'components/common/loading';
 
 /**
  * Lazy UserClaimModal

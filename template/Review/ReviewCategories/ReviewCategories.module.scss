@@ -12,18 +12,23 @@
   }
 
   .categories__items {
-    display: flex;
     overflow-x: scroll;
-    padding-left: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 86px;
+    white-space: nowrap;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
     .item {
+      -webkit-tap-highlight-color: transparent;
+      display: inline-block;
       width: 55px;
       height: 85px;
-      margin-right: 15px;
+      margin-left: 7px;
+      margin-right: 7px;
 
       button {
         border-radius: 50%;
