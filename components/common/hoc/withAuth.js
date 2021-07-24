@@ -4,7 +4,6 @@ import { withRouter } from 'next/router';
 import { inject, observer } from 'mobx-react';
 import { loginStatus } from 'lib/constant';
 import { isBrowser } from 'lib/common/isServer';
-import { loginStatus } from 'lib/constant';
 import Loading from '../loading';
 import qs from 'qs';
 import _ from 'lodash';

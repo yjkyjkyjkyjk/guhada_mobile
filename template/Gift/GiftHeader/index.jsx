@@ -24,7 +24,7 @@ const GiftHeader = () => {
       </div>
       {isModalOpen && (
         <ScrollableImageModal
-          imgSrc={'/static/gift/gift_detail_mob.jpg'}
+          imgSrc={'/public/gift/gift_detail_mob.jpg'}
           handleOpen={() => setIsModalOpen(true)}
           handleClose={() => setIsModalOpen(false)}
         />

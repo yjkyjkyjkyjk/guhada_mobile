@@ -1,7 +1,7 @@
 import qs from 'qs';
 import _ from 'lodash';
 import API from 'lib/API';
-import { root } from 'store';
+import { root } from 'stores';
 import { pushRoute } from 'lib/router';
 
 export default {

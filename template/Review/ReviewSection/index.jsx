@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import { useRouter } from 'next/router';
 import useStores from 'stores/useStores';
 import { sendBackToLogin } from 'lib/router';
-import { useInfinteScroll } from 'hooks';
+import { useInfinteScroll } from 'lib/hooks';
 import { LoadingSpinnerDiv } from 'components/common/loading';
 import { SpinnerDiv } from 'components/atoms/Misc/Spinner';
 import ReviewItem from './ReviewItem';

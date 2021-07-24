@@ -9,18 +9,6 @@ import css from './CommentWrite.module.scss';
 import Image from 'components/atoms/Image';
 import Emoji from 'components/atoms/Emoji';
 
-import {
-  Wrapper,
-  EmojiSection,
-  InputSection,
-  Avatar,
-  Form,
-  InputWrapper,
-  TextDiv,
-  SubmitDiv,
-  Submit,
-} from './Styled';
-
 import { REVIEW_EMOJI_LIST } from 'template/Review/constants';
 
 import defaultStyle from './lib/defaultStyle';

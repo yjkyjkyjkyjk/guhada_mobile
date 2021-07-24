@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import ModalWrapper from './ModalWrapper';
 import css from './AssociatedProduct.module.scss';
@@ -20,7 +20,7 @@ class AssociatedProduct extends Component {
 
   get bodyText() {
     const { content } = this.props.shoppingCartSuccessModal;
-    return ReactDOMServer.renderToString(content);
+    return renderToString(content);
   }
 
   render() {

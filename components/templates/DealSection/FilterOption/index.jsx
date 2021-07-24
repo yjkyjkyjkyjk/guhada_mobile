@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import cn from 'classnames';
 import useStores from 'stores/useStores';
 import { searchResultOrderMap } from 'stores/SearchStore/SearchByFilterStore';
 import ThumbnailButton from './ThumbnailButton';

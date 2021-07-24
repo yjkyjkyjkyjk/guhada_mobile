@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import API from 'lib/API';
-import { root } from 'store';
+import { root } from 'stores';
 
 export default {
   onInit(form) {},
