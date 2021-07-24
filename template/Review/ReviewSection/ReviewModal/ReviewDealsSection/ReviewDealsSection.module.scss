@@ -1,0 +1,12 @@
+.section__deals {
+  border-top: 8px solid #f9f9fa;
+  padding-top: 30px;
+
+  .deals {
+    margin-bottom: -20px;
+    &__header {
+      font-size: 15px;
+      margin-left: 18px;
+    }
+  }
+}

@@ -68,7 +68,6 @@ function Review({ initialReviewStore }) {
         handleClickCategory={handleClickCategory}
       />
       <ReviewSection
-        reviews={reviewStore.reviews}
         isInitial={reviewStore.isInitial}
         isLoading={reviewStore.isLoading}
         moreToLoad={reviewStore.moreToLoad}

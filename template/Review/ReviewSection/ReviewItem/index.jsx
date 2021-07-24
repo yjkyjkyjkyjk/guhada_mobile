@@ -1,7 +1,7 @@
 import css from './ReviewItem.module.scss';
-import { memo } from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import LazyLoad from 'react-lazyload';
 import ImageSlider from './ImageSlider';
 import Rating, { getRating } from 'components/atoms/Misc/Rating';
@@ -9,18 +9,23 @@ import ReviewDetail from './ReviewDetail';
 
 const ReviewItem = ({
   review,
-  likeCount,
   handleClick = () => {},
   handleLikeClick,
   handleDealClick,
+  handleHashtagClick = () => {},
   detailed = false,
+  isLazy = true,
 }) => (
   <div className={cn(css['review-item'], !detailed && css['divider'])}>
-    <div className={css['item__review']} onClick={() => handleClick(review.id)}>
+    <div className={css['item__review']} onClick={() => handleClick(review)}>
       <div className={css['review__image']}>
-        <LazyLoad>
+        {isLazy ? (
+          <LazyLoad>
+            <ImageSlider imageList={review.reviewImageList} />
+          </LazyLoad>
+        ) : (
           <ImageSlider imageList={review.reviewImageList} />
-        </LazyLoad>
+        )}
       </div>
       <div className={css['review__info']}>
         <div className={css['review__info__icons']}>
@@ -32,10 +37,10 @@ const ReviewItem = ({
               className={cn(
                 css['icon__image'],
                 'misc',
-                review.myBookmarkReview ? 'like--on' : 'like'
+                myBookmarkReview ? 'like--on' : 'like'
               )}
             />
-            <span className={css['icon__count']}>{likeCount}</span>
+            <span className={css['icon__count']}>{review.bookmarkCount}</span>
           </div>
           <div className={css['icon']}>
             <span className={cn(css['icon__image'], 'misc comment')} />
@@ -45,7 +50,7 @@ const ReviewItem = ({
         <Rating number={getRating(review.rating)} />
       </div>
       {detailed ? (
-        <ReviewDetail review={review} />
+        <ReviewDetail review={review} handleHashtagClick={handleHashtagClick} />
       ) : (
         <p className={css['review__text']}>
           <span className={css['text__author']}>{review.nickname}</span>
@@ -57,12 +62,19 @@ const ReviewItem = ({
       className={css['item__deal']}
       onClick={() => handleDealClick(review.dealId)}
     >
-      <LazyLoad>
+      {isLazy ? (
+        <LazyLoad>
+          <div
+            className={css['deal__image']}
+            style={{ backgroundImage: `url(${review.productImageUrl})` }}
+          />
+        </LazyLoad>
+      ) : (
         <div
           className={css['deal__image']}
           style={{ backgroundImage: `url(${review.productImageUrl})` }}
         />
-      </LazyLoad>
+      )}
       <div className={css['deal__info']}>
         <div className={css['deal__info__title']}>{review.brandName}</div>
         <p className={css['deal__info__text']}>{review.dealName}</p>
@@ -73,16 +85,12 @@ const ReviewItem = ({
 
 ReviewItem.propTypes = {
   review: PropTypes.object,
-  likeCount: PropTypes.number,
   handleClick: PropTypes.func,
   handleLikeClick: PropTypes.func,
   handleDealClick: PropTypes.func,
+  handleHashtagClick: PropTypes.func,
   detailed: PropTypes.bool,
+  isLazy: PropTypes.bool,
 };
 
-export default memo(ReviewItem, (prevProps, nextProps) => {
-  if (prevProps.likeCount !== nextProps.likeCount) {
-    return false;
-  }
-  return true;
-});
+export default observer(ReviewItem);

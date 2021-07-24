@@ -1,4 +1,5 @@
 import css from './AdBanner.module.scss';
+import cn from 'classnames';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
@@ -6,7 +7,7 @@ import Slider from 'react-slick';
 import useStores from 'stores/useStores';
 import { pushRoute } from 'lib/router';
 
-const AdBanner = ({ handleBeforeClick }) => {
+const AdBanner = ({ handleBeforeClick, centerMode = true }) => {
   /**
    * states
    */
@@ -42,12 +43,11 @@ const AdBanner = ({ handleBeforeClick }) => {
     <Slider
       dots
       dotsClass={css['ad-banner__slick-dots']}
-      centerMode
-      centerPadding="20px"
       speed={500}
       autoplay
       autoplaySpeed={3000}
       slidesToShow={1}
+      {...(centerMode && { centerMode: true, centerPadding: '20px' })}
     >
       {imageList.map(
         (image) =>
@@ -55,7 +55,10 @@ const AdBanner = ({ handleBeforeClick }) => {
           image.communityPlusImageUrl && (
             <div
               key={image.id}
-              className={css['image-wrapper']}
+              className={cn(
+                css['image-wrapper'],
+                centerMode && css['center-mode']
+              )}
               onClick={() => handleClick(image)}
             >
               <div
@@ -74,6 +77,7 @@ const AdBanner = ({ handleBeforeClick }) => {
 
 AdBanner.propTypes = {
   handleBeforeClick: PropTypes.func,
+  centerMode: PropTypes.bool,
 };
 
 export default observer(AdBanner);

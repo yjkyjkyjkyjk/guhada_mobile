@@ -174,14 +174,15 @@ class ReviewStore {
           const {
             data: { data },
           } = await API.user.get(
-            `/reviews/all?page=${this.params.page}&unitPerPage=${
-              this.params.unitPerPage
-            }&categoryName=${this.params.categoryName}`
+            `/reviews/all?page=${this.params.page}&unitPerPage=${this.params.unitPerPage}&categoryName=${this.params.categoryName}`
           );
 
-          this.reviews = this.reviews.concat(
-            data.userProductReviewResponsePage.content // fetched reviews
+          const offsetIndex = this.reviews.length;
+          const fetchedReviews = data.userProductReviewResponsePage.content.map(
+            (review, index) => ({ ...review, index: index + offsetIndex })
           );
+
+          this.reviews = this.reviews.concat(fetchedReviews);
 
           if (this.params.page === 1 || this.totalPages === Infinity) {
             this.totalPages = data.userProductReviewResponsePage.totalPages;
@@ -190,14 +191,16 @@ class ReviewStore {
           const {
             data: { data },
           } = await API.user.get(
-            `/reviews/search/hashtag?hashtag=${this.params.hashtag}page=${
-              this.params.page
-            }&unitPerPage=${this.params.unitPerPage}&categoryName=${
-              this.params.categoryName
-            }`
+            `/reviews/search/hashtag?hashtag=${this.params.hashtag}page=${this.params.page}&unitPerPage=${this.params.unitPerPage}&categoryName=${this.params.categoryName}`
           );
 
-          this.reviews = this.reviews.concat(data.content);
+          const offsetIndex = this.reviews.length;
+          const fetchedReviews = data.content.map((review, index) => ({
+            ...review,
+            index: index + offsetIndex,
+          }));
+
+          this.reviews = this.reviews.concat(fetchedReviews);
 
           if (this.params.page === 1 || this.totalPages === Infinity) {
             this.totalPages = data.totalPages;
@@ -248,20 +251,96 @@ class ReviewStore {
   };
 
   /**
-   * =============== BELOW ARE UI RELATED ACTIONS ===============
+   * =============== BELOW ARE UI RELATED OBSERVABLES ===============
    */
-  fetchReview = async (reviewId) => {
-    try {
-      const { data } = await API.user.get(`/reviews/${reviewId}`);
-      const review = data.data;
-      return review;
-    } catch (error) {
-      console.error(error.message);
+  /**
+   * [UI OBSERVABLE] detailedReview
+   */
+  @computed get detailedReview() {
+    return this._detailedReview;
+  }
+  @observable _detailedReview = {};
+  @action fetchDetailedReview = async (review) => {
+    this._detailedReview = review;
+    if (!review.createdTimestamp) {
+      try {
+        const {
+          data: { data: detailedReview },
+        } = await API.user.get(`/reviews/${review.id}`);
+        Object.assign(review, detailedReview);
+
+        if (review.commentCount > 0) {
+          const {
+            data: { data: comments },
+          } = await API.user.get(`/reviews/${review.id}/comments`);
+          Object.assign(review, { comments });
+        }
+
+        this._detailedReview = { ...this._detailedReview, ...review };
+      } catch (error) {
+        console.error(error.message);
+      }
     }
+  };
+  @action fetchDetailedReviewRelated = async (review) => {
+    if (!review.relatedDeals || !review.popularDeals) {
+      try {
+        const {
+          data: {
+            data: { deals: relatedDeals },
+          },
+        } = await API.search.post(
+          '/ps/search/seller/related?page=1&unitPerPage=6',
+          {
+            productId: review.productId,
+          }
+        );
+        const {
+          data: {
+            data: { deals: popularDeals },
+          },
+        } = await API.search.post(
+          '/ps/search/seller/popular?page=1&unitPerPage=6',
+          {
+            productId: review.productId,
+          }
+        );
+
+        Object.assign(review, { relatedDeals, popularDeals });
+        this._detailedReview = {
+          ...this._detailedReview,
+          ...{ relatedDeals, popularDeals },
+        };
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+  };
+  @action fetchDetailedReviewRecommended = async (review) => {
+    if (!review.recommendedReviews) {
+      try {
+        const {
+          data: { data: recommendedReviews },
+        } = await API.user.get(`/reviews/${review.id}/recommend/reviews`);
+        Object.assign(review, { recommendedReviews });
+        this._detailedReview = {
+          ...this._detailedReview,
+          ...{ recommendedReviews },
+        };
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+  };
+  resetDetailedReview = () => {
+    this._detailedReview = {};
   };
 
   /**
-   * symbol to prevent buges from handling review likes
+   * [UI OBSERVABLE] reviewLike
+   */
+  /**
+   * symbol to prevent bugs from handling review likes
    * @example
    * an object consists of { initial, timeout }
    */
@@ -272,25 +351,35 @@ class ReviewStore {
    * @param {Review} review
    */
   @action handleReviewLike = (review) => {
-    if (this.reviewLikeSymbols[review.id]) {
+    if (this.reviewLikeSymbols[revmmiew.id]) {
       clearTimeout(this.reviewLikeSymbols[review.id].timeout);
       this.reviewLikeSymbols[review.id].timeout = setTimeout(
         () => this.reviewLikeService(review),
-        2000
+        1000
       );
     } else {
       this.reviewLikeSymbols[review.id] = {
         initial: review.myBookmarkReview,
-        timeout: setTimeout(() => this.reviewLikeService(review), 2000),
+        timeout: setTimeout(() => this.reviewLikeService(review), 1000),
       };
     }
 
     if (review.myBookmarkReview) {
-      review.myBookmarkReview = false;
-      review.bookmarkCount -= 1;
+      if (review.index) {
+        this.reviews[review.index].myBookmarkReview = false;
+        this.reviews[review.index].bookmarkCount -= 1;
+      } else {
+        review.myBookmarkReview = false;
+        review.bookmarkCount -= 1;
+      }
     } else {
-      review.myBookmarkReview = true;
-      review.bookmarkCount += 1;
+      if (review.index) {
+        this.reviews[review.index].myBookmarkReview = true;
+        this.reviews[review.index].bookmarkCount += 1;
+      } else {
+        review.myBookmarkReview = true;
+        review.bookmarkCount += 1;
+      }
     }
   };
   reviewLikeService = (review) => {

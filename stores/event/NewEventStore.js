@@ -65,8 +65,6 @@ class EventStore {
         data: { data },
       } = await API.settle.get(`/event/list/detail?eventId=${eventId}`);
 
-      console.log('yoman', data);
-
       this.eventDetail = data;
     } catch (error) {
       console.error(error.message);

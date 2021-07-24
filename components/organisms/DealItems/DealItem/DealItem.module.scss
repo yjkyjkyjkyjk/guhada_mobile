@@ -122,11 +122,25 @@
   &.deal-item--horizontal {
     width: 45%;
     padding-left: 10px;
-    padding-right: 0;
+    padding-right: 3px;
+
+    .description__brand {
+      margin-bottom: 4px;
+    }
+
+    .description__name {
+      margin-bottom: 6px;
+    }
 
     .deal-item__description {
       padding-left: 0px;
       padding-right: 0px;
+    }
+
+    .description__price {
+      .price--sell-price {
+        margin-left: 4px;
+      }
     }
   }
 

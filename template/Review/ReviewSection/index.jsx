@@ -12,7 +12,6 @@ import ReviewItem from './ReviewItem';
 import ReviewModal from './ReviewModal';
 
 const ReviewSection = ({
-  reviews,
   isInitial,
   isLoading,
   moreToLoad,
@@ -24,15 +23,16 @@ const ReviewSection = ({
   const { login: loginStore, newReview: reviewStore } = useStores();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalReviewId, setModalReviewId] = useState(null);
 
   /**
    * handlers
    */
   const handleInfiniteScroll = useInfinteScroll(handleLoadMore, moreToLoad);
 
-  const handleClick = (reviewId) => {
-    setModalReviewId(reviewId);
+  const handleClick = (review) => {
+    reviewStore.fetchDetailedReview(review);
+    reviewStore.fetchDetailedReviewRelated(review);
+    reviewStore.fetchDetailedReviewRecommended(review);
     setIsModalOpen(true);
   };
 
@@ -58,12 +58,11 @@ const ReviewSection = ({
         <div className={css['section__empty']}>
           <LoadingSpinnerDiv />
         </div>
-      ) : reviews.length > 0 ? (
-        reviews.map((review) => (
+      ) : reviewStore.reviews.length > 0 ? (
+        reviewStore.reviews.map((review) => (
           <ReviewItem
             key={review.id}
             review={review}
-            likeCount={review.bookmarkCount}
             handleClick={handleClick}
             handleLikeClick={handleLikeClick}
             handleDealClick={handleDealClick}
@@ -83,16 +82,15 @@ const ReviewSection = ({
       )}
       {moreToLoad && (
         <div ref={handleInfiniteScroll}>
-          {reviews.length > 0 && <SpinnerDiv />}
+          {reviewStore.reviews.length > 0 && <SpinnerDiv />}
         </div>
       )}
-      {isModalOpen && modalReviewId && (
+      {isModalOpen && (
         <ReviewModal
-          reviewId={modalReviewId}
           handleLikeClick={handleLikeClick}
           handleDealClick={handleDealClick}
           handleOpen={() => setIsModalOpen(true)}
-          handleClose={() => setModalReviewId(null)}
+          handleClose={() => setIsModalOpen(false)}
         />
       )}
     </div>
@@ -100,7 +98,6 @@ const ReviewSection = ({
 };
 
 ReviewSection.propTypes = {
-  reviews: PropTypes.object,
   isInitial: PropTypes.bool,
   isLoading: PropTypes.bool,
   moreToLoad: PropTypes.bool,

@@ -1,23 +1,72 @@
 .review-detail {
-  .detail__user-info {
+  margin-left: 19px;
+  margin-right: 19px;
+
+  .detail__user-size {
+    font-size: 11px;
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 10px;
   }
 
-  .detail__tags {
+  .detail__questions {
+    margin-left: -5px;
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: 8px;
+
+    .question {
+      display: inline-block;
+      border-radius: 11px;
+      font-size: 10px;
+      border: 1px solid #eee;
+      padding: 4px 7px;
+      margin-right: 3px;
+      margin-bottom: 3px;
+
+      @media (min-width: 340px) {
+        margin-right: 5px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .q {
+        color: #444;
+        border-right: 1px solid #eee;
+        padding-right: 7px;
+      }
+
+      .a {
+        color: #5d2ed1;
+        padding-left: 7px;
+      }
+    }
   }
 
   .detail__text {
-    margin-left: 20px;
-    margin-right: 20px;
     font-size: 13px;
-
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 10px;
   }
 
   .detail__date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ccc;
+    margin-bottom: 15px;
+  }
+
+  .detail__hashtags {
+    .hashtag {
+      background-color: #eee;
+      color: #777;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      padding: 7px 9px;
+    }
   }
 }

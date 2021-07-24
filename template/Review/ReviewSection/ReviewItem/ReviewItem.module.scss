@@ -1,8 +1,12 @@
 .review-item {
   &.divider {
-    border-top: 8px solid #f9f9fa;
+    &:last-child {
+      padding-bottom: unset;
+      border-bottom: unset;
+    }
+    padding-bottom: 30px;
+    border-bottom: 8px solid #f9f9fa;
     margin-bottom: 30px;
-    padding-top: 30px;
   }
 
   .item__review {
@@ -64,7 +68,7 @@
   }
 
   .item__deal {
-    margin: 20px 20px 0 20px;
+    margin: 17px 20px 0 20px;
     padding: 10px 20px;
     height: 70px;
     border: 1px solid #eee;
